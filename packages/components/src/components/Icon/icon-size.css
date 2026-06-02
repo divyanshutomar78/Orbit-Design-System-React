@@ -1,0 +1,34 @@
+/**
+ * Shared icon frame + glyph sizing (Orbit platform tokens).
+ * Import where components render icons.
+ */
+.orbit-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+.orbit-icon--small {
+  width: calc(var(--icon-frame-size-small) * 1px);
+  height: calc(var(--icon-frame-size-small) * 1px);
+}
+
+.orbit-icon--small svg {
+  width: calc(var(--icon-small) * 1px);
+  height: calc(var(--icon-small) * 1px);
+}
+
+/**
+ * big: frame + glyph follow platform defaults (web 24×24; iPad 44 frame, 24 glyph).
+ */
+.orbit-icon--big {
+  width: calc(var(--icon-frame-size-default) * 1px);
+  height: calc(var(--icon-frame-size-default) * 1px);
+}
+
+.orbit-icon--big svg {
+  width: calc(var(--icon-default) * 1px);
+  height: calc(var(--icon-default) * 1px);
+}

@@ -1,0 +1,17 @@
+/**
+ * Critical Chip — Figma _Critical Chip (4917:94689)
+ */
+@import '../Chip/chip-base.css';
+
+.orbit-critical-chip {
+  background-color: var(--chips-critical-default);
+}
+
+.orbit-critical-chip:hover:not(:disabled) {
+  background-color: var(--chips-critical-hover);
+}
+
+.orbit-critical-chip--selected,
+.orbit-critical-chip[aria-pressed='true'] {
+  background-color: var(--chips-critical-selected);
+}

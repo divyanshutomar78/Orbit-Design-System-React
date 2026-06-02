@@ -1,0 +1,134 @@
+/**
+ * Titles and Tabs — Figma Title (99:367)
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+@import '../Icon/icon-size.css';
+
+.orbit-titles-and-tabs {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: calc(var(--components-titles-and-tabs-header) * 1px);
+  min-height: calc(var(--components-titles-and-tabs-header) * 1px);
+  padding-inline-start: calc(var(--padding-horizontal-0) * 1px);
+  padding-inline-end: calc(var(--padding-horizontal-s) * 1px);
+  border: none;
+  border-bottom: calc(var(--components-input-button-select-border-width) * 1px)
+    solid var(--border-secondary);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+}
+
+.orbit-titles-and-tabs__start {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: calc(var(--gap-m) * 1px);
+  height: 100%;
+  min-width: 0;
+}
+
+.orbit-titles-and-tabs__header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: calc(var(--gap-xs) * 1px);
+  height: 100%;
+  min-width: 0;
+}
+
+.orbit-titles-and-tabs__title {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: calc(var(--font-font-size-title-4) * 1px);
+  font-weight: var(--font-font-weight-title);
+  line-height: calc(var(--font-line-height-title-4) * 1px);
+  letter-spacing: calc(var(--font-letter-spacing-title-4) * 0.01em);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.orbit-titles-and-tabs__tabs {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 100%;
+  min-width: 0;
+}
+
+.orbit-titles-and-tabs__spacer {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+}
+
+.orbit-titles-and-tabs__end {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: calc(var(--gap-m) * 1px);
+}
+
+.orbit-titles-and-tabs__slot {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--icon-frame-size-default) * 1px);
+  height: 100%;
+}
+
+.orbit-titles-and-tabs__actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: calc(var(--gap-0) * 1px);
+  padding-block: calc(var(--gap-s) * 1px);
+}
+
+/* Title Tab — Figma - Tab (606:15086) */
+.orbit-title-tab {
+  display: inline-flex;
+  align-items: center;
+  min-height: calc(var(--components-titles-and-tabs-header) * 1px);
+  padding-inline: calc(var(--padding-horizontal-s) * 1px);
+  padding-block: calc(var(--gap-s) * 1px);
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: var(--font-font-weight-body);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  white-space: nowrap;
+  appearance: none;
+}
+
+.orbit-title-tab:hover:not(:disabled) {
+  color: var(--text-primary);
+}
+
+.orbit-title-tab:focus-visible {
+  outline: calc(var(--gap-xxs) * 1px) solid var(--border-action-hover);
+  outline-offset: calc(var(--gap-xxs) * 1px);
+}
+
+.orbit-title-tab--selected,
+.orbit-title-tab[aria-selected='true'] {
+  color: var(--text-primary);
+}
+
+.orbit-title-tab:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.orbit-title-tab__label {
+  word-break: break-word;
+}

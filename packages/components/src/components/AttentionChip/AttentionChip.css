@@ -1,0 +1,17 @@
+/**
+ * Attention Chip — Figma _Attention Chip (4917:93419)
+ */
+@import '../Chip/chip-base.css';
+
+.orbit-attention-chip {
+  background-color: var(--chips-attemtion-default);
+}
+
+.orbit-attention-chip:hover:not(:disabled) {
+  background-color: var(--chips-attemtion-hover);
+}
+
+.orbit-attention-chip--selected,
+.orbit-attention-chip[aria-pressed='true'] {
+  background-color: var(--chips-attemtion-selected);
+}

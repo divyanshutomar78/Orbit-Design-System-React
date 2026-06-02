@@ -1,0 +1,17 @@
+/**
+ * Warning Chip — Figma _Warning Chip (4917:93843)
+ */
+@import '../Chip/chip-base.css';
+
+.orbit-warning-chip {
+  background-color: var(--chips-warning-default);
+}
+
+.orbit-warning-chip:hover:not(:disabled) {
+  background-color: var(--chips-warning-hover);
+}
+
+.orbit-warning-chip--selected,
+.orbit-warning-chip[aria-pressed='true'] {
+  background-color: var(--chips-warning-selected);
+}

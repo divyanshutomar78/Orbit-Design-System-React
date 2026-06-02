@@ -1,0 +1,14 @@
+{
+  "name": "@orbit/tokens",
+  "version": "0.1.0",
+  "description": "Orbit design tokens — CSS, SCSS, and Tailwind outputs",
+  "type": "module",
+  "exports": {
+    "./css/primitives": "../../../Orbit-Personal-Tokens/dist/css/primitives/variables.css",
+    "./css/themes/*": "../../../Orbit-Personal-Tokens/dist/css/themes/*/index.css",
+    "./css/platforms/*": "../../../Orbit-Personal-Tokens/dist/css/platforms/*/variables.css"
+  },
+  "files": [
+    "README.md"
+  ]
+}

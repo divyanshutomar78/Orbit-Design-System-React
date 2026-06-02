@@ -1,0 +1,68 @@
+/**
+ * Shared chip layout — used by Neutral Chip, Attention Chip, etc.
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+@import '../Icon/icon-size.css';
+.orbit-chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-inline: calc(var(--padding-horizontal-xs) * 1px);
+  padding-block: calc(var(--padding-vertical-xs) * 1px);
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: var(--font-font-weight-body);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  filter: drop-shadow(
+    0 0 calc(var(--components-input-button-select-border-width) * 1px)
+      var(--shadow-chip)
+  );
+  appearance: none;
+  vertical-align: middle;
+}
+
+.orbit-chip--default {
+  height: calc(var(--components-chip-height-default) * 1px);
+}
+
+.orbit-chip--compact {
+  height: calc(var(--components-chip-height-compact) * 1px);
+}
+
+.orbit-chip--chip {
+  border-radius: calc(var(--radius-chip) * 1px);
+}
+
+.orbit-chip--tag {
+  border-radius: calc(var(--radius-chip-squared) * 1px);
+}
+
+.orbit-chip:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.orbit-chip:focus-visible {
+  outline: calc(var(--gap-xxs) * 1px) solid var(--border-action-hover);
+  outline-offset: calc(var(--gap-xxs) * 1px);
+}
+
+.orbit-chip__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap-0) * 1px);
+  min-height: 100%;
+}
+
+.orbit-chip__label {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: calc(var(--gap-xxs) * 1px);
+  white-space: nowrap;
+}

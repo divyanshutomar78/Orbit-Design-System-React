@@ -1,0 +1,17 @@
+{
+  "name": "orbit-design-system",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "Orbit-Personal-Tokens"
+  ],
+  "scripts": {
+    "build": "npm run build -w @orbit/components",
+    "storybook": "npm run dev -w @orbit/storybook",
+    "build:storybook": "npm run build -w @orbit/storybook"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

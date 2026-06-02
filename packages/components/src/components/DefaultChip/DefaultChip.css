@@ -1,0 +1,18 @@
+/**
+ * Default Chip — Figma _Default Chip (4927:123993)
+ * Theme tokens: chips/blue (CSS --chips-blue-*)
+ */
+@import '../Chip/chip-base.css';
+
+.orbit-default-chip {
+  background-color: var(--chips-blue-default);
+}
+
+.orbit-default-chip:hover:not(:disabled) {
+  background-color: var(--chips-blue-hover);
+}
+
+.orbit-default-chip--selected,
+.orbit-default-chip[aria-pressed='true'] {
+  background-color: var(--chips-blue-selected);
+}

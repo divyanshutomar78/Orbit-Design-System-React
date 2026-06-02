@@ -1,0 +1,163 @@
+/**
+ * Listing Item — Figma Listing item (908:1711)
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+@import '../Icon/icon-size.css';
+
+.orbit-listing-item {
+  --orbit-listing-icon-frame: var(--icon-frame-size-small);
+
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+  width: 100%;
+  min-height: calc((var(--orbit-listing-icon-frame) + var(--gap-s) * 2) * 1px);
+  padding-inline: calc(var(--gap-s) * 1px);
+  padding-block: calc(var(--gap-0) * 1px);
+  border: none;
+  border-bottom: calc(var(--components-input-button-select-border-width) * 1px)
+    solid var(--border-primary);
+  border-radius: calc(var(--radius-s) * 1px);
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  text-align: left;
+  appearance: none;
+}
+
+.orbit-listing-item--icon-big {
+  --orbit-listing-icon-frame: var(--icon-frame-size-default);
+}
+
+.orbit-listing-item--interactive {
+  cursor: pointer;
+}
+
+.orbit-listing-item:focus-visible {
+  outline: calc(var(--gap-xxs) * 1px) solid var(--border-action-hover);
+  outline-offset: calc(var(--gap-xxs) * 1px);
+}
+
+.orbit-listing-item--multi-line {
+  align-items: center;
+}
+
+.orbit-listing-item__reorder,
+.orbit-listing-item__left-icon,
+.orbit-listing-item__right {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding-block: calc(var(--gap-0) * 1px);
+}
+
+.orbit-listing-item__main {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+  min-width: 0;
+}
+
+.orbit-listing-item--multi-line .orbit-listing-item__main {
+  align-items: center;
+}
+
+.orbit-listing-item__cell {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.orbit-listing-item:not(.orbit-listing-item--multi-line) .orbit-listing-item__cell {
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+  padding-block: calc(var(--gap-s) * 1px);
+  padding-inline: calc(var(--gap-0) * 1px);
+}
+
+.orbit-listing-item--multi-line .orbit-listing-item__cell {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: calc(var(--gap-xs) * 1px);
+  min-height: calc((var(--orbit-listing-icon-frame) + var(--gap-s) * 2) * 1px);
+  padding: calc(var(--gap-0) * 1px);
+}
+
+.orbit-listing-item__title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(var(--font-line-height-title-6) * 1px);
+  font-size: calc(var(--font-font-size-title-6) * 1px);
+  font-weight: var(--font-font-weight-title);
+  line-height: calc(var(--font-line-height-title-6) * 1px);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.orbit-listing-item__lv {
+  display: flex;
+  flex-shrink: 0;
+  gap: calc(var(--gap-xs) * 1px);
+  align-items: flex-start;
+}
+
+.orbit-listing-item__lv-center {
+  display: flex;
+  gap: calc(var(--gap-s) * 1px);
+  align-items: flex-end;
+}
+
+.orbit-listing-item__label {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: var(--font-font-weight-body);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.orbit-listing-item__value {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: var(--font-font-weight-body);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.orbit-listing-item__helper {
+  width: 100%;
+  padding-block: calc(var(--gap-0) * 1px);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  font-weight: var(--font-font-weight-comment);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+  color: var(--text-secondary);
+  word-break: break-word;
+}
+
+.orbit-listing-item__actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--orbit-listing-icon-frame) * 1px);
+}
+
+.orbit-listing-item:not(.orbit-listing-item--multi-line) .orbit-listing-item__actions {
+  height: calc((var(--orbit-listing-icon-frame) + var(--gap-s) * 2) * 1px);
+}
+
+.orbit-listing-item--multi-line .orbit-listing-item__actions-wrap {
+  display: flex;
+  flex-direction: row;
+  align-self: stretch;
+  align-items: center;
+}
+
+.orbit-listing-item--multi-line .orbit-listing-item__actions {
+  height: 100%;
+}

@@ -1,0 +1,128 @@
+/**
+ * Requires Orbit Personal Tokens:
+ * - Theme: dist/css/themes/<theme>/index.css
+ * - Platform: dist/css/platforms/<platform>/variables.css
+ *
+ * Platform tokens are unitless numbers; multiply by 1px for valid CSS lengths.
+ */
+@import '../Icon/icon-size.css';
+.orbit-button-compact {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: calc(var(--components-input-button-select-compact-min-width) * 1px);
+  height: calc(var(--components-input-button-select-compact-height) * 1px);
+  padding-inline: calc(var(--gap-xs) * 1px);
+  border: none;
+  border-radius: calc(var(--radius-input) * 1px);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: var(--font-font-weight-body);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  appearance: none;
+}
+
+.orbit-button-compact:focus-visible {
+  outline: calc(var(--gap-xxs) * 1px) solid var(--border-action-hover);
+  outline-offset: calc(var(--gap-xxs) * 1px);
+}
+
+.orbit-button-compact--min-width .orbit-button-compact__content {
+  min-width: calc(var(--components-input-button-select-min-width-compact-hidden) * 1px);
+}
+
+.orbit-button-compact__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap-0) * 1px);
+}
+
+.orbit-button-compact__label {
+  padding-inline: calc(var(--padding-horizontal-s) * 1px);
+}
+
+/* Primary */
+.orbit-button-compact--primary {
+  background-color: var(--background-action);
+  color: var(--text-on-action);
+}
+
+.orbit-button-compact--primary:hover:not(:disabled) {
+  background-color: var(--background-action-hover);
+  color: var(--xtra-sergei-variables-on-action-hover);
+}
+
+.orbit-button-compact--primary:active:not(:disabled) {
+  background-color: var(--text-action-active);
+  color: var(--xtra-sergei-variables-on-action-active);
+}
+
+.orbit-button-compact--primary:disabled {
+  background-color: var(--background-background);
+  color: var(--text-on-disabled);
+  cursor: not-allowed;
+}
+
+.orbit-button-compact--primary:disabled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--background-disabled);
+  pointer-events: none;
+}
+
+.orbit-button-compact--primary:disabled .orbit-button-compact__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Secondary — Figma min width matches compact-height on web; compact-min-width on iPad */
+.orbit-button-compact--secondary {
+  min-width: calc(var(--components-input-button-select-compact-height) * 1px);
+  border: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--text-action);
+  color: var(--text-action);
+}
+
+.orbit-button-compact--secondary:hover:not(:disabled) {
+  border-color: var(--text-action-hover);
+  color: var(--text-action-hover);
+}
+
+.orbit-button-compact--secondary:active:not(:disabled) {
+  border-color: var(--text-action-active);
+  color: var(--text-action-active);
+}
+
+.orbit-button-compact--secondary:disabled {
+  border-color: var(--text-disabled);
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+/* Tertiary */
+.orbit-button-compact--tertiary {
+  color: var(--text-action);
+}
+
+.orbit-button-compact--tertiary:hover:not(:disabled) {
+  color: var(--text-action-hover);
+}
+
+.orbit-button-compact--tertiary:active:not(:disabled) {
+  color: var(--text-action-active);
+}
+
+.orbit-button-compact--tertiary:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}

@@ -1,0 +1,17 @@
+/**
+ * Success Chip — Figma _Success Chip (4917:94234)
+ */
+@import '../Chip/chip-base.css';
+
+.orbit-success-chip {
+  background-color: var(--chips-success-default);
+}
+
+.orbit-success-chip:hover:not(:disabled) {
+  background-color: var(--chips-success-hover);
+}
+
+.orbit-success-chip--selected,
+.orbit-success-chip[aria-pressed='true'] {
+  background-color: var(--chips-success-selected);
+}

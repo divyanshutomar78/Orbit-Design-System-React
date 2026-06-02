@@ -1,0 +1,17 @@
+/**
+ * Neutral Chip — Figma _Neutral Chip (4916:90986)
+ */
+@import '../Chip/chip-base.css';
+
+.orbit-neutral-chip {
+  background-color: var(--chips-neutral-color-neutral-2);
+}
+
+.orbit-neutral-chip:hover:not(:disabled) {
+  background-color: var(--chips-neutral-color-hover);
+}
+
+.orbit-neutral-chip--selected,
+.orbit-neutral-chip[aria-pressed='true'] {
+  background-color: var(--chips-neutral-color-checked);
+}

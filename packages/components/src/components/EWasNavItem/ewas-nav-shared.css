@@ -1,0 +1,28 @@
+/**
+ * Shared rules for eWAS nav tiles — fixed 55px cells always use 24px icons (Figma),
+ * not the larger iPad touch-target icon frames.
+ */
+.orbit-ewas-nav-item,
+.orbit-ewas-nav-item-w-text {
+  overflow: hidden;
+}
+
+.orbit-ewas-nav-item .orbit-ewas-nav-item__content,
+.orbit-ewas-nav-item-w-text .orbit-ewas-nav-item-w-text__content {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.orbit-ewas-nav-item .orbit-icon,
+.orbit-ewas-nav-item-w-text .orbit-icon {
+  flex-shrink: 0;
+  width: calc(var(--icon-default) * 1px);
+  height: calc(var(--icon-default) * 1px);
+}
+
+.orbit-ewas-nav-item .orbit-icon svg,
+.orbit-ewas-nav-item-w-text .orbit-icon svg {
+  width: calc(var(--icon-default) * 1px);
+  height: calc(var(--icon-default) * 1px);
+}

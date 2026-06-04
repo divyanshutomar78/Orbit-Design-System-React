@@ -1,0 +1,121 @@
+/**
+ * Option Toggle — Figma Option Toggle (569:28473)
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+@import '../Icon/icon-size.css';
+
+.orbit-option-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+  box-sizing: border-box;
+  min-height: calc(var(--components-input-button-select-default) * 1px);
+  padding-block: calc(var(--gap-s) * 1px);
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+.orbit-option-toggle--disabled {
+  cursor: not-allowed;
+}
+
+.orbit-option-toggle__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.orbit-option-toggle__icon {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.orbit-option-toggle--on .orbit-option-toggle__icon,
+.orbit-option-toggle--partial .orbit-option-toggle__icon {
+  color: var(--text-action);
+}
+
+.orbit-option-toggle:hover:not(.orbit-option-toggle--disabled):not(
+    .orbit-option-toggle--on
+  ):not(.orbit-option-toggle--partial)
+  .orbit-option-toggle__icon,
+.orbit-option-toggle--hover:not(.orbit-option-toggle--disabled):not(
+    .orbit-option-toggle--on
+  ):not(.orbit-option-toggle--partial)
+  .orbit-option-toggle__icon {
+  color: var(--text-primary);
+}
+
+.orbit-option-toggle--on:hover:not(.orbit-option-toggle--disabled)
+  .orbit-option-toggle__icon,
+.orbit-option-toggle--on.orbit-option-toggle--hover:not(
+    .orbit-option-toggle--disabled
+  )
+  .orbit-option-toggle__icon,
+.orbit-option-toggle--partial:hover:not(.orbit-option-toggle--disabled)
+  .orbit-option-toggle__icon,
+.orbit-option-toggle--partial.orbit-option-toggle--hover:not(
+    .orbit-option-toggle--disabled
+  )
+  .orbit-option-toggle__icon {
+  color: var(--text-action-hover);
+}
+
+.orbit-option-toggle--disabled .orbit-option-toggle__icon {
+  color: var(--text-disabled);
+}
+
+.orbit-option-toggle__text {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  padding-bottom: calc(var(--gap-0) * 1px);
+}
+
+.orbit-option-toggle--on .orbit-option-toggle__text {
+  justify-content: flex-start;
+}
+
+.orbit-option-toggle__label {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+  word-break: break-word;
+}
+
+.orbit-option-toggle--on .orbit-option-toggle__label {
+  color: var(--text-primary);
+}
+
+.orbit-option-toggle--disabled .orbit-option-toggle__label {
+  color: var(--text-disabled);
+}
+
+.orbit-option-toggle--on.orbit-option-toggle--disabled .orbit-option-toggle__label {
+  color: var(--text-primary);
+}
+
+.orbit-option-toggle--on.orbit-option-toggle--disabled .orbit-option-toggle__icon,
+.orbit-option-toggle--partial.orbit-option-toggle--disabled .orbit-option-toggle__icon {
+  color: var(--text-disabled);
+}
+
+.orbit-option-toggle__right-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--icon-default) * 1px);
+  height: calc(var(--icon-default) * 1px);
+  color: var(--text-secondary);
+}

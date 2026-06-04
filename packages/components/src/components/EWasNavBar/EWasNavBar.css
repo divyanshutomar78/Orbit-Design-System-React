@@ -1,0 +1,68 @@
+/**
+ * eWAS Nav Bar — Figma eWAS Nav Bar (4491:87974)
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+.orbit-ewas-nav-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+  padding: calc(var(--padding-vertical-xxs) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  background-color: var(--background-background);
+  gap: calc(var(--gap-xxs) * 1px);
+}
+
+.orbit-ewas-nav-bar--horizontal {
+  width: calc(
+    (var(--components-e-was-nav-item-width-horizontal) +
+        var(--padding-vertical-xxs) * 2) *
+      1px
+  );
+}
+
+.orbit-ewas-nav-bar--vertical {
+  width: calc(
+    (var(--components-e-was-nav-item-width-vertical) +
+        var(--padding-vertical-xxs) * 2) *
+      1px
+  );
+}
+
+.orbit-ewas-nav-bar--split-view {
+  width: calc(
+    (var(--components-e-was-nav-item-width-split-view) +
+        var(--padding-vertical-xxs) * 2) *
+      1px
+  );
+}
+
+.orbit-ewas-nav-bar__section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: calc(var(--gap-xxs) * 1px);
+  width: 100%;
+}
+
+.orbit-ewas-nav-bar__branding {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(var(--components-e-was-nav-item-height-horizontal) * 1px);
+  color: var(--text-primary);
+}
+
+.orbit-ewas-nav-bar__branding-icon {
+  width: calc(var(--icon-default) * 1px);
+  height: calc(var(--icon-default) * 1px);
+}
+
+.orbit-ewas-nav-bar--split-view .orbit-ewas-nav-bar__branding-icon {
+  width: 32px;
+  height: 32px;
+}

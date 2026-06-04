@@ -170,6 +170,71 @@ Maps to Figma **Action Menu Item w select** — props mirror the component set:
 
 Export `ActionMenuItem` for custom menus and the Add more item slot.
 
+## eWAS Nav Item
+
+Maps to Figma **eWAS Nav Item** (`node 4486:143873`) — icon nav control with Default / Active / Disabled and Horizontal / Split View / Vertical layouts.
+
+```tsx
+import { EWasNavItem } from '@orbit/components';
+
+<EWasNavItem navItem="Flights" orientation="horizontal" state="active" />
+<EWasNavItem orientation="splitView" state="default" />
+```
+
+| Prop | Figma | Default |
+|------|-------|---------|
+| `navItem` | Nav Item | `"Flights"` |
+| `icon` | Icon | rocket icon |
+| `orientation` | Orientation | `'horizontal'` |
+| `state` | State | `'default'` |
+| `iconSize` | — | `'big'` (24px glyph) |
+
+Split View shows icon only (no label). Sizes use `--components-e-was-nav-item-*` platform tokens.
+
+## eWAS Nav Item w Text
+
+Maps to Figma **eWAS Nav Item w text** (`node 4487:144286`) — two-line flight nav or Split View info icon.
+
+```tsx
+import { EWasNavItemWText } from '@orbit/components';
+
+<EWasNavItemWText characters="6" orientation="horizontal" state="selected" />
+<EWasNavItemWText characters="default" orientation="splitView" />
+```
+
+| Prop | Figma | Default |
+|------|-------|---------|
+| `characters` | Characters | `'6'` (`'6'` \| `'7'` \| `'8'` \| `'default'`) |
+| `primaryText` / `secondaryText` | — | preset from Characters |
+| `orientation` | Orientation | `'horizontal'` |
+| `state` | State | `'default'` \| `'selected'` |
+| `icon` | Icon (Split View) | info icon |
+
+Uses the same `--components-e-was-nav-item-*` size tokens as **eWAS Nav Item**.
+
+## eWAS Nav Bar
+
+Maps to Figma **eWAS Nav Bar** (`node 4491:87974`) — composes **eWAS Nav Item** and **eWAS Nav Item w Text**.
+
+```tsx
+import { EWasNavBar } from '@orbit/components';
+
+<EWasNavBar flight orientation="horizontal" />
+<EWasNavBar flight orientation="horizontal" activeItemId={activeId} onItemSelect={setActiveId} />
+<EWasNavBar flight={false} orientation="vertical" />
+```
+
+| Prop | Figma | Default |
+|------|-------|---------|
+| `flight` | Flight | `true` |
+| `orientation` | Orientation | `'horizontal'` |
+| `flightHeader` | — | `EWasNavItemWText` when `flight` |
+| `primaryItems` | — | Flights / Airport / Opti Flight |
+| `branding` | — | SITA logo when `flight={false}` |
+| `utilityItems` | — | Data / Config / User |
+| `footerItem` | — | V1.0 + pilot icon |
+| `activeItemId` / `onItemSelect` | — | selection callbacks |
+
 ## Titles and Tabs
 
 Maps to Figma **Title** (`node 99:367`) — header bar with back icon, spaced uppercase title, tabs, optional slot, and menu icon.
@@ -198,6 +263,164 @@ import { TitlesAndTabs } from '@orbit/components';
 | `iconSize` | `big` | `small` \| `big` icon frames |
 
 Export `TitleTab` for custom tab rows.
+
+## Label Value Vertical
+
+Maps to Figma **Label Value_Vertical** (`1832:34754`). Stacked label and value with three layout variants.
+
+```tsx
+import { LabelValueVertical } from '@orbit/components';
+
+<LabelValueVertical layout="L+V" label="Status" value="Active" />
+<LabelValueVertical layout="V + L" label="Flight" value="AB123" />
+<LabelValueVertical layout="L + V + L" secondaryLabel="Unit" big />
+```
+
+| Prop | Default | Figma |
+|------|---------|-------|
+| `layout` | `L+V` | Layout (`V + L`, `L+V`, `L + V + L`) |
+| `label` / `value` | `Label` / `Value` | Text content |
+| `secondaryLabel` | `Label` | Bottom label (`L + V + L`) |
+| `big` | `false` | Only Value — Big (Title 3) |
+| `labelSlot` / `valueSlot` | — | Add more Label / Value |
+
+## Option Toggle
+
+Maps to Figma **Option Toggle** (`569:28473`). Toggle switch row with Off / On / Partial states.
+
+```tsx
+import { OptionToggle } from '@orbit/components';
+
+<OptionToggle state="on" label="Enable feature" onChange={handleChange} />
+<OptionToggle state="partial" label="Sync" showRightIcon />
+```
+
+| Prop | Default | Figma |
+|------|---------|-------|
+| `label` | `Option` | Text Option |
+| `state` | `off` | State (Off / On / Partial) |
+| `status` | `default` | Status |
+| `showRightIcon` | `false` | showRightIcon |
+| `checked` / `partial` | — | Convenience aliases |
+
+## Option Checkbox
+
+Maps to Figma **Option Checkbox** (`570:29495`). Checkbox row with Off / On / Partial states.
+
+```tsx
+import { OptionCheckbox } from '@orbit/components';
+
+<OptionCheckbox state="on" label="Option A" onChange={handleChange} />
+<OptionCheckbox state="partial" label="Select all" />
+```
+
+| Prop | Default | Figma |
+|------|---------|-------|
+| `label` | `Option` | Text Option |
+| `state` | `off` | State (Off / On / Partial) |
+| `status` | `default` | Status (Default / Hover / Disabled) |
+| `checked` / `indeterminate` | — | HTML convenience aliases |
+| `textSlot` | — | textComponent slot |
+
+## Option Radio
+
+Maps to Figma **Option Radio** (`570:29315`). Single radio row with icon and label; height uses `--components-input-button-select-default`.
+
+```tsx
+import { OptionRadio } from '@orbit/components';
+
+<OptionRadio name="plan" value="a" label="Option A" selected={value === 'a'} onChange={() => setValue('a')} />
+```
+
+| Prop | Default | Figma |
+|------|---------|-------|
+| `label` | `Option` | Text Option |
+| `selected` | `false` | Selected On/Off |
+| `status` | `default` | Status (Default / Hover / Disabled) |
+| `textSlot` | — | textComponent slot |
+| `iconSize` | `big` | 24px icon frame |
+
+## Input Select
+
+Maps to Figma **Input Select** (`800:4645`). Select field with label, optional info icon, helper/error lines, and input background states.
+
+```tsx
+import { InputSelect } from '@orbit/components';
+
+<InputSelect placeholder="Placeholder" />
+<InputSelect
+  options={[
+    { value: 'a', label: 'Option A' },
+    { value: 'b', label: 'Option B' },
+  ]}
+  value={value}
+  onValueChange={setValue}
+  showBottomSpaceHelper
+  showClearIcon
+/>
+```
+
+When `options` are provided, clicking the field opens an **Action Menu** dropdown (not the native browser select).
+
+| Prop | Default | Figma |
+|------|---------|-------|
+| `showLabel` | `true` | Show Label |
+| `showLabelInfo` | `true` | Only Label info icon |
+| `showHelper` | `true` | Show Helper |
+| `showBottomSpaceHelper` | `false` | Show Bottom Space Helper |
+| `showErrorMessage` | `false` | Show Error Message |
+| `contentType` | auto | _Input_inner_content Type |
+| `visualState` | auto | _Input_background State |
+| `showRightIcons` | auto when filled | _Input_Icons_Right |
+| `options` | — | Mapped to Action Menu items |
+| `menuItems` | — | Custom Action Menu rows |
+| `actionMenuProps` | — | Passed to `ActionMenu` |
+
+## Tooltip
+
+Maps to Figma **Tooltip popup** (`3511:83124`) and **Tooltip with i** (`2887:39517`). Dark surface popup with action-menu shadow; optional info-icon trigger with hover/focus.
+
+```tsx
+import { Tooltip, TooltipPopup } from '@orbit/components';
+
+<TooltipPopup text="Toolem ipsum" />
+<Tooltip text="Short help copy" direction="right" />
+<Tooltip
+  open
+  showText={false}
+  popupContent={<LabelValueHorizontal layout="L + V" label="Lat" value="51.4780" />}
+/>
+```
+
+| Prop | Default | Figma |
+|------|---------|-------|
+| `text` | `Toolem ipsum` | Default text |
+| `showText` | `true` | Show Default Text |
+| `popupContent` | — | Add more components |
+| `direction` | `right` | Direction (`left` / `right`) |
+| `open` | — | State (controlled) |
+| `trigger` | info icon | Custom trigger slot |
+
+## Label Value Horizontal
+
+Maps to Figma **Label Value_Horizontal** (`94:156`). Inline label and value with five type variants.
+
+```tsx
+import { LabelValueHorizontal } from '@orbit/components';
+
+<LabelValueHorizontal layout="L + V" label="Gate" value="B12" />
+<LabelValueHorizontal layout="V + L" label="ETA" value="14:30" />
+<LabelValueHorizontal layout="L+V+L" secondaryLabel="Label2" />
+<LabelValueHorizontal layout="V" value="42" big />
+```
+
+| Prop | Default | Figma |
+|------|---------|-------|
+| `layout` | `L + V` | Type (`L + V`, `V + L`, `L+V+L`, `V`, `L`) |
+| `label` / `value` | `Label` / `Value` | Text content |
+| `secondaryLabel` | `Label2` | Second label (`L+V+L`) |
+| `big` | `false` | Only Value — Big (Title 3) |
+| `labelSlot` / `valueSlot` | — | Add more Label / Value |
 
 ## Listing Item
 

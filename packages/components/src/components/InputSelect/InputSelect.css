@@ -1,0 +1,239 @@
+/**
+ * Input Select — Figma Input Select (800:4645)
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+.orbit-input-select {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(var(--gap-xs) * 1px);
+  width: 100%;
+  max-width: calc(460 * 1px);
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+.orbit-input-select__label-row {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+  min-height: calc(18 * 1px);
+  width: 100%;
+}
+
+.orbit-input-select__label {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.orbit-input-select__label-info {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: calc(18 * 1px);
+  height: calc(18 * 1px);
+  color: var(--text-secondary);
+}
+
+.orbit-input-select__field-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.orbit-input-select__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(var(--components-input-button-select-default) * 1px);
+  margin: 0;
+  padding: 0;
+  padding-left: calc(var(--gap-s) * 1px);
+  border: none;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+}
+
+.orbit-input-select--disabled .orbit-input-select__field {
+  cursor: not-allowed;
+}
+
+.orbit-input-select--has-menu:not(.orbit-input-select--disabled)
+  .orbit-input-select__field {
+  cursor: pointer;
+}
+
+/* Figma Input Text Area (800:4058) — h = components/input-button-select/default */
+.orbit-input-select__background {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-input-fields);
+  border: calc(var(--components-input-button-select-border-width) * 1px)
+    solid transparent;
+  pointer-events: none;
+}
+
+.orbit-input-select--default:hover:not(.orbit-input-select--disabled)
+  .orbit-input-select__background,
+.orbit-input-select--hover .orbit-input-select__background {
+  border-color: var(--border-primary);
+}
+
+.orbit-input-select--selected .orbit-input-select__background,
+.orbit-input-select--open .orbit-input-select__background,
+.orbit-input-select__field:focus-visible .orbit-input-select__background {
+  border-color: var(--text-action);
+}
+
+.orbit-input-select--error .orbit-input-select__field:focus-visible
+  .orbit-input-select__background {
+  border-color: var(--text-warning);
+}
+
+.orbit-input-select--error .orbit-input-select__background {
+  border-color: var(--text-warning);
+}
+
+.orbit-input-select--disabled .orbit-input-select__background {
+  background-color: transparent;
+  border-color: var(--text-disabled);
+}
+
+.orbit-input-select__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1 1 0;
+  align-items: flex-end;
+  gap: calc(var(--gap-s) * 1px);
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+  padding-top: calc(var(--components-input-button-select-top-offset) * 1px);
+  padding-right: calc(var(--gap-s) * 1px);
+  padding-bottom: calc(var(--gap-s) * 1px);
+  padding-left: calc(var(--gap-s) * 1px);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orbit-input-select__placeholder,
+.orbit-input-select__value-text,
+.orbit-input-select__inline-label {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  white-space: nowrap;
+}
+
+.orbit-input-select__placeholder {
+  color: var(--text-disabled);
+}
+
+.orbit-input-select__value-text {
+  color: var(--text-primary);
+}
+
+.orbit-input-select__inline-label {
+  color: var(--text-secondary);
+}
+
+.orbit-input-select--disabled .orbit-input-select__value-text,
+.orbit-input-select--disabled .orbit-input-select__placeholder,
+.orbit-input-select--disabled .orbit-input-select__inline-label {
+  color: var(--text-disabled);
+}
+
+.orbit-input-select__content .orbit-label-value-horizontal {
+  pointer-events: none;
+}
+
+.orbit-input-select__icons {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  align-self: stretch;
+  gap: calc(var(--gap-s) * 1px);
+  height: 100%;
+  padding-right: calc(var(--padding-horizontal-s) * 1px);
+  pointer-events: none;
+}
+
+.orbit-input-select__icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--icon-default) * 1px);
+  height: calc(var(--icon-default) * 1px);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.orbit-input-select__icon-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.orbit-input-select__divider {
+  flex-shrink: 0;
+  width: calc(var(--components-input-button-select-border-width) * 1px);
+  height: calc(24 * 1px);
+  background-color: var(--border-primary);
+}
+
+.orbit-input-select__icons-spacer {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: calc(8 * 1px);
+  height: 100%;
+}
+
+.orbit-input-select__footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(12 * 1px);
+}
+
+.orbit-input-select__helper,
+.orbit-input-select__error {
+  min-height: calc(18 * 1px);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  font-weight: 400;
+  line-height: calc(var(--font-line-height-comment) * 1px);
+  word-break: break-word;
+}
+
+.orbit-input-select__helper {
+  color: var(--text-secondary);
+}
+
+.orbit-input-select__error {
+  color: var(--text-warning);
+}
+
+.orbit-input-select__dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  margin-top: calc(var(--gap-xs) * 1px);
+}
+
+.orbit-input-select__menu {
+  width: 100%;
+}

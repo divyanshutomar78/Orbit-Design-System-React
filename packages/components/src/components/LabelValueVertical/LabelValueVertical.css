@@ -1,0 +1,44 @@
+/**
+ * Label Value Vertical — Figma Label Value_Vertical (1832:34754)
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+.orbit-label-value-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: calc(var(--gap-0) * 1px);
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+.orbit-label-value-vertical__slot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(var(--gap-0) * 1px);
+}
+
+.orbit-label-value-vertical__label {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+  word-break: break-word;
+  white-space: nowrap;
+}
+
+.orbit-label-value-vertical__value {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-primary);
+  word-break: break-word;
+  white-space: nowrap;
+}
+
+.orbit-label-value-vertical__value--big {
+  font-size: calc(var(--font-font-size-title-3) * 1px);
+  font-weight: 700;
+  line-height: calc(var(--font-line-height-t-itle-3) * 1px);
+}

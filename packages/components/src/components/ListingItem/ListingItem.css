@@ -107,28 +107,6 @@
   align-items: flex-start;
 }
 
-.orbit-listing-item__lv-center {
-  display: flex;
-  gap: calc(var(--gap-s) * 1px);
-  align-items: flex-end;
-}
-
-.orbit-listing-item__label {
-  font-size: calc(var(--font-font-size-body) * 1px);
-  font-weight: var(--font-font-weight-body);
-  line-height: calc(var(--font-line-height-body) * 1px);
-  color: var(--text-secondary);
-  white-space: nowrap;
-}
-
-.orbit-listing-item__value {
-  font-size: calc(var(--font-font-size-body) * 1px);
-  font-weight: var(--font-font-weight-body);
-  line-height: calc(var(--font-line-height-body) * 1px);
-  color: var(--text-primary);
-  white-space: nowrap;
-}
-
 .orbit-listing-item__helper {
   width: 100%;
   padding-block: calc(var(--gap-0) * 1px);

@@ -1,0 +1,113 @@
+/**
+ * Option Checkbox — Figma Option Checkbox (570:29495)
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+@import '../Icon/icon-size.css';
+
+.orbit-option-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+  box-sizing: border-box;
+  min-height: calc(var(--components-input-button-select-default) * 1px);
+  padding-block: calc(var(--gap-s) * 1px);
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+.orbit-option-checkbox--disabled {
+  cursor: not-allowed;
+}
+
+.orbit-option-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.orbit-option-checkbox__icon {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.orbit-option-checkbox--on .orbit-option-checkbox__icon,
+.orbit-option-checkbox--partial .orbit-option-checkbox__icon {
+  color: var(--text-action);
+}
+
+.orbit-option-checkbox:hover:not(.orbit-option-checkbox--disabled):not(
+    .orbit-option-checkbox--on
+  ):not(.orbit-option-checkbox--partial)
+  .orbit-option-checkbox__icon,
+.orbit-option-checkbox--hover:not(.orbit-option-checkbox--disabled):not(
+    .orbit-option-checkbox--on
+  ):not(.orbit-option-checkbox--partial)
+  .orbit-option-checkbox__icon {
+  color: var(--text-primary);
+}
+
+.orbit-option-checkbox--on:hover:not(.orbit-option-checkbox--disabled)
+  .orbit-option-checkbox__icon,
+.orbit-option-checkbox--on.orbit-option-checkbox--hover:not(
+    .orbit-option-checkbox--disabled
+  )
+  .orbit-option-checkbox__icon,
+.orbit-option-checkbox--partial:hover:not(.orbit-option-checkbox--disabled)
+  .orbit-option-checkbox__icon,
+.orbit-option-checkbox--partial.orbit-option-checkbox--hover:not(
+    .orbit-option-checkbox--disabled
+  )
+  .orbit-option-checkbox__icon {
+  color: var(--text-action-hover);
+}
+
+.orbit-option-checkbox--disabled .orbit-option-checkbox__icon {
+  color: var(--text-disabled);
+}
+
+.orbit-option-checkbox__text {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  padding-bottom: calc(var(--gap-0) * 1px);
+}
+
+.orbit-option-checkbox--on .orbit-option-checkbox__text,
+.orbit-option-checkbox--partial .orbit-option-checkbox__text {
+  justify-content: flex-start;
+}
+
+.orbit-option-checkbox__label {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+  word-break: break-word;
+}
+
+.orbit-option-checkbox--on .orbit-option-checkbox__label {
+  color: var(--text-primary);
+}
+
+.orbit-option-checkbox--disabled .orbit-option-checkbox__label {
+  color: var(--text-disabled);
+}
+
+.orbit-option-checkbox--on.orbit-option-checkbox--disabled .orbit-option-checkbox__label {
+  color: var(--text-primary);
+}
+
+.orbit-option-checkbox--on.orbit-option-checkbox--disabled .orbit-option-checkbox__icon,
+.orbit-option-checkbox--partial.orbit-option-checkbox--disabled
+  .orbit-option-checkbox__icon {
+  color: var(--text-disabled);
+}

@@ -1,0 +1,101 @@
+/**
+ * eWAS Nav Item w text — Figma eWAS Nav Item w text (4487:144286)
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+@import '../Icon/icon-size.css';
+@import '../EWasNavItem/ewas-nav-shared.css';
+
+.orbit-ewas-nav-item-w-text {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: calc(var(--gap-xs) * 1px);
+  padding-block: calc(var(--gap-xs) * 1px);
+  padding-inline: calc(var(--gap-0) * 1px);
+  border: none;
+  border-radius: calc(var(--radius-s) * 1px);
+  background-color: var(--background-surface-container-2);
+  cursor: pointer;
+  font-family: var(--font-family);
+  text-align: center;
+  appearance: none;
+}
+
+.orbit-ewas-nav-item-w-text--horizontal {
+  width: calc(var(--components-e-was-nav-item-width-horizontal) * 1px);
+  height: calc(var(--components-e-was-nav-item-height-horizontal) * 1px);
+}
+
+.orbit-ewas-nav-item-w-text--vertical {
+  width: calc(var(--components-e-was-nav-item-width-vertical) * 1px);
+  height: calc(var(--components-e-was-nav-item-height-vertical) * 1px);
+}
+
+.orbit-ewas-nav-item-w-text--split-view {
+  width: calc(var(--components-e-was-nav-item-width-split-view) * 1px);
+  height: calc(var(--components-e-was-nav-item-height-split-view) * 1px);
+  gap: calc(var(--gap-0) * 1px);
+}
+
+.orbit-ewas-nav-item-w-text--selected {
+  background-color: var(--background-action);
+}
+
+.orbit-ewas-nav-item-w-text--selected:hover:not(:disabled) {
+  background-color: var(--background-action-hover);
+}
+
+.orbit-ewas-nav-item-w-text:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.orbit-ewas-nav-item-w-text:focus-visible {
+  outline: calc(var(--gap-xxs) * 1px) solid var(--border-action-hover);
+  outline-offset: calc(var(--gap-xxs) * 1px);
+}
+
+.orbit-ewas-nav-item-w-text__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap-xs) * 1px);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.orbit-ewas-nav-item-w-text--split-view .orbit-ewas-nav-item-w-text__content {
+  gap: calc(var(--gap-0) * 1px);
+}
+
+.orbit-ewas-nav-item-w-text__primary {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: calc(var(--font-font-size-body-input) * 1px);
+  font-weight: 600;
+  line-height: calc(var(--font-font-size-body-input) * 1px);
+  color: var(--text-primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.orbit-ewas-nav-item-w-text__secondary {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-font-size-body-small) * 1px);
+  color: var(--text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.orbit-ewas-nav-item-w-text--selected .orbit-ewas-nav-item-w-text__primary,
+.orbit-ewas-nav-item-w-text--selected .orbit-ewas-nav-item-w-text__secondary {
+  color: var(--text-on-action);
+}

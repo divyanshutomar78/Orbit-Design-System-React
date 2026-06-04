@@ -1,0 +1,89 @@
+/**
+ * eWAS Nav Item — Figma eWAS Nav Item (4486:143873)
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+@import '../Icon/icon-size.css';
+@import './ewas-nav-shared.css';
+
+.orbit-ewas-nav-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: calc(var(--gap-xs) * 1px);
+  padding-block: calc(var(--gap-xs) * 1px);
+  padding-inline: calc(var(--gap-0) * 1px);
+  border: none;
+  border-radius: calc(var(--radius-s) * 1px);
+  background-color: var(--background-surface-container-2);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-family);
+  text-align: center;
+  appearance: none;
+}
+
+.orbit-ewas-nav-item--horizontal {
+  width: calc(var(--components-e-was-nav-item-width-horizontal) * 1px);
+  height: calc(var(--components-e-was-nav-item-height-horizontal) * 1px);
+}
+
+.orbit-ewas-nav-item--vertical {
+  width: calc(var(--components-e-was-nav-item-width-vertical) * 1px);
+  height: calc(var(--components-e-was-nav-item-height-vertical) * 1px);
+}
+
+.orbit-ewas-nav-item--split-view {
+  width: calc(var(--components-e-was-nav-item-width-split-view) * 1px);
+  height: calc(var(--components-e-was-nav-item-height-split-view) * 1px);
+  gap: calc(var(--gap-0) * 1px);
+}
+
+.orbit-ewas-nav-item--active {
+  background-color: var(--background-action);
+  color: var(--text-on-action);
+}
+
+.orbit-ewas-nav-item--active:hover:not(:disabled) {
+  background-color: var(--background-action-hover);
+}
+
+.orbit-ewas-nav-item--disabled,
+.orbit-ewas-nav-item:disabled {
+  background-color: var(--background-surface-container-2);
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+.orbit-ewas-nav-item:focus-visible {
+  outline: calc(var(--gap-xxs) * 1px) solid var(--border-action-hover);
+  outline-offset: calc(var(--gap-xxs) * 1px);
+}
+
+.orbit-ewas-nav-item__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.orbit-ewas-nav-item--split-view .orbit-ewas-nav-item__content {
+  gap: calc(var(--gap-0) * 1px);
+}
+
+.orbit-ewas-nav-item:not(.orbit-ewas-nav-item--split-view) .orbit-ewas-nav-item__content {
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.orbit-ewas-nav-item__label {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: calc(var(--font-font-size-body-input) * 1px);
+  font-weight: 600;
+  line-height: calc(var(--font-font-size-body-input) * 1px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

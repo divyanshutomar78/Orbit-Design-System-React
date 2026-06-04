@@ -1,5 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 
+import { LabelValueHorizontal } from '../LabelValueHorizontal/LabelValueHorizontal';
 import { IconFrame } from '../Icon/IconFrame';
 import type { OrbitIconSize } from '../Icon/iconSize';
 import {
@@ -36,23 +37,6 @@ export interface ListingItemProps
   addIconsComponent?: ReactNode;
   /** Figma Add more LV — custom label + value row. */
   labelValue?: ReactNode;
-}
-
-function ListingLabelValue({
-  label = 'Label',
-  value = 'Value',
-}: {
-  label?: ReactNode;
-  value?: ReactNode;
-}) {
-  return (
-    <div className="orbit-listing-item__lv">
-      <div className="orbit-listing-item__lv-center">
-        <span className="orbit-listing-item__label">{label}</span>
-        <span className="orbit-listing-item__value">{value}</span>
-      </div>
-    </div>
-  );
 }
 
 export function ListingItem({
@@ -94,7 +78,11 @@ export function ListingItem({
 
   const labelValueContent =
     labelValue ??
-    (showLabelValue ? <ListingLabelValue label={label} value={value} /> : null);
+    (showLabelValue ? (
+      <div className="orbit-listing-item__lv">
+        <LabelValueHorizontal layout="L + V" label={label} value={value} />
+      </div>
+    ) : null);
 
   const rootProps = {
     className: classes,

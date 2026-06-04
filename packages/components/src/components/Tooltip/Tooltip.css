@@ -1,0 +1,76 @@
+/**
+ * Tooltip with i — Figma Tooltip with i (2887:39517)
+ */
+.orbit-tooltip {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  isolation: isolate;
+  width: 18px;
+  height: 18px;
+  color: var(--text-primary);
+}
+
+.orbit-tooltip--align-start {
+  align-items: flex-start;
+}
+
+.orbit-tooltip--align-end {
+  align-items: flex-end;
+}
+
+.orbit-tooltip__container {
+  position: absolute;
+  bottom: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 0;
+  padding-bottom: calc(var(--gap-m) * 1px);
+  pointer-events: none;
+}
+
+.orbit-tooltip--align-start .orbit-tooltip__container {
+  left: 0;
+  align-items: flex-start;
+}
+
+.orbit-tooltip--align-end .orbit-tooltip__container {
+  right: 0;
+  align-items: flex-end;
+}
+
+.orbit-tooltip__trigger {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: help;
+}
+
+.orbit-tooltip__trigger:focus-visible {
+  outline: calc(var(--components-input-button-select-border-width) * 1px)
+    solid var(--border-focus);
+  outline-offset: 1px;
+}
+
+.orbit-tooltip__trigger svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.orbit-tooltip--open .orbit-tooltip__trigger {
+  color: var(--text-primary);
+}

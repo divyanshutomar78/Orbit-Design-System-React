@@ -1,0 +1,59 @@
+/**
+ * Label Value Horizontal — Figma Label Value_Horizontal (94:156)
+ * Requires Orbit Personal Tokens theme + platform + font-family CSS.
+ */
+.orbit-label-value-horizontal {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--gap-xs) * 1px);
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+.orbit-label-value-horizontal__row {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-end;
+  gap: calc(var(--gap-s) * 1px);
+}
+
+.orbit-label-value-horizontal--layout-l-v-l .orbit-label-value-horizontal__row {
+  align-items: flex-end;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.orbit-label-value-horizontal--layout-v .orbit-label-value-horizontal__row,
+.orbit-label-value-horizontal--layout-l .orbit-label-value-horizontal__row {
+  align-items: center;
+}
+
+.orbit-label-value-horizontal__cell {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.orbit-label-value-horizontal__label {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+  word-break: break-word;
+  white-space: nowrap;
+}
+
+.orbit-label-value-horizontal__value {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-primary);
+  word-break: break-word;
+  white-space: nowrap;
+}
+
+.orbit-label-value-horizontal__value--big {
+  font-size: calc(var(--font-font-size-title-3) * 1px);
+  font-weight: 700;
+  line-height: calc(var(--font-line-height-t-itle-3) * 1px);
+}

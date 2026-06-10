@@ -61,7 +61,7 @@
 
 .orbit-tooltip__trigger:focus-visible {
   outline: calc(var(--components-input-button-select-border-width) * 1px)
-    solid var(--border-focus);
+    solid var(--border-action-hover);
   outline-offset: 1px;
 }
 

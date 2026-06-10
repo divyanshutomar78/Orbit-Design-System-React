@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AttentionChip } from '@orbit/components';
+import { AttentionChip } from 'orbit-ds-components';
 
 const meta: Meta<typeof AttentionChip> = {
   title: 'Components/Attention Chip',

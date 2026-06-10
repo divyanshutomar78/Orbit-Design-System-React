@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CriticalChip } from '@orbit/components';
+import { CriticalChip } from 'orbit-ds-components';
 
 const meta: Meta<typeof CriticalChip> = {
   title: 'Components/Critical Chip',

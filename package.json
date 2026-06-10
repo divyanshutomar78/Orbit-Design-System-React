@@ -3,15 +3,19 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "apps/*",
-    "Orbit-Personal-Tokens"
+    "apps/*"
   ],
   "scripts": {
-    "build": "npm run build -w @orbit/components",
+    "build": "npm run build -w orbit-ds-components",
+    "publish:components": "npm run build -w orbit-ds-components && npm publish -w orbit-ds-components --access public",
     "storybook": "npm run dev -w @orbit/storybook",
-    "build:storybook": "npm run build -w @orbit/storybook"
+    "build:storybook": "npm run build -w @orbit/storybook",
+    "verify:tokens": "node scripts/verify-token-usage.mjs"
   },
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "orbit-ds-variables": "file:.orbit-ds-variables-src"
   }
 }

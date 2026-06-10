@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { OptionToggle } from '@orbit/components';
+import { OptionToggle } from 'orbit-ds-components';
 
 const meta: Meta<typeof OptionToggle> = {
   title: 'Components/Option Toggle',

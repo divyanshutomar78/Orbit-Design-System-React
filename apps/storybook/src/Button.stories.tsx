@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@orbit/components';
+import { Button } from 'orbit-ds-components';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { EWasNavItem } from '@orbit/components';
+import { EWasNavItem } from 'orbit-ds-components';
 
 const meta: Meta<typeof EWasNavItem> = {
   title: 'Components/eWAS Nav Item',

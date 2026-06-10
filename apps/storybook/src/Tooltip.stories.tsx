@@ -3,7 +3,7 @@ import {
   LabelValueHorizontal,
   Tooltip,
   TooltipPopup,
-} from '@orbit/components';
+} from 'orbit-ds-components';
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Components/Tooltip',

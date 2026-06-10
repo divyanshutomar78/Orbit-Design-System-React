@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import {
   LabelValueHorizontal,
   labelValueHorizontalLayouts,
-} from '@orbit/components';
+} from 'orbit-ds-components';
 
 const meta: Meta<typeof LabelValueHorizontal> = {
   title: 'Components/Label Value Horizontal',

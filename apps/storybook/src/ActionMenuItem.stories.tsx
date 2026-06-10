@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ActionMenuItem } from '@orbit/components';
+import { ActionMenuItem } from 'orbit-ds-components';
 
 const meta: Meta<typeof ActionMenuItem> = {
   title: 'Components/Action Menu Item',

@@ -7,13 +7,13 @@ import {
 } from './orbitPlatforms';
 import { DEFAULT_ORBIT_THEME, ORBIT_THEMES } from './orbitThemes';
 
-import '../../../Orbit-Personal-Tokens/dist/css/font-family/roboto/variables.css';
+import './orbit-font.css';
 
 const preview: Preview = {
   globalTypes: {
     orbitTheme: {
       name: 'Orbit Theme',
-      description: 'Color theme from Orbit Personal Tokens (dist/css/themes)',
+      description: 'Color theme from orbit-ds-variables (dist/css/themes)',
       defaultValue: DEFAULT_ORBIT_THEME,
       toolbar: {
         title: 'Theme',
@@ -25,7 +25,7 @@ const preview: Preview = {
     orbitPlatform: {
       name: 'Orbit Platform',
       description:
-        'Platform sizing tokens from Orbit Personal Tokens (dist/css/platforms)',
+        'Platform sizing tokens from orbit-ds-variables (dist/css/platforms)',
       defaultValue: DEFAULT_ORBIT_PLATFORM,
       toolbar: {
         title: 'Platform',

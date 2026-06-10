@@ -1,6 +1,6 @@
-import desktop from '../../../Orbit-Personal-Tokens/dist/css/platforms/desktop/variables.css?url';
-import ipad from '../../../Orbit-Personal-Tokens/dist/css/platforms/ipad/variables.css?url';
-import web from '../../../Orbit-Personal-Tokens/dist/css/platforms/web/variables.css?url';
+import desktop from 'orbit-ds-variables/dist/css/platforms/desktop/variables.css?url';
+import ipad from 'orbit-ds-variables/dist/css/platforms/ipad/variables.css?url';
+import web from 'orbit-ds-variables/dist/css/platforms/web/variables.css?url';
 
 export type OrbitPlatformId = 'web' | 'ipad' | 'desktop';
 

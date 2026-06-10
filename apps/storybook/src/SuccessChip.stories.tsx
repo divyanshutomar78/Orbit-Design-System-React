@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SuccessChip } from '@orbit/components';
+import { SuccessChip } from 'orbit-ds-components';
 
 const meta: Meta<typeof SuccessChip> = {
   title: 'Components/Success Chip',

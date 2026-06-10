@@ -1,8 +1,8 @@
-import dGrey from '../../../Orbit-Personal-Tokens/dist/css/themes/d-grey/index.css?url';
-import dGreen from '../../../Orbit-Personal-Tokens/dist/css/themes/d-green/index.css?url';
-import nBlue from '../../../Orbit-Personal-Tokens/dist/css/themes/n-blue/index.css?url';
-import nGreen from '../../../Orbit-Personal-Tokens/dist/css/themes/n-green/index.css?url';
-import nGrey from '../../../Orbit-Personal-Tokens/dist/css/themes/n-grey/index.css?url';
+import dGrey from 'orbit-ds-variables/dist/css/themes/d-grey/index.css?url';
+import dGreen from 'orbit-ds-variables/dist/css/themes/d-green/index.css?url';
+import nBlue from 'orbit-ds-variables/dist/css/themes/n-blue/index.css?url';
+import nGreen from 'orbit-ds-variables/dist/css/themes/n-green/index.css?url';
+import nGrey from 'orbit-ds-variables/dist/css/themes/n-grey/index.css?url';
 
 export type OrbitThemeId = 'd-grey' | 'd-green' | 'n-grey' | 'n-green' | 'n-blue';
 

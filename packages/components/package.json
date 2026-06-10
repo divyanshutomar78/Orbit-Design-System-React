@@ -1,7 +1,7 @@
 {
-  "name": "@orbit/components",
-  "version": "0.1.0",
-  "description": "Orbit design system React components",
+  "name": "orbit-ds-components",
+  "version": "1.0.0",
+  "description": "React component library for the Orbit Design System — buttons, inputs, chips, navigation, and more.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -15,18 +15,48 @@
     "./styles.css": "./dist/orbit-components.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "sideEffects": [
     "**/*.css"
   ],
   "scripts": {
     "build": "vite build",
-    "dev": "vite build --watch"
+    "dev": "vite build --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/divyanshutomar78/Orbit-Design-System.git",
+    "directory": "packages/components"
+  },
+  "keywords": [
+    "orbit",
+    "design-system",
+    "react",
+    "components",
+    "ui",
+    "figma"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/divyanshutomar78/Orbit-Design-System/issues"
+  },
+  "homepage": "https://github.com/divyanshutomar78/Orbit-Design-System/tree/main/packages/components#readme",
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
+    "orbit-ds-variables": ">=1.0.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "orbit-ds-variables": {
+      "optional": false
+    }
   },
   "devDependencies": {
     "@types/react": "^18.3.12",

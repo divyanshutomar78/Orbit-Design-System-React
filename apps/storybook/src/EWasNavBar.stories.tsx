@@ -4,7 +4,7 @@ import {
   EWasNavBar,
   defaultEWasNavBarPrimaryItems,
   defaultEWasNavBarUtilityItems,
-} from '@orbit/components';
+} from 'orbit-ds-components';
 
 const meta: Meta<typeof EWasNavBar> = {
   title: 'Components/eWAS Nav Bar',

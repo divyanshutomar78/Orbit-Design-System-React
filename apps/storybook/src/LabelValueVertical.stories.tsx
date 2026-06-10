@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import {
   LabelValueVertical,
   labelValueVerticalLayouts,
-} from '@orbit/components';
+} from 'orbit-ds-components';
 
 const meta: Meta<typeof LabelValueVertical> = {
   title: 'Components/Label Value Vertical',

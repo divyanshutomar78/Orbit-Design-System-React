@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ButtonCompact } from '@orbit/components';
+import { ButtonCompact } from 'orbit-ds-components';
 
 const meta: Meta<typeof ButtonCompact> = {
   title: 'Components/Button Compact',

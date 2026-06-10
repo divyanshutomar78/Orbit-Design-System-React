@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ListingItem } from '@orbit/components';
+import { ListingItem } from 'orbit-ds-components';
 
 const meta: Meta<typeof ListingItem> = {
   title: 'Components/Listing Item',

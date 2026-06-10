@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { OptionCheckbox } from '@orbit/components';
+import { OptionCheckbox } from 'orbit-ds-components';
 
 const meta: Meta<typeof OptionCheckbox> = {
   title: 'Components/Option Checkbox',

@@ -1,6 +1,21 @@
-# @orbit/components
+# orbit-ds-components
 
-React 18 component library for the Orbit design system. Styles use CSS custom properties from **Orbit Personal Tokens**.
+React 18 component library for the Orbit design system. Styles use CSS custom properties from **orbit-ds-variables**.
+
+## Quick start
+
+```bash
+npm install orbit-ds-components orbit-ds-variables react react-dom
+```
+
+```tsx
+import { Button, InputSelect } from 'orbit-ds-components';
+import 'orbit-ds-components/styles.css';
+import 'orbit-ds-variables/dist/css/themes/d-grey/index.css';
+import 'orbit-ds-variables/dist/css/platforms/web/variables.css';
+```
+
+Set `--font-family` in your app (e.g. `Roboto, sans-serif`) and load the matching web font.
 
 ## Icon sizes
 
@@ -16,7 +31,7 @@ Components with icons accept `iconSize?: 'small' | 'big'`. Sizing comes from pla
 Use `IconFrame` for custom slots:
 
 ```tsx
-import { IconFrame } from '@orbit/components';
+import { IconFrame } from 'orbit-ds-components';
 
 <IconFrame size="big"><MyIcon /></IconFrame>
 ```
@@ -26,18 +41,19 @@ import { IconFrame } from '@orbit/components';
 Import a theme and platform token bundle before rendering components:
 
 ```css
-@import '../../Orbit-Personal-Tokens/dist/css/font-family/roboto/variables.css';
-@import '../../Orbit-Personal-Tokens/dist/css/themes/d-green/index.css';
-@import '../../Orbit-Personal-Tokens/dist/css/platforms/web/variables.css';
+@import 'orbit-ds-variables/dist/css/themes/d-green/index.css';
+@import 'orbit-ds-variables/dist/css/platforms/web/variables.css';
 ```
+
+Set `--font-family` in your app (e.g. `Roboto, sans-serif`) and load the matching web font.
 
 ## Button
 
 Maps to Figma **Button** (`node 543:32573`) — types Primary, Secondary, Tertiary with hover, press, and disabled via native button states.
 
 ```tsx
-import { Button } from '@orbit/components';
-import '@orbit/components/styles.css';
+import { Button } from 'orbit-ds-components';
+import 'orbit-ds-components/styles.css';
 
 <Button variant="primary">Save</Button>
 <Button variant="secondary" leftIcon={<IconPlus />}>Add</Button>
@@ -56,7 +72,7 @@ import '@orbit/components/styles.css';
 Maps to Figma **_Attention Chip** (`node 4917:93419`). Same API as Neutral Chip; uses `--chips-attemtion-*` theme tokens (spelling matches tokens.json).
 
 ```tsx
-import { AttentionChip } from '@orbit/components';
+import { AttentionChip } from 'orbit-ds-components';
 
 <AttentionChip type="chip" selected>
   Text
@@ -68,7 +84,7 @@ import { AttentionChip } from '@orbit/components';
 Maps to Figma **_Warning Chip** (`node 4917:93843`). Same API as other chips; uses `--chips-warning-default`, `--chips-warning-hover`, `--chips-warning-selected`.
 
 ```tsx
-import { WarningChip } from '@orbit/components';
+import { WarningChip } from 'orbit-ds-components';
 
 <WarningChip type="tag" size="compact" selected>
   Text
@@ -80,7 +96,7 @@ import { WarningChip } from '@orbit/components';
 Maps to Figma **_Success Chip** (`node 4917:94234`). Same API as other chips; uses `--chips-success-default`, `--chips-success-hover`, `--chips-success-selected`.
 
 ```tsx
-import { SuccessChip } from '@orbit/components';
+import { SuccessChip } from 'orbit-ds-components';
 
 <SuccessChip type="chip" selected>
   Text
@@ -92,7 +108,7 @@ import { SuccessChip } from '@orbit/components';
 Maps to Figma **_Critical Chip** (`node 4917:94689`). Same API as other chips; uses `--chips-critical-default`, `--chips-critical-hover`, `--chips-critical-selected`.
 
 ```tsx
-import { CriticalChip } from '@orbit/components';
+import { CriticalChip } from 'orbit-ds-components';
 
 <CriticalChip type="tag" size="compact" selected>
   Text
@@ -104,7 +120,7 @@ import { CriticalChip } from '@orbit/components';
 Maps to Figma **_Default Chip** (`node 4927:123993`). Same API as other chips; uses blue chip theme tokens `--chips-blue-default`, `--chips-blue-hover`, `--chips-blue-selected`.
 
 ```tsx
-import { DefaultChip } from '@orbit/components';
+import { DefaultChip } from 'orbit-ds-components';
 
 <DefaultChip type="chip" selected>
   Text
@@ -116,7 +132,7 @@ import { DefaultChip } from '@orbit/components';
 Maps to Figma **_Neutral Chip** (`node 4916:90986`) — Type Chip/Tag, Size Default/Compact, selectable states.
 
 ```tsx
-import { NeutralChip } from '@orbit/components';
+import { NeutralChip } from 'orbit-ds-components';
 
 <NeutralChip type="chip" size="default" selected>
   Text
@@ -131,7 +147,7 @@ import { NeutralChip } from '@orbit/components';
 Maps to Figma **Action Menu** (`node 3705:19982`) — surface container with selectable rows, optional checkmark, chevron, and close actions.
 
 ```tsx
-import { ActionMenu } from '@orbit/components';
+import { ActionMenu } from 'orbit-ds-components';
 
 <ActionMenu
   items={[
@@ -175,7 +191,7 @@ Export `ActionMenuItem` for custom menus and the Add more item slot.
 Maps to Figma **eWAS Nav Item** (`node 4486:143873`) — icon nav control with Default / Active / Disabled and Horizontal / Split View / Vertical layouts.
 
 ```tsx
-import { EWasNavItem } from '@orbit/components';
+import { EWasNavItem } from 'orbit-ds-components';
 
 <EWasNavItem navItem="Flights" orientation="horizontal" state="active" />
 <EWasNavItem orientation="splitView" state="default" />
@@ -196,7 +212,7 @@ Split View shows icon only (no label). Sizes use `--components-e-was-nav-item-*`
 Maps to Figma **eWAS Nav Item w text** (`node 4487:144286`) — two-line flight nav or Split View info icon.
 
 ```tsx
-import { EWasNavItemWText } from '@orbit/components';
+import { EWasNavItemWText } from 'orbit-ds-components';
 
 <EWasNavItemWText characters="6" orientation="horizontal" state="selected" />
 <EWasNavItemWText characters="default" orientation="splitView" />
@@ -217,7 +233,7 @@ Uses the same `--components-e-was-nav-item-*` size tokens as **eWAS Nav Item**.
 Maps to Figma **eWAS Nav Bar** (`node 4491:87974`) — composes **eWAS Nav Item** and **eWAS Nav Item w Text**.
 
 ```tsx
-import { EWasNavBar } from '@orbit/components';
+import { EWasNavBar } from 'orbit-ds-components';
 
 <EWasNavBar flight orientation="horizontal" />
 <EWasNavBar flight orientation="horizontal" activeItemId={activeId} onItemSelect={setActiveId} />
@@ -240,7 +256,7 @@ import { EWasNavBar } from '@orbit/components';
 Maps to Figma **Title** (`node 99:367`) — header bar with back icon, spaced uppercase title, tabs, optional slot, and menu icon.
 
 ```tsx
-import { TitlesAndTabs } from '@orbit/components';
+import { TitlesAndTabs } from 'orbit-ds-components';
 
 <TitlesAndTabs
   title="Title"
@@ -269,7 +285,7 @@ Export `TitleTab` for custom tab rows.
 Maps to Figma **Label Value_Vertical** (`1832:34754`). Stacked label and value with three layout variants.
 
 ```tsx
-import { LabelValueVertical } from '@orbit/components';
+import { LabelValueVertical } from 'orbit-ds-components';
 
 <LabelValueVertical layout="L+V" label="Status" value="Active" />
 <LabelValueVertical layout="V + L" label="Flight" value="AB123" />
@@ -289,7 +305,7 @@ import { LabelValueVertical } from '@orbit/components';
 Maps to Figma **Option Toggle** (`569:28473`). Toggle switch row with Off / On / Partial states.
 
 ```tsx
-import { OptionToggle } from '@orbit/components';
+import { OptionToggle } from 'orbit-ds-components';
 
 <OptionToggle state="on" label="Enable feature" onChange={handleChange} />
 <OptionToggle state="partial" label="Sync" showRightIcon />
@@ -308,7 +324,7 @@ import { OptionToggle } from '@orbit/components';
 Maps to Figma **Option Checkbox** (`570:29495`). Checkbox row with Off / On / Partial states.
 
 ```tsx
-import { OptionCheckbox } from '@orbit/components';
+import { OptionCheckbox } from 'orbit-ds-components';
 
 <OptionCheckbox state="on" label="Option A" onChange={handleChange} />
 <OptionCheckbox state="partial" label="Select all" />
@@ -327,7 +343,7 @@ import { OptionCheckbox } from '@orbit/components';
 Maps to Figma **Option Radio** (`570:29315`). Single radio row with icon and label; height uses `--components-input-button-select-default`.
 
 ```tsx
-import { OptionRadio } from '@orbit/components';
+import { OptionRadio } from 'orbit-ds-components';
 
 <OptionRadio name="plan" value="a" label="Option A" selected={value === 'a'} onChange={() => setValue('a')} />
 ```
@@ -345,7 +361,7 @@ import { OptionRadio } from '@orbit/components';
 Maps to Figma **Input Select** (`800:4645`). Select field with label, optional info icon, helper/error lines, and input background states.
 
 ```tsx
-import { InputSelect } from '@orbit/components';
+import { InputSelect } from 'orbit-ds-components';
 
 <InputSelect placeholder="Placeholder" />
 <InputSelect
@@ -381,7 +397,7 @@ When `options` are provided, clicking the field opens an **Action Menu** dropdow
 Maps to Figma **Tooltip popup** (`3511:83124`) and **Tooltip with i** (`2887:39517`). Dark surface popup with action-menu shadow; optional info-icon trigger with hover/focus.
 
 ```tsx
-import { Tooltip, TooltipPopup } from '@orbit/components';
+import { Tooltip, TooltipPopup } from 'orbit-ds-components';
 
 <TooltipPopup text="Toolem ipsum" />
 <Tooltip text="Short help copy" direction="right" />
@@ -406,7 +422,7 @@ import { Tooltip, TooltipPopup } from '@orbit/components';
 Maps to Figma **Label Value_Horizontal** (`94:156`). Inline label and value with five type variants.
 
 ```tsx
-import { LabelValueHorizontal } from '@orbit/components';
+import { LabelValueHorizontal } from 'orbit-ds-components';
 
 <LabelValueHorizontal layout="L + V" label="Gate" value="B12" />
 <LabelValueHorizontal layout="V + L" label="ETA" value="14:30" />
@@ -427,7 +443,7 @@ import { LabelValueHorizontal } from '@orbit/components';
 Maps to Figma **Listing item** (`node 908:1711`). Supports single-line and multi-line layouts with optional reorder handle, icons, title, label/value, helper, and action slots.
 
 ```tsx
-import { ListingItem } from '@orbit/components';
+import { ListingItem } from 'orbit-ds-components';
 
 <ListingItem label="Status" value="Active" onClick={() => {}} />
 <ListingItem
@@ -458,7 +474,7 @@ import { ListingItem } from '@orbit/components';
 Maps to Figma **Button Compact** (`node 1970:74393`). Same API as `Button`, using compact platform tokens (`compact-height`, `compact-min-width`, etc.).
 
 ```tsx
-import { ButtonCompact } from '@orbit/components';
+import { ButtonCompact } from 'orbit-ds-components';
 
 <ButtonCompact variant="secondary">Button</ButtonCompact>
 ```
@@ -467,5 +483,5 @@ import { ButtonCompact } from '@orbit/components';
 
 ```bash
 npm run storybook   # from repo root
-npm run build       # builds @orbit/components
+npm run build       # builds orbit-ds-components
 ```

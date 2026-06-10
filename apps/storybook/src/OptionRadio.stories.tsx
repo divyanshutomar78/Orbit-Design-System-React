@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { OptionRadio } from '@orbit/components';
+import { OptionRadio } from 'orbit-ds-components';
 
 const meta: Meta<typeof OptionRadio> = {
   title: 'Components/Option Radio',

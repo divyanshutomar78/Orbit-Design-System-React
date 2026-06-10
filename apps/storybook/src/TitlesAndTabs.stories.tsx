@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { TitlesAndTabs, TitleTab } from '@orbit/components';
+import { TitlesAndTabs, TitleTab } from 'orbit-ds-components';
 
 const meta: Meta<typeof TitlesAndTabs> = {
   title: 'Components/Titles and Tabs',

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { InputSelect } from '@orbit/components';
+import { InputSelect } from 'orbit-ds-components';
 
 const sampleOptions = [
   { value: 'one', label: 'Option one' },

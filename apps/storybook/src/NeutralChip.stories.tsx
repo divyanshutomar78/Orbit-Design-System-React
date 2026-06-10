@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { NeutralChip } from '@orbit/components';
+import { NeutralChip } from 'orbit-ds-components';
 
 const meta: Meta<typeof NeutralChip> = {
   title: 'Components/Neutral Chip',

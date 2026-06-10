@@ -16,7 +16,7 @@ const config: StorybookConfig = {
     return mergeConfig(config, {
       resolve: {
         alias: {
-          '@orbit/components': path.resolve(
+          'orbit-ds-components': path.resolve(
             dirname,
             '../../../packages/components/src',
           ),

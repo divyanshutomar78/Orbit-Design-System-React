@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { WarningChip } from '@orbit/components';
+import { WarningChip } from 'orbit-ds-components';
 
 const meta: Meta<typeof WarningChip> = {
   title: 'Components/Warning Chip',

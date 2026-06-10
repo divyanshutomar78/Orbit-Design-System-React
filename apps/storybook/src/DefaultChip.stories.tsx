@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DefaultChip } from '@orbit/components';
+import { DefaultChip } from 'orbit-ds-components';
 
 const meta: Meta<typeof DefaultChip> = {
   title: 'Components/Default Chip',

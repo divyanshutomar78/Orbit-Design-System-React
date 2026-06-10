@@ -16,8 +16,6 @@
   padding-inline: calc(var(--gap-s) * 1px);
   padding-block: calc(var(--gap-0) * 1px);
   border: none;
-  border-bottom: calc(var(--components-input-button-select-border-width) * 1px)
-    solid var(--border-primary);
   border-radius: calc(var(--radius-s) * 1px);
   background: transparent;
   color: var(--text-primary);

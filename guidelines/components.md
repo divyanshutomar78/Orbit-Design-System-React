@@ -1,0 +1,110 @@
+# Orbit Components — Index
+
+Complete reference for `orbit-ds-components`. Read `setup.md`, `tokens.md`, and `styles.md` first.
+
+## Import
+
+```tsx
+import { Button, ListingItem, SuccessChip } from 'orbit-ds-components';
+import 'orbit-ds-components/styles.css';
+```
+
+## Component guides
+
+| Component | Guide | Dashboard use |
+|-----------|-------|---------------|
+| Button | [button.md](./components/button.md) | Primary actions, form submit |
+| ButtonCompact | [button-compact.md](./components/button-compact.md) | Dense toolbars |
+| ListingItem | [listing-item.md](./components/listing-item.md) | List rows, settings rows |
+| LabelValueHorizontal | [label-value-horizontal.md](./components/label-value-horizontal.md) | Inline label+value, table cells |
+| LabelValueVertical | [label-value-vertical.md](./components/label-value-vertical.md) | Stacked name+email, user cells |
+| SuccessChip | [success-chip.md](./components/success-chip.md) | Active / success status |
+| WarningChip | [warning-chip.md](./components/warning-chip.md) | Warning status |
+| CriticalChip | [critical-chip.md](./components/critical-chip.md) | Error / critical status |
+| AttentionChip | [attention-chip.md](./components/attention-chip.md) | Attention / info status |
+| DefaultChip | [default-chip.md](./components/default-chip.md) | Default / info tags |
+| NeutralChip | [neutral-chip.md](./components/neutral-chip.md) | Neutral filters, tags |
+| InputSelect | [input-select.md](./components/input-select.md) | Dropdowns, filters |
+| OptionCheckbox | [option-checkbox.md](./components/option-checkbox.md) | Checkbox rows, select-all |
+| OptionRadio | [option-radio.md](./components/option-radio.md) | Radio option rows |
+| OptionToggle | [option-toggle.md](./components/option-toggle.md) | Toggle settings rows |
+| ActionMenu | [action-menu.md](./components/action-menu.md) | Dropdown menus |
+| ActionMenuItem | [action-menu.md](./components/action-menu.md) | Menu rows |
+| TitlesAndTabs | [titles-and-tabs.md](./components/titles-and-tabs.md) | Page header with tabs |
+| Tooltip | [tooltip.md](./components/tooltip.md) | Help text, info popups |
+| EWasNavBar | [ewas-nav-bar.md](./components/ewas-nav-bar.md) | App sidebar / top nav |
+| EWasNavItem | [ewas-nav-item.md](./components/ewas-nav-item.md) | Single nav icon button |
+| EWasNavItemWText | [ewas-nav-item-w-text.md](./components/ewas-nav-item-w-text.md) | Nav item with two lines |
+| IconFrame | [icon-frame.md](./components/icon-frame.md) | Custom icon sizing |
+
+## Chips — shared API
+
+All chip components share the same props:
+
+```tsx
+<SuccessChip type="chip" size="default" selected={false}>Label</SuccessChip>
+```
+
+| Prop | Values | Default |
+|------|--------|---------|
+| `type` | `'chip'` (pill) \| `'tag'` (squared) | `'chip'` |
+| `size` | `'default'` \| `'compact'` | `'default'` |
+| `selected` | boolean | `false` |
+| `showIcon` | boolean | `true` |
+| `iconSize` | `'small'` \| `'big'` | `'small'` |
+| `children` | string | `'Text'` |
+
+Only the **color tokens** differ between chip variants. Pick the semantic color that matches the status.
+
+## Quick dashboard recipes
+
+### Page header
+
+```tsx
+<TitlesAndTabs
+  title="Users"
+  tabItems={[
+    { id: 'all', label: 'All', selected: true },
+    { id: 'active', label: 'Active' },
+  ]}
+  onTabSelect={setTab}
+/>
+```
+
+### Filter bar
+
+```tsx
+<div style={{ display: 'flex', gap: 'calc(var(--gap-s) * 1px)' }}>
+  <InputSelect placeholder="Role" options={roleOptions} value={role} onValueChange={setRole} />
+  <Button variant="secondary">Export</Button>
+</div>
+```
+
+### Simple list row
+
+```tsx
+<ListingItem
+  reorderIcon={false}
+  showLeftIcon={false}
+  label="Notifications"
+  value="On"
+  onClick={() => openSettings()}
+/>
+```
+
+### Status badge
+
+```tsx
+<SuccessChip type="chip" size="compact">Active</SuccessChip>
+```
+
+## Anti-patterns (do not do this)
+
+| Wrong | Right |
+|-------|-------|
+| `<button className="bg-blue-500">` | `<Button variant="primary">` |
+| Custom pill for status | `SuccessChip` / `WarningChip` / etc. |
+| `OptionCheckbox` in `ListingItem leftIcon` | Checkbox beside row — see listing-item guide |
+| Multiple columns in `addIconsComponent` | CSS grid wrapper or separate layout |
+| Skip token CSS imports | Always load primitives + theme + platform |
+| Import multiple themes | One theme only |

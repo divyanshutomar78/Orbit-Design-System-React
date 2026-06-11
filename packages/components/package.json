@@ -1,6 +1,6 @@
 {
   "name": "orbit-ds-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React component library for the Orbit Design System — buttons, inputs, chips, navigation, and more.",
   "type": "module",
   "main": "./dist/index.cjs",

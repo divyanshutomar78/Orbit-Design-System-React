@@ -62,6 +62,7 @@ src/
     UserTable.tsx         # Composed dashboard sections
 guidelines/               # This folder — read before generating UI
   setup.md
+  layering-model.md       # Surface stacking — read before custom layouts
   styles.md
   tokens.md
   components.md
@@ -72,13 +73,15 @@ guidelines/               # This folder — read before generating UI
 
 Pick **one** theme. Do not import multiple themes — they overwrite the same CSS variables.
 
-| Theme ID | Use case |
-|----------|----------|
-| `d-grey` | Dark grey (default for dashboards) |
-| `d-green` | Dark green |
-| `n-grey` | Neutral grey (light) |
-| `n-green` | Neutral green (light) |
-| `n-blue` | Neutral blue (light) |
+| Theme ID | Visual mode | Use case |
+|----------|-------------|----------|
+| `d-grey` | Light UI | Default — warm grey canvas, blue accent |
+| `d-green` | Light UI | Light canvas, green accent |
+| `n-grey` | Dark UI | Dark neutral grey canvas |
+| `n-green` | Dark UI | Dark green-tinted canvas |
+| `n-blue` | Dark UI | Dark blue-tinted canvas |
+
+Semantic token names are identical across themes. See [layering-model.md](./layering-model.md) for surface stacking.
 
 Replace `d-grey` in import paths with your chosen theme.
 

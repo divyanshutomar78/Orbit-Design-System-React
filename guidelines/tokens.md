@@ -20,15 +20,19 @@ platforms/<name>/variables.css → Sizing (gaps, icon frames, component heights)
 
 ## Themes
 
-| File | Description |
-|------|-------------|
-| `themes/d-grey` | Dark grey |
-| `themes/d-green` | Dark green |
-| `themes/n-grey` | Light neutral grey |
-| `themes/n-green` | Light neutral green |
-| `themes/n-blue` | Light neutral blue |
+Semantic token **names are the same in every theme** — only color values change.
+
+| Theme ID | Visual mode | Accent |
+|----------|-------------|--------|
+| `d-grey` | Light UI | Blue |
+| `d-green` | Light UI | Green |
+| `n-grey` | Dark UI | Blue |
+| `n-green` | Dark UI | Green |
+| `n-blue` | Dark UI | Blue |
 
 **Rule:** Import exactly one theme. Multiple themes overwrite the same variable names.
+
+**Surface layering:** See [layering-model.md](./layering-model.md) for how `--background-surface-container-*` tokens stack (background → 3 → 2 → 1).
 
 ## Platforms
 
@@ -54,10 +58,16 @@ platforms/<name>/variables.css → Sizing (gaps, icon frames, component heights)
 
 | Token | Usage |
 |-------|-------|
-| `--background-background` | Page / surface background |
-| `--background-primary` | Card / input backgrounds |
+| `--background-background` | Page / app shell (lowest layer) |
+| `--background-surface-container-3` | First elevation — sections on the page |
+| `--background-surface-container-2` | Cards, menus, tooltips (most common) |
+| `--background-surface-container-1` | Top elevation — modals, highest cards |
+| `--background-input-fields` | Form inputs and selects |
+| `--background-inside-surface-1/2` | Recessed areas inside elevated surfaces |
 | `--border-primary` | Dividers, input borders |
 | `--border-action-hover` | Focus rings |
+
+Full stacking rules and examples: [layering-model.md](./layering-model.md).
 
 ### Chips (status badges)
 
@@ -128,12 +138,13 @@ Used in CSS as: `calc(var(--gap-s) * 1px)`
 
 ```css
 .dashboard-card {
-  background: var(--background-primary);
+  background: var(--background-surface-container-2);
   border: calc(var(--components-input-button-select-border-width) * 1px) solid var(--border-primary);
   border-radius: calc(var(--radius-s) * 1px);
   padding: calc(var(--gap-m) * 1px);
   color: var(--text-primary);
   font-family: var(--font-family);
+  box-shadow: var(--shadow-card);
 }
 ```
 
@@ -141,6 +152,6 @@ Used in CSS as: `calc(var(--gap-s) * 1px)`
 
 1. **Never** use `#hex` or `rgb()` for colors that have a semantic token.
 2. **Never** guess spacing — use `--gap-*` tokens.
-3. **Match theme to dashboard** — dark dashboards use `d-grey` or `d-green`; light admin panels use `n-*` themes.
+3. **Match theme to dashboard** — light canvases use `d-grey` or `d-green`; dark canvases use `n-*` themes. Read [layering-model.md](./layering-model.md) before choosing surface tokens.
 4. **Swap platform, not hardcoded px** — for iPad layouts, change the platform import, don't manually resize icons.
 5. **Chip colors come from theme** — don't style status pills with Tailwind `bg-green-500`; use `SuccessChip`.

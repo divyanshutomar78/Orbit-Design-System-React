@@ -8,6 +8,7 @@ Read these files **before** generating dashboard UI with `orbit-ds-components` a
 |------|---------|
 | [setup.md](./setup.md) | Install packages, import order, project structure |
 | [tokens.md](./tokens.md) | CSS variables — colors, spacing, typography |
+| [layering-model.md](./layering-model.md) | Surface stacking — which background token to use where |
 | [styles.md](./styles.md) | Global styles, layout patterns, Tailwind rules |
 | [components.md](./components.md) | Component index + quick recipes |
 

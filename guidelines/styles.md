@@ -68,9 +68,10 @@ Orbit components ship with their own CSS classes (`orbit-button`, `orbit-listing
 
 ```css
 .orbit-dashboard-card {
-  background: var(--background-primary);
+  background: var(--background-surface-container-2);
   border-radius: calc(var(--radius-s) * 1px);
   padding: calc(var(--gap-m) * 1px);
+  box-shadow: var(--shadow-card);
 }
 ```
 
@@ -79,7 +80,7 @@ Orbit components ship with their own CSS classes (`orbit-button`, `orbit-listing
 Stack `ListingItem` rows inside a container with `overflow: hidden` and optional `border-radius`:
 
 ```tsx
-<div style={{ borderRadius: 4, overflow: 'hidden', background: 'var(--background-primary)' }}>
+<div style={{ borderRadius: 4, overflow: 'hidden', background: 'var(--background-surface-container-2)' }}>
   <ListingItem ... />
   <ListingItem ... />
 </div>
@@ -116,12 +117,12 @@ Figma Make projects often include Tailwind. Rules:
 
 ## Dark vs light dashboards
 
-| Dashboard type | Theme import | Background token |
-|----------------|--------------|------------------|
-| Dark ops dashboard | `d-grey` or `d-green` | `--background-background` (dark) |
-| Light admin panel | `n-grey`, `n-blue` | `--background-background` (light) |
+| Dashboard type | Theme import | Page background token |
+|----------------|--------------|------------------------|
+| Light canvas | `d-grey` or `d-green` | `--background-background` (light grey) |
+| Dark canvas | `n-grey`, `n-green`, or `n-blue` | `--background-background` (dark) |
 
-Switch theme by changing the CSS import — don't toggle classes.
+Switch theme by changing the CSS import — don't toggle classes. For surface stacking (cards, menus, modals), see [layering-model.md](./layering-model.md).
 
 ## Icon styling
 

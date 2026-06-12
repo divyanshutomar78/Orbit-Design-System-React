@@ -1,0 +1,316 @@
+# Orbit Layering Model
+
+How Orbit **surface tokens** stack to create depth, and which **semantic token** to use for each UI role. Read this before generating layouts, cards, panels, or custom containers.
+
+> Semantic variable **names are identical across all themes**. Only the underlying color values change when you switch themes.
+
+## Token architecture
+
+Orbit variables ship from `orbit-ds-variables` in three layers:
+
+```
+primitives/variables.css          Raw palette (--neutral-300, --blue-200, alpha scales)
+themes/<theme>/variables.css      Semantic roles (--background-surface-container-2, --text-primary)
+platforms/<platform>/variables.css  Sizing (--gap-s, --radius-s, --icon-frame-size-default)
+```
+
+Import exactly **one theme** and **one platform**. Semantic names stay the same; values resolve from the chosen theme.
+
+```css
+@import 'orbit-ds-variables/dist/css/primitives/variables.css';
+@import 'orbit-ds-variables/dist/css/themes/d-grey/variables.css';
+@import 'orbit-ds-variables/dist/css/platforms/web/variables.css';
+```
+
+---
+
+## Themes
+
+Five themes share the same semantic token names. Pick one per app.
+
+| Theme ID | Visual mode | Accent | Page feel |
+|----------|-------------|--------|-----------|
+| `d-grey` | Light UI | Blue | Warm grey canvas |
+| `d-green` | Light UI | Green | Light grey-green canvas |
+| `n-grey` | Dark UI | Blue | Neutral dark grey |
+| `n-green` | Dark UI | Green | Dark green tint |
+| `n-blue` | Dark UI | Blue | Dark blue tint |
+
+**Naming hint:** `d-*` themes render **light** page backgrounds. `n-*` themes render **dark** page backgrounds. Accent color (blue vs green) is the main difference within each family.
+
+---
+
+## Surface layering model
+
+Surface tokens define **neutral elevation** — how backgrounds stack from the page up. Each new layer sits visually **on top of** the layer below it.
+
+### Critical rule: container numbers vs elevation
+
+**Lower container number = higher elevation (closer to the user).**
+
+| Stack order (bottom → top) | Token | Role |
+|----------------------------|-------|------|
+| 0 — Page / canvas | `--background-background` | App shell, nav bar, page body |
+| 1 — First elevation | `--background-surface-container-3` | Sections, grouped panels on the page |
+| 2 — Second elevation | `--background-surface-container-2` | Cards, menus, tooltips, nav items |
+| 3 — Top elevation | `--background-surface-container-1` | Modals, popovers, highest cards |
+
+Think of it as: **background → 3 → 2 → 1** (counting down as you go up).
+
+### Light theme stack (`d-grey`, `d-green`)
+
+Each layer becomes **progressively lighter** — similar to Carbon's light theme alternating white and grey, but Orbit uses a continuous lightening scale.
+
+```
+┌─────────────────────────────────────────┐
+│  surface-container-1  (#ffffff)       │  ← top / brightest
+│  ┌───────────────────────────────────┐  │
+│  │  surface-container-2  (#fafafa)   │  │
+│  │  ┌─────────────────────────────┐  │  │
+│  │  │  surface-container-3        │  │  │
+│  │  │  (#f5f5f5)                   │  │  │
+│  │  │  ┌───────────────────────┐  │  │  │
+│  │  │  │  background           │  │  │  │
+│  │  │  │  (#e8e8e3)            │  │  │  │
+│  │  │  └───────────────────────┘  │  │  │
+│  │  └─────────────────────────────┘  │  │
+│  └───────────────────────────────────┘  │
+└─────────────────────────────────────────┘
+```
+
+| Token | `d-grey` resolves to | Hex |
+|-------|----------------------|-----|
+| `--background-background` | `--neutral-300` | `#e8e8e3` |
+| `--background-surface-container-3` | `--neutral-200` | `#f5f5f5` |
+| `--background-surface-container-2` | `--neutral-100` | `#fafafa` |
+| `--background-surface-container-1` | `--neutral-0` | `#ffffff` |
+
+### Dark theme stack (`n-grey`, `n-green`, `n-blue`)
+
+Each layer becomes **progressively lighter** — like Carbon's dark theme stepping from Gray 100 → 90 → 80 → 70.
+
+```
+┌─────────────────────────────────────────┐
+│  surface-container-1  (#242424)         │  ← top / lightest surface
+│  ┌───────────────────────────────────┐  │
+│  │  surface-container-2  (#2e2e2e)   │  │
+│  │  ┌─────────────────────────────┐  │  │
+│  │  │  surface-container-3        │  │  │
+│  │  │  (#363636)                   │  │  │
+│  │  │  ┌───────────────────────┐  │  │  │
+│  │  │  │  background           │  │  │  │
+│  │  │  │  (#1d1d1d)            │  │  │  │
+│  │  │  └───────────────────────┘  │  │  │
+│  │  └─────────────────────────────┘  │  │
+│  └───────────────────────────────────┘  │
+└─────────────────────────────────────────┘
+```
+
+| Token | `n-grey` resolves to | Hex |
+|-------|----------------------|-----|
+| `--background-background` | `--neutral-600` | `#1d1d1d` |
+| `--background-surface-container-3` | `--neutral-350` | `#363636` |
+| `--background-surface-container-2` | `--neutral-400` | `#2e2e2e` |
+| `--background-surface-container-1` | `--neutral-500` | `#242424` |
+
+> `n-green` and `n-blue` use the same stack logic with green- or blue-tinted primitives. Token **names** are unchanged.
+
+---
+
+## Inset surfaces (recessed areas)
+
+Use inset tokens **inside** an elevated surface to show depth *within* a layer — wells, grouped fields, secondary panels.
+
+| Token | Use when | Parent surface |
+|-------|----------|----------------|
+| `--background-inside-surface-2` | Recessed area inside a **container-2** surface | Menus, cards using container-2 |
+| `--background-inside-surface-1` | Recessed area inside a **container-1** surface | Top-level modals, white cards |
+| `--background-input-fields` | Text inputs, selects, text areas | Any form field on a surface |
+
+**Example:** An `InputSelect` uses `--background-input-fields`. Checkbox cutouts in menus use `--background-surface-container-2` as the stroke/fill reference so icons blend with the menu surface.
+
+---
+
+## Status & action backgrounds (not part of the surface stack)
+
+These tokens carry **semantic meaning** (success, warning, action). They do not follow the neutral elevation order.
+
+| Token | Use for |
+|-------|---------|
+| `--background-action` | Primary buttons, selected nav items |
+| `--background-action-hover` | Hover on action buttons / nav |
+| `--background-disabled` | Disabled button backgrounds |
+| `--background-neutral-container` | Neutral tinted info blocks |
+| `--background-success-container` | Success alerts, success sections |
+| `--background-success-container-variant` | Lighter success variant |
+| `--background-attention-container` | Attention / info highlights |
+| `--background-attention-container-variant` | Lighter attention variant |
+| `--background-warning-container` | Warning alerts |
+| `--background-warning-container-variant` | Lighter warning variant |
+| `--background-critical-container` | Error / critical alerts |
+| `--background-critical-container-variant` | Lighter critical variant |
+
+Pair with matching `--text-on-*-container` tokens for readable labels inside these blocks.
+
+---
+
+## Which token goes where
+
+Use this table when building custom UI (not covered by Orbit components).
+
+| UI element | Token | Elevation |
+|------------|-------|-----------|
+| Page body, app shell | `--background-background` | 0 |
+| Sidebar / nav bar background | `--background-background` | 0 |
+| Page section wrapper | `--background-surface-container-3` | 1 |
+| Dashboard card, table wrapper | `--background-surface-container-2` or `-1` | 2–3 |
+| Dropdown, action menu, tooltip | `--background-surface-container-2` | 2 |
+| Modal, dialog, top popover | `--background-surface-container-1` | 3 |
+| Form input background | `--background-input-fields` | inset |
+| Recessed panel inside a card | `--background-inside-surface-2` | inset |
+| Primary CTA button | `--background-action` | action |
+| Secondary / ghost button on page | `--background-background` | 0 |
+| Status banner (success) | `--background-success-container` | semantic |
+
+### Orbit components (built-in token usage)
+
+| Component | Background token |
+|-----------|------------------|
+| `EWasNavBar` | `--background-background` |
+| `EWasNavItem`, `EWasNavItemWText` | `--background-surface-container-2` (default), `--background-action` (selected) |
+| `ActionMenu`, `Tooltip` | `--background-surface-container-2` |
+| `Button` primary | `--background-action` |
+| `Button` secondary | `--background-background` |
+| `InputSelect` | `--background-input-fields` |
+
+When composing dashboards, **match parent/child layers**: a menu (container-2) on a card (container-2 or -1) is correct; a menu on bare page background should sit on container-3 or -2, not directly on `background-background` unless intentional.
+
+---
+
+## Layering decision flow (for AI agents)
+
+```
+1. What is the outermost area?
+   → Page / shell → --background-background
+
+2. Is this a section sitting on the page?
+   → Yes → --background-surface-container-3
+
+3. Is this a card, panel, menu, or tooltip?
+   → Yes → --background-surface-container-2
+
+4. Is this the highest layer (modal, dialog)?
+   → Yes → --background-surface-container-1
+
+5. Is this a form field?
+   → Yes → --background-input-fields
+
+6. Is this recessed INSIDE an elevated surface?
+   → On container-2 parent → --background-inside-surface-2
+   → On container-1 parent → --background-inside-surface-1
+
+7. Is this a status or CTA block?
+   → Use --background-{action|success|warning|critical|attention}-container
+   → Never substitute a surface-container token for semantic status colors
+```
+
+---
+
+## Text, border, and icon tokens on surfaces
+
+Semantic names are theme-stable. Match text/icon tokens to content role, not to surface level.
+
+### Text
+
+| Token | Use for |
+|-------|---------|
+| `--text-primary` | Main content, values, titles |
+| `--text-secondary` | Labels, helpers, column headers |
+| `--text-disabled` | Disabled control labels |
+| `--text-action` | Links, interactive labels |
+| `--text-action-hover` | Hover on action text |
+| `--text-on-action` | Text on primary buttons |
+| `--text-success`, `--text-warning`, `--text-critical`, `--text-attention` | Status text |
+| `--text-on-success-container`, etc. | Text inside status containers |
+
+### Borders
+
+| Token | Use for |
+|-------|---------|
+| `--border-primary` | Dividers, input outlines, card borders |
+| `--border-secondary` | Subtle separators |
+| `--border-action` | Focus rings, action outlines |
+| `--border-action-hover` | Hover/focus emphasis |
+| `--border-attention` | Attention highlights |
+| `--border-neutral` | Neutral tinted borders |
+
+### Icons
+
+| Token | Use for |
+|-------|---------|
+| `--icon-primary` | Default icons |
+| `--icon-secondary` | De-emphasized icons |
+| `--icon-action` | Interactive / link icons |
+| `--icon-disabled` | Disabled icons |
+| `--icon-on-action` | Icons on primary buttons |
+| `--icon-attention` | Attention-state icons |
+
+---
+
+## Shadows reinforce elevation
+
+Pair surface tokens with shadow tokens when a layer should feel lifted.
+
+| Token | Typical pairing |
+|-------|-----------------|
+| `--shadow-navigation` | Nav bars on page background |
+| `--shadow-card` | Cards using container-2 or -1 |
+| `--shadow-action-menu` | Dropdowns, action menus |
+| `--shadow-popup-message` | Tooltips, popovers |
+| `--shadow-submit-section` | Sticky footer bars |
+| `--shadow-chip` | Floating chips |
+
+---
+
+## Rules for consistent designs
+
+1. **Never hardcode hex or rgb** when a semantic token exists.
+2. **Never skip layers** without reason — if a menu floats on the page, give it at least container-2, not the same token as the page.
+3. **Lower container number = higher up** — `container-1` is above `container-2`, which is above `container-3`.
+4. **One theme per app** — switching themes changes values, not variable names.
+5. **Status colors ≠ surface colors** — use `--background-success-container`, not `--background-surface-container-1`, for a success banner.
+6. **Prefer Orbit components** — they already bind the correct tokens; custom markup should follow the same mapping.
+7. **Inputs always use** `--background-input-fields`, not a surface-container token.
+
+---
+
+## Quick reference: all surface-related tokens
+
+```css
+/* Elevation stack (bottom → top) */
+--background-background
+--background-surface-container-3
+--background-surface-container-2
+--background-surface-container-1
+
+/* Inset / fields */
+--background-inside-surface-2
+--background-inside-surface-1
+--background-input-fields
+
+/* Action & status (parallel system) */
+--background-action
+--background-action-hover
+--background-disabled
+--background-neutral-container
+--background-success-container
+--background-success-container-variant
+--background-attention-container
+--background-attention-container-variant
+--background-warning-container
+--background-warning-container-variant
+--background-critical-container
+--background-critical-container-variant
+```
+
+See [tokens.md](./tokens.md) for spacing, typography, chips, and platform tokens.

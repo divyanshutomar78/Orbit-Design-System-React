@@ -13,6 +13,7 @@ import 'orbit-ds-components/styles.css';
 
 | Component | Guide | Dashboard use |
 |-----------|-------|---------------|
+| **Chips (shared)** | [chips.md](./components/chips.md) | Select icon rules — read first |
 | Button | [button.md](./components/button.md) | Primary actions, form submit |
 | ButtonCompact | [button-compact.md](./components/button-compact.md) | Dense toolbars |
 | ListingItem | [listing-item.md](./components/listing-item.md) | List rows, settings rows |
@@ -39,10 +40,10 @@ import 'orbit-ds-components/styles.css';
 
 ## Chips — shared API
 
-All chip components share the same props:
+All chip components share the same props. **Read [chips.md](./components/chips.md) before using chips** — especially the select-icon (checkbox) rules.
 
 ```tsx
-<SuccessChip type="chip" size="default" selected={false}>Label</SuccessChip>
+<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
 ```
 
 | Prop | Values | Default |
@@ -50,9 +51,11 @@ All chip components share the same props:
 | `type` | `'chip'` (pill) \| `'tag'` (squared) | `'chip'` |
 | `size` | `'default'` \| `'compact'` | `'default'` |
 | `selected` | boolean | `false` |
-| `showIcon` | boolean | `true` |
+| `showIcon` | boolean | `true` — use **`false`** for read-only status |
 | `iconSize` | `'small'` \| `'big'` | `'small'` |
 | `children` | string | `'Text'` |
+
+**Quick rule:** read-only status → `showIcon={false}`. Selectable filter → `showIcon` + `onClick` + `selected`.
 
 Only the **color tokens** differ between chip variants. Pick the semantic color that matches the status.
 
@@ -95,7 +98,7 @@ Only the **color tokens** differ between chip variants. Pick the semantic color 
 ### Status badge
 
 ```tsx
-<SuccessChip type="chip" size="compact">Active</SuccessChip>
+<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
 ```
 
 ## Anti-patterns (do not do this)
@@ -103,7 +106,8 @@ Only the **color tokens** differ between chip variants. Pick the semantic color 
 | Wrong | Right |
 |-------|-------|
 | `<button className="bg-blue-500">` | `<Button variant="primary">` |
-| Custom pill for status | `SuccessChip` / `WarningChip` / etc. |
+| Custom pill for status | `SuccessChip` / `WarningChip` with `showIcon={false}` |
+| Status chip with default icon (looks like dead checkbox) | `showIcon={false}` on read-only chips — see [chips.md](./components/chips.md) |
 | `OptionCheckbox` in `ListingItem leftIcon` | Checkbox beside row — see listing-item guide |
 | Multiple columns in `addIconsComponent` | CSS grid wrapper or separate layout |
 | Skip token CSS imports | Always load primitives + theme + platform |

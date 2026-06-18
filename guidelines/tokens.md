@@ -59,9 +59,9 @@ Semantic token **names are the same in every theme** — only color values chang
 | Token | Usage |
 |-------|-------|
 | `--background-background` | Page / app shell (lowest layer) |
-| `--background-surface-container-1` | First elevation — sections on the page |
+| `--background-surface-container-1` | First elevation — sections, modals on page |
 | `--background-surface-container-2` | Cards, menus, tooltips (most common) |
-| `--background-surface-container-3` | Top elevation — modals, highest cards |
+| `--background-surface-container-3` | Top elevation — nested cards on elevated surfaces |
 | `--background-input-fields` | Form inputs and selects |
 | `--background-inside-surface-1/2` | Recessed areas inside elevated surfaces |
 | `--border-primary` | Dividers, input borders |

@@ -11,8 +11,13 @@ import { NeutralChip } from 'orbit-ds-components';
 ## Basic usage
 
 ```tsx
-<NeutralChip type="chip" size="default">All</NeutralChip>
-<NeutralChip type="chip" selected>Selected filter</NeutralChip>
+{/* Selectable filter — icon appropriate */}
+<NeutralChip type="chip" size="default" selected={tab === 'all'} onClick={() => setTab('all')}>
+  All
+</NeutralChip>
+
+{/* Read-only tag */}
+<NeutralChip type="chip" size="compact" showIcon={false}>Category</NeutralChip>
 ```
 
 ## Props
@@ -39,3 +44,8 @@ Tokens: `--chips-neutral-default`, `--chips-neutral-hover`, `--chips-neutral-sel
 | `SuccessChip` | Positive status |
 | `WarningChip` | Caution status |
 | `CriticalChip` | Error / blocked status |
+
+## Rules
+
+- **Filters:** default `showIcon` + `onClick` + `selected`.
+- **Read-only tags:** `showIcon={false}`. See [chips.md](./chips.md).

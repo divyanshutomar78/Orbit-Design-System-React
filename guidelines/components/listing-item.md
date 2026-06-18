@@ -75,7 +75,7 @@ import { ListingItem, LabelValueVertical, SuccessChip } from 'orbit-ds-component
   labelValue={
     <LabelValueVertical layout="V + L" value="Alice Fontaine" label="alice@orbit.io" />
   }
-  addIconsComponent={<SuccessChip type="chip" size="compact">Active</SuccessChip>}
+  addIconsComponent={<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>}
 />
 ```
 
@@ -97,7 +97,7 @@ Place checkbox **outside** ListingItem, or use a flex wrapper:
       }
     />
   </div>
-  <SuccessChip type="chip" size="compact">Active</SuccessChip>
+  <SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
 </div>
 ```
 

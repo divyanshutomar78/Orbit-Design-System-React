@@ -93,7 +93,7 @@ Listing items no longer have a bottom border by default (v1.0.1+). Add a wrapper
 Use chips, not custom spans:
 
 ```tsx
-<SuccessChip type="chip" size="compact">Active</SuccessChip>
+<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
 ```
 
 ### Label + value pairs

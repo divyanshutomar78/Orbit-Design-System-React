@@ -112,7 +112,7 @@ On iPad platform tokens, `big` uses a 44×44 frame with a 24×24 glyph centered 
 2. **Use Orbit components for UI primitives** — do not recreate buttons, chips, or list rows with raw HTML + Tailwind when an Orbit component exists.
 3. **Compose, don't hack slots** — read each component's guideline before putting checkboxes, chips, or columns inside slots.
 4. **Prefer `LabelValueVertical` / `LabelValueHorizontal`** for label+value pairs instead of custom flex layouts.
-5. **Use `SuccessChip`, `WarningChip`, etc.** for status badges — not generic pill divs.
+5. **Use `SuccessChip`, `WarningChip`, etc.** for status badges with `showIcon={false}` — not generic pill divs.
 6. **Use `TitlesAndTabs`** for page headers with tabs — not custom header markup.
 7. **ListingItem is for list rows, not full data tables** — see `components/listing-item.md` for table patterns.
 

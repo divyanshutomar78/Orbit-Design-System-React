@@ -51,11 +51,60 @@ Surface tokens define **neutral elevation** — how backgrounds stack from the p
 | Stack order (bottom → top) | Token | Role |
 |----------------------------|-------|------|
 | 0 — Page / canvas | `--background-background` | App shell, nav bar, page body |
-| 1 — First elevation | `--background-surface-container-1` | Sections, grouped panels on the page |
-| 2 — Second elevation | `--background-surface-container-2` | Cards, menus, tooltips, nav items |
-| 3 — Top elevation | `--background-surface-container-3` | Modals, popovers, highest cards |
+| 1 — First elevation | `--background-surface-container-1` | Sections, **modals/dialogs on the page**, grouped panels |
+| 2 — Second elevation | `--background-surface-container-2` | Cards, menus, tooltips, nav items, **content inside a modal** |
+| 3 — Top elevation | `--background-surface-container-3` | **Only when nested** on container-2 — e.g. popover on a card |
 
 Think of it as: **background → 1 → 2 → 3** (counting up as you go up).
+
+### How to pick the correct layer (read this first)
+
+**Pick the token from the parent surface — not from how “important” the UI feels.**
+
+1. Find what the element sits **directly on top of**.
+2. Use the **next** surface-container number above that parent.
+
+| Parent surface | Child element | Correct child token |
+|----------------|---------------|---------------------|
+| `--background-background` (page) | Modal panel, section wrapper | `--background-surface-container-1` |
+| `--background-surface-container-1` (modal, section) | Scoreboard, card, list block | `--background-surface-container-2` |
+| `--background-surface-container-2` (card, menu) | Nested card, nested popover | `--background-surface-container-3` |
+
+**Do not** jump to `container-3` just because a modal is “on top” visually. A modal overlay still sits on the page canvas — its **panel** is only the **first** elevation (`container-1`). Reserve `container-3` for elements nested **inside** an already-elevated parent.
+
+### Modals and dialogs
+
+Modals use a **backdrop** over `--background-background`. The dialog **panel** is the first surface above the page:
+
+```
+┌─ viewport ─────────────────────────────────────┐
+│  background (#e8e8e3)                          │
+│    ┌─ modal panel (container-1) ────────────┐  │
+│    │  ┌─ inner card (container-2) ────────┐ │  │
+│    │  │  stat row / list item (container-2)│ │  │
+│    │  └───────────────────────────────────┘ │  │
+│    └────────────────────────────────────────┘  │
+└────────────────────────────────────────────────┘
+```
+
+| Modal part | Token | Why |
+|------------|-------|-----|
+| Backdrop (dimmed area) | Transparent / tint over `--background-background` | Not a surface-container layer |
+| Dialog panel (`.orbit-modal`) | `--background-surface-container-1` | First elevation above page |
+| Blocks inside the modal (cards, scoreboards, rows) | `--background-surface-container-2` | Second elevation inside the panel |
+| Recessed wells inside the panel | `--background-inside-surface-1` | Inset within container-1 |
+
+Orbit `Modal` already uses `--background-surface-container-1`. Custom modals must match.
+
+### Common mistakes (avoid these)
+
+| Wrong | Right | Why |
+|-------|-------|-----|
+| Modal panel → `container-3` | Modal panel → `container-1` | Modal sits on page background, not on container-2 |
+| Modal panel → `container-2` | Modal panel → `container-1` | Skips the first elevation step |
+| Inner card in modal → `container-1` | Inner card in modal → `container-2` | Same level as parent — no visible depth |
+| “Highest UI” → always `container-3` | Count from **parent** surface | Container number reflects stack depth, not prominence |
+| Inverted stack `background → 3 → 2 → 1` | `background → 1 → 2 → 3` | Lower numbers are closer to the page |
 
 ### Light theme stack (`d-grey`, `d-green`)
 
@@ -124,7 +173,7 @@ Use inset tokens **inside** an elevated surface to show depth *within* a layer �
 | Token | Use when | Parent surface |
 |-------|----------|----------------|
 | `--background-inside-surface-2` | Recessed area inside a **container-2** surface | Menus, cards using container-2 |
-| `--background-inside-surface-1` | Recessed area inside a **container-3** surface | Top-level modals, white cards |
+| `--background-inside-surface-1` | Recessed area inside a **container-1** surface | Modals, first-level panels |
 | `--background-input-fields` | Text inputs, selects, text areas | Any form field on a surface |
 
 **Example:** An `InputSelect` uses `--background-input-fields`. Checkbox cutouts in menus use `--background-surface-container-2` as the stroke/fill reference so icons blend with the menu surface.
@@ -165,7 +214,8 @@ Use this table when building custom UI (not covered by Orbit components).
 | Page section wrapper | `--background-surface-container-1` | 1 |
 | Dashboard card, table wrapper | `--background-surface-container-2` or `-3` | 2–3 |
 | Dropdown, action menu, tooltip | `--background-surface-container-2` | 2 |
-| Modal, dialog, top popover | `--background-surface-container-3` | 3 |
+| Modal, dialog on page background | `--background-surface-container-1` | 1 |
+| Popover on elevated surface | `--background-surface-container-2` or `-3` | 2–3 |
 | Form input background | `--background-input-fields` | inset |
 | Recessed panel inside a card | `--background-inside-surface-2` | inset |
 | Primary CTA button | `--background-action` | action |
@@ -179,37 +229,53 @@ Use this table when building custom UI (not covered by Orbit components).
 | `EWasNavBar` | `--background-background` |
 | `EWasNavItem`, `EWasNavItemWText` | `--background-surface-container-2` (default), `--background-action` (selected) |
 | `ActionMenu`, `Tooltip` | `--background-surface-container-2` |
+| `Modal` | `--background-surface-container-1` |
 | `Button` primary | `--background-action` |
 | `Button` secondary | `--background-background` |
 | `InputSelect` | `--background-input-fields` |
 
 When composing dashboards, **match parent/child layers**: a menu (container-2) on a card (container-2 or -3) is correct; a menu on bare page background should sit on container-1 or -2, not directly on `background-background` unless intentional.
 
+**Modal composition example:**
+
+| Element | Token |
+|---------|-------|
+| Modal panel | `container-1` |
+| Scoreboard / table wrapper inside modal | `container-2` |
+| Timeline row inside modal | `container-2` |
+| Stat comparison bar track | `--background-inside-surface-1` or `-2` (inset) |
+
 ---
 
 ## Layering decision flow (for AI agents)
+
+**Before choosing a token:** identify the **parent surface** the element sits on, then pick the **next** container number. Never assign `container-3` to a modal panel.
 
 ```
 1. What is the outermost area?
    → Page / shell → --background-background
 
-2. Is this a section sitting on the page?
-   → Yes → --background-surface-container-1
+2. Does this sit directly on the page background?
+   → Section wrapper → --background-surface-container-1
+   → Modal / dialog panel → --background-surface-container-1   ← NOT container-3
 
-3. Is this a card, panel, menu, or tooltip?
+3. Does this sit inside container-1 (modal, section)?
+   → Card, scoreboard, list block → --background-surface-container-2
+
+4. Is this a menu, tooltip, or nav item on the page or in a layout?
    → Yes → --background-surface-container-2
 
-4. Is this the highest layer (modal, dialog)?
-   → Yes → --background-surface-container-3
+5. Does this sit inside container-2 (card, menu)?
+   → Nested card / popover → --background-surface-container-3
 
-5. Is this a form field?
+6. Is this a form field?
    → Yes → --background-input-fields
 
-6. Is this recessed INSIDE an elevated surface?
+7. Is this recessed INSIDE an elevated surface?
    → On container-2 parent → --background-inside-surface-2
-   → On container-3 parent → --background-inside-surface-1
+   → On container-1 parent → --background-inside-surface-1
 
-7. Is this a status or CTA block?
+8. Is this a status or CTA block?
    → Use --background-{action|success|warning|critical|attention}-container
    → Never substitute a surface-container token for semantic status colors
 ```
@@ -266,7 +332,7 @@ Pair surface tokens with shadow tokens when a layer should feel lifted.
 | `--shadow-navigation` | Nav bars on page background |
 | `--shadow-card` | Cards using container-2 or -3 |
 | `--shadow-action-menu` | Dropdowns, action menus |
-| `--shadow-popup-message` | Tooltips, popovers |
+| `--shadow-popup-message` | Modals (`container-1`), tooltips, popovers |
 | `--shadow-submit-section` | Sticky footer bars |
 | `--shadow-chip` | Floating chips |
 
@@ -277,10 +343,12 @@ Pair surface tokens with shadow tokens when a layer should feel lifted.
 1. **Never hardcode hex or rgb** when a semantic token exists.
 2. **Never skip layers** without reason — if a menu floats on the page, give it at least container-2, not the same token as the page.
 3. **Higher container number = higher up** — `container-3` is above `container-2`, which is above `container-1`.
-4. **One theme per app** — switching themes changes values, not variable names.
-5. **Status colors ≠ surface colors** — use `--background-success-container`, not `--background-surface-container-3`, for a success banner.
-6. **Prefer Orbit components** — they already bind the correct tokens; custom markup should follow the same mapping.
-7. **Inputs always use** `--background-input-fields`, not a surface-container token.
+4. **Pick tokens from the parent surface** — count up one level from the parent; do not assign `container-3` to a modal because it feels “topmost”.
+5. **Modal panel = container-1** — always, when the modal sits on `--background-background`. Inner modal content uses `container-2` or inset tokens.
+6. **One theme per app** — switching themes changes values, not variable names.
+7. **Status colors ≠ surface colors** — use `--background-success-container`, not `--background-surface-container-1`, for a success banner.
+8. **Prefer Orbit components** — they already bind the correct tokens; custom markup should follow the same mapping.
+9. **Inputs always use** `--background-input-fields`, not a surface-container token.
 
 ---
 

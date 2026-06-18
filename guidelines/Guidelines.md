@@ -21,7 +21,7 @@ Each file in [components/](./components/) documents one component with props, ex
 1. Import token CSS **before** `orbit-ds-components/styles.css`.
 2. Set `--font-family` in global CSS.
 3. Use Orbit components — don't recreate with Tailwind/HTML.
-4. Use chips for status (`SuccessChip`, `WarningChip`, etc.).
+4. Use chips for status (`SuccessChip`, `WarningChip`, etc.) with **`showIcon={false}`** on read-only badges — see [components/chips.md](./components/chips.md).
 5. Use `LabelValueVertical` for name + email cells.
 6. **Don't** put `OptionCheckbox` in `ListingItem` `leftIcon`.
 7. **Don't** put table columns in `ListingItem` `addIconsComponent`.

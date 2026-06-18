@@ -11,8 +11,13 @@ import { SuccessChip } from 'orbit-ds-components';
 ## Basic usage
 
 ```tsx
-<SuccessChip type="chip" size="compact">Active</SuccessChip>
-<SuccessChip type="tag" selected>Verified</SuccessChip>
+{/* Read-only status — no select icon */}
+<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
+
+{/* Selectable filter — icon + handler required */}
+<SuccessChip type="chip" selected={filter === 'active'} onClick={() => setFilter('active')}>
+  Active
+</SuccessChip>
 ```
 
 ## Props
@@ -29,10 +34,10 @@ import { SuccessChip } from 'orbit-ds-components';
 ## Dashboard examples
 
 ```tsx
-// User status column
-<SuccessChip type="chip" size="compact">Active</SuccessChip>
+// User status column (read-only)
+<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
 
-// Filter chip (selectable)
+// Filter chip (selectable — icon + state required)
 <SuccessChip type="chip" selected={filter === 'active'} onClick={() => setFilter('active')}>
   Active
 </SuccessChip>
@@ -42,4 +47,6 @@ import { SuccessChip } from 'orbit-ds-components';
 
 - Use `size="compact"` in table rows and dense lists.
 - Use `type="chip"` (pill) for status; `type="tag"` (squared) for category labels.
+- **Read-only status:** `showIcon={false}` — do not show the circle/checkmark icon.
+- **Selectable filter:** keep default `showIcon`, and wire `onClick` + `selected`. See [chips.md](./chips.md).
 - Tokens: `--chips-success-default`, `--chips-success-hover`, `--chips-success-selected`.

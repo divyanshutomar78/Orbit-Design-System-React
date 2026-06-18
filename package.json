@@ -11,6 +11,12 @@
     "storybook": "npm run dev -w @orbit/storybook",
     "build:storybook": "npm run build -w @orbit/storybook",
     "fifa-match-stats": "npm run dev -w @orbit/fifa-match-stats",
+    "car-loan-emi": "npm run dev -w @orbit/car-loan-emi-calculator",
+    "send-custom-answer": "npm run dev -w @orbit/send-custom-answer-modal",
+    "flight-info": "npm run dev -w @orbit/flight-info-panel",
+    "billing": "npm run dev -w @orbit/billing-invoices",
+    "attendance": "npm run dev -w @orbit/student-attendance",
+    "send-message": "npm run dev -w @orbit/send-message-email-modal",
     "verify:tokens": "node scripts/verify-token-usage.mjs"
   },
   "engines": {

@@ -1,0 +1,28 @@
+:root {
+  --font-family: Roboto, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  background: var(--background-background);
+  color: var(--text-primary);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.attendance-card {
+  overflow: hidden;
+  border-radius: calc(var(--radius-l) * 1px);
+  background-color: var(--background-surface-container-2);
+  box-shadow: 0 calc(var(--gap-xxs) * 1px) calc(var(--gap-s) * 1px) var(--shadow-card);
+}

@@ -1,0 +1,38 @@
+.billing-promo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--gap-m) * 1px);
+  padding: calc(var(--gap-s) * 1px) calc(var(--gap-m) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  background-color: var(--background-success-container-variant);
+  color: var(--text-on-success-container-variant);
+}
+
+.billing-promo__content {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+  min-width: 0;
+}
+
+.billing-promo__icon {
+  color: inherit;
+}
+
+.billing-promo__text {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+}
+
+.billing-promo .orbit-button--secondary {
+  border-color: var(--text-on-success-container-variant);
+  color: var(--text-on-success-container-variant);
+}
+
+.billing-promo .orbit-button--secondary:hover:not(:disabled) {
+  border-color: var(--text-success);
+  color: var(--text-success);
+}

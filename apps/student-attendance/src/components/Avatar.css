@@ -1,0 +1,38 @@
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.avatar--blue {
+  background-color: var(--background-neutral-container);
+  color: var(--text-action);
+}
+
+.avatar--green {
+  background-color: var(--background-success-container);
+  color: var(--text-on-success-container);
+}
+
+.avatar--orange {
+  background-color: var(--background-attention-container);
+  color: var(--text-on-attention-container);
+}
+
+.avatar--magenta {
+  background-color: var(--background-critical-container);
+  color: var(--text-on-critical-container);
+}
+
+.avatar--neutral {
+  background-color: var(--background-surface-container-3);
+  color: var(--text-primary);
+}

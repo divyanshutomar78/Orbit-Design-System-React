@@ -1,0 +1,95 @@
+.weekly-trend {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--gap-ml) * 1px);
+}
+
+.weekly-trend__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: calc(var(--gap-l) * 1px);
+}
+
+.weekly-trend__title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body-big) * 1px);
+  font-weight: 600;
+  line-height: calc(var(--font-line-height-body-big) * 1px);
+}
+
+.weekly-trend__meta {
+  margin: calc(var(--gap-xs) * 1px) 0 0;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.weekly-trend__average {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.weekly-trend__average-value {
+  font-size: calc(var(--font-font-size-title-3) * 1px);
+  font-weight: 700;
+  color: var(--text-success);
+}
+
+.weekly-trend__average-label {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.weekly-trend__chart {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: calc(var(--gap-s) * 1px);
+  align-items: end;
+  flex: 1;
+  min-height: 180px;
+}
+
+.weekly-trend__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+  height: 100%;
+}
+
+.weekly-trend__bar-value {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.weekly-trend__track {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  flex: 1;
+  min-height: 120px;
+  background-color: var(--background-inside-surface-2);
+  border-radius: calc(var(--radius-s) * 1px);
+  overflow: hidden;
+}
+
+.weekly-trend__bar {
+  display: block;
+  width: 100%;
+  border-radius: calc(var(--radius-s) * 1px) calc(var(--radius-s) * 1px) 0 0;
+  background: linear-gradient(
+    to top,
+    var(--background-action),
+    var(--text-success)
+  );
+  transition: height 0.3s ease;
+}
+
+.weekly-trend__day {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  color: var(--text-secondary);
+}

@@ -1,0 +1,117 @@
+.emi-calculator {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-m) * 1px);
+}
+
+.emi-calculator__form {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-s) * 1px);
+}
+
+.emi-calculator__actions {
+  display: flex;
+  gap: calc(var(--gap-s) * 1px);
+  margin-top: calc(var(--gap-xs) * 1px);
+}
+
+.emi-calculator__results {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-s) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-surface-container-2);
+}
+
+.emi-calculator__emi-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap-xxs) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-inside-surface-1);
+}
+
+.emi-calculator__emi-label {
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.emi-calculator__emi-value {
+  font-size: calc(var(--font-font-size-title-3) * 1px);
+  font-weight: var(--font-font-weight-title);
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.emi-calculator__summary {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.emi-calculator__schedule {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-s) * 1px);
+}
+
+.emi-calculator__schedule-title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.emi-calculator__schedule-table {
+  overflow: hidden;
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-surface-container-2);
+}
+
+.emi-calculator__schedule-head,
+.emi-calculator__schedule-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 1fr 1fr;
+  gap: calc(var(--gap-xs) * 1px);
+  align-items: center;
+  padding: calc(var(--gap-xs) * 1px) calc(var(--gap-s) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+}
+
+.emi-calculator__schedule-head {
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--background-inside-surface-2);
+}
+
+.emi-calculator__schedule-row {
+  color: var(--text-primary);
+  border-top: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-primary);
+}
+
+.emi-calculator__schedule-row span:not(:first-child) {
+  text-align: right;
+}
+
+.emi-calculator__schedule-scroll {
+  max-height: 240px;
+  overflow: auto;
+}
+
+.emi-calculator__schedule-note {
+  margin: 0;
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  color: var(--text-secondary);
+}

@@ -1,0 +1,85 @@
+.flight-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap-xs) * 1px);
+  min-width: 0;
+  text-align: center;
+}
+
+.flight-progress__compass {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: calc(var(--icon-frame-size-big) * 1px);
+  height: calc(var(--icon-frame-size-big) * 1px);
+}
+
+.flight-progress__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-secondary);
+}
+
+.flight-progress__ring--outer {
+  inset: 0;
+}
+
+.flight-progress__ring--inner {
+  inset: calc(var(--gap-xs) * 1px);
+}
+
+.flight-progress__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--icon-frame-size-default) * 1px);
+  height: calc(var(--icon-frame-size-default) * 1px);
+  border-radius: 50%;
+  background-color: var(--background-action);
+  color: var(--text-on-action);
+}
+
+.flight-progress__icon svg {
+  width: calc(var(--icon-small) * 1px);
+  height: calc(var(--icon-small) * 1px);
+}
+
+.flight-progress__status {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.flight-progress__duration-row {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.flight-progress__duration {
+  min-width: calc(var(--components-input-button-select-min-width-hidden) * 1px);
+  font-size: calc(var(--font-font-size-title-3) * 1px);
+  font-weight: 700;
+  line-height: calc(var(--font-line-height-t-itle-3) * 1px);
+  color: var(--text-primary);
+}
+
+.flight-progress__dots {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.flight-progress__dot {
+  width: calc(var(--gap-xs) * 1px);
+  height: calc(var(--gap-xs) * 1px);
+  border-radius: 50%;
+  background-color: var(--text-disabled);
+}
+
+.flight-progress__dot--active {
+  background-color: var(--text-primary);
+}

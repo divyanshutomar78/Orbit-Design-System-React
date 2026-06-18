@@ -1,0 +1,86 @@
+.attachment-zone {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-s) * 1px);
+  width: 100%;
+}
+
+.attachment-zone__heading {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: var(--font-font-weight-title);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.attachment-zone__drop {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--gap-m) * 1px);
+  min-height: calc(var(--components-input-button-select-default) * 1px);
+  padding: calc(var(--gap-s) * 1px) calc(var(--gap-m) * 1px);
+  border: calc(var(--components-input-button-select-border-width) * 1px) dashed
+    var(--border-secondary);
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-surface-container-1);
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.attachment-zone__drop--active {
+  border-color: var(--border-action-hover);
+  background-color: var(--background-surface-container-2);
+}
+
+.attachment-zone__hint {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.attachment-zone__browse {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.attachment-zone__browse:hover {
+  color: var(--text-action);
+}
+
+.attachment-zone__browse:focus-visible {
+  outline: calc(var(--gap-xxs) * 1px) solid var(--border-action-hover);
+  outline-offset: calc(var(--gap-xxs) * 1px);
+}
+
+.attachment-zone__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: calc(var(--icon-frame-size-small) * 1px);
+  height: calc(var(--icon-frame-size-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.attachment-zone__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.attachment-zone__input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}

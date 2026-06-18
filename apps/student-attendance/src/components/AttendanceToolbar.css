@@ -1,0 +1,16 @@
+.attendance-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--gap-m) * 1px);
+}
+
+.attendance-toolbar__filter {
+  min-width: min(100%, 220px);
+}
+
+.attendance-toolbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap-s) * 1px);
+}

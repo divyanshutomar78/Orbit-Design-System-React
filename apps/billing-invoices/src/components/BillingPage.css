@@ -1,0 +1,45 @@
+.billing-page {
+  min-height: 100vh;
+  background-color: var(--background-background);
+}
+
+.billing-page__header {
+  background-color: var(--background-surface-container-1);
+}
+
+.billing-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-m) * 1px);
+  width: 100%;
+  padding: calc(var(--gap-m) * 1px);
+  box-sizing: border-box;
+}
+
+.billing-usage {
+  --billing-card-padding-inline: var(--gap-m);
+  padding: calc(var(--gap-m) * 1px) calc(var(--billing-card-padding-inline) * 1px)
+    calc(var(--gap-l) * 1px);
+}
+
+.billing-usage__header {
+  margin-bottom: calc(var(--gap-s) * 1px);
+}
+
+.billing-usage__title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body-big) * 1px);
+  font-weight: 600;
+  line-height: calc(var(--font-line-height-body-big) * 1px);
+}
+
+.billing-usage__period {
+  margin: calc(var(--gap-xs) * 1px) 0 0;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.billing-usage .usage-table {
+  --usage-table-padding-inline: var(--billing-card-padding-inline);
+}

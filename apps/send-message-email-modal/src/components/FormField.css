@@ -1,0 +1,73 @@
+.orbit-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+  width: 100%;
+  min-width: 0;
+  font-family: var(--font-family);
+}
+
+.orbit-form-field__label {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.orbit-form-field__required {
+  color: var(--text-critical);
+}
+
+.orbit-form-field__hint {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.orbit-form-field__input,
+.orbit-form-field__textarea {
+  box-sizing: border-box;
+  width: 100%;
+  border: calc(var(--components-input-button-select-border-width) * 1px) solid transparent;
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-input-fields);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.orbit-form-field__input {
+  height: calc(var(--components-input-button-select-default) * 1px);
+  padding-inline: calc(var(--gap-s) * 1px);
+}
+
+.orbit-form-field__textarea {
+  min-height: calc(var(--components-input-button-select-default) * 4px);
+  padding: calc(var(--gap-s) * 1px);
+  resize: vertical;
+}
+
+.orbit-form-field__textarea--compact {
+  min-height: calc(var(--components-input-button-select-default) * 2.5px);
+}
+
+.orbit-form-field__input:focus,
+.orbit-form-field__textarea:focus {
+  border-color: var(--border-action-hover);
+}
+
+.orbit-form-field__input::placeholder,
+.orbit-form-field__textarea::placeholder {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.orbit-form-field .orbit-input-select {
+  width: 100%;
+  max-width: none;
+}

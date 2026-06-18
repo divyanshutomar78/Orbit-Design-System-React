@@ -1,0 +1,163 @@
+.attendance-table-section {
+  --attendance-card-padding-inline: var(--gap-ml);
+  padding: calc(var(--gap-ml) * 1px) calc(var(--attendance-card-padding-inline) * 1px)
+    calc(var(--gap-s) * 1px);
+}
+
+.attendance-table-section__header {
+  margin-bottom: calc(var(--gap-m) * 1px);
+}
+
+.attendance-table-section__title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body-big) * 1px);
+  font-weight: 600;
+  line-height: calc(var(--font-line-height-body-big) * 1px);
+}
+
+.attendance-table-section__meta {
+  margin: calc(var(--gap-xs) * 1px) 0 0;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.attendance-table-section__empty {
+  margin: calc(var(--gap-m) * 1px) 0;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.attendance-table {
+  --attendance-table-padding-inline: var(--attendance-card-padding-inline);
+}
+
+.attendance-table__head,
+.attendance-table__row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 0.7fr) minmax(0, 1.2fr) minmax(
+      0,
+      0.9fr
+    );
+  align-items: center;
+  gap: calc(var(--gap-m) * 1px);
+  margin-inline: calc(var(--attendance-table-padding-inline) * -1px);
+  padding-inline: calc(var(--attendance-table-padding-inline) * 1px);
+}
+
+.attendance-table__head {
+  padding-block: calc(var(--gap-s) * 1px);
+  border-bottom: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-secondary);
+}
+
+.attendance-table__row {
+  padding-block: calc(var(--gap-m) * 1px);
+  border-bottom: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-secondary);
+}
+
+.attendance-table__row:last-child {
+  border-bottom: none;
+}
+
+.attendance-table__row:hover {
+  background-color: var(--background-inside-surface-2);
+}
+
+.attendance-table__cell {
+  min-width: 0;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.attendance-table__head .attendance-table__cell {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.attendance-table__cell--student {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-m) * 1px);
+}
+
+.attendance-table__person {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.attendance-table__name {
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attendance-table__email {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attendance-table__cell--checkin {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.attendance-table__weekly {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+}
+
+.attendance-table__weekly-value {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  min-width: 34px;
+  text-align: right;
+}
+
+.attendance-table__cell--status {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .attendance-table__head,
+  .attendance-table__row {
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+
+  .attendance-table__cell--class,
+  .attendance-table__cell--checkin,
+  .attendance-table__head .attendance-table__cell--class,
+  .attendance-table__head .attendance-table__cell--checkin {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .attendance-table__head,
+  .attendance-table__row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+  }
+
+  .attendance-table__cell--weekly,
+  .attendance-table__head .attendance-table__cell--weekly {
+    display: none;
+  }
+}

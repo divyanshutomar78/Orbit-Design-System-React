@@ -1,0 +1,72 @@
+.orbit-modal.send-message-email-modal {
+  width: min(100%, 640px);
+}
+
+.send-message-email-modal__tabs {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 100%;
+  min-width: 0;
+}
+
+.send-message-email-modal__tabs .orbit-title-tab {
+  align-self: stretch;
+  margin-bottom: calc(var(--components-input-button-select-border-width) * -1px);
+  text-transform: none;
+  letter-spacing: calc(var(--font-letter-spacing-body) * 0.01em);
+}
+
+.send-message-email-modal__tabs .orbit-title-tab--selected {
+  box-shadow: inset 0 calc(var(--components-input-button-select-border-width) * -3px) 0 0
+    var(--text-primary);
+}
+
+.send-message-email-modal .orbit-modal__body {
+  --dialog-body-padding-inline: var(--gap-m);
+  padding: calc(var(--gap-l) * 1px) calc(var(--dialog-body-padding-inline) * 1px);
+}
+
+.send-message-email-modal__intro {
+  margin: 0 0 calc(var(--gap-l) * 1px);
+  font-size: calc(var(--font-font-size-body) * 1px);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.send-message-email-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-m) * 1px);
+  width: 100%;
+}
+
+.dialog-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap-m) * 1px);
+  width: 100%;
+}
+
+.dialog-form-grid__full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 520px) {
+  .dialog-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.send-message-email-modal .orbit-modal__footer {
+  justify-content: center;
+  padding-block: calc(var(--gap-l) * 1px);
+  border-top: none;
+}
+
+.send-message-email-modal__footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap-m) * 1px);
+}

@@ -1,0 +1,29 @@
+.billing-card {
+  --billing-card-padding-inline: var(--gap-m);
+  overflow: hidden;
+  border-radius: calc(var(--radius-card) * 1px);
+  background-color: var(--background-surface-container-2);
+  box-shadow: 0 calc(var(--gap-xxs) * 1px) calc(var(--gap-s) * 1px) var(--shadow-card);
+}
+
+.billing-card .orbit-listing-item {
+  padding: calc(var(--gap-m) * 1px) calc(var(--billing-card-padding-inline) * 1px);
+}
+
+.billing-card .orbit-listing-item__title {
+  font-size: calc(var(--font-font-size-body-big) * 1px);
+  font-weight: 600;
+  line-height: calc(var(--font-line-height-body-big) * 1px);
+}
+
+.billing-card .orbit-listing-item__value {
+  font-weight: 600;
+}
+
+.billing-card .orbit-listing-item__helper {
+  color: var(--text-secondary);
+}
+
+.billing-card .orbit-listing-item__actions {
+  align-self: center;
+}

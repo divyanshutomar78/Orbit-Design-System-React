@@ -1,0 +1,61 @@
+.orbit-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--gap-m) * 1px);
+  background-color: color-mix(in srgb, var(--background-background) 40%, transparent);
+  backdrop-filter: blur(2px);
+}
+
+.orbit-modal {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: min(100%, 560px);
+  max-height: min(90vh, 720px);
+  overflow: hidden;
+  border-radius: calc(var(--radius-s) * 1px);
+  background-color: var(--background-surface-container-1);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  box-shadow: var(--shadow-popup-message);
+}
+
+.orbit-modal__header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--gap-s) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-bottom: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-primary);
+}
+
+.orbit-modal__title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-title-6) * 1px);
+  font-weight: var(--font-font-weight-title);
+  line-height: calc(var(--font-line-height-title-6) * 1px);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.orbit-modal__body {
+  flex: 1;
+  overflow: auto;
+  padding: calc(var(--gap-m) * 1px);
+}
+
+.orbit-modal__footer {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: calc(var(--gap-s) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-top: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-primary);
+}

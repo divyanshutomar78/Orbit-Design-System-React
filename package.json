@@ -10,6 +10,7 @@
     "publish:components": "npm run build -w orbit-ds-components && npm publish -w orbit-ds-components --access public",
     "storybook": "npm run dev -w @orbit/storybook",
     "build:storybook": "npm run build -w @orbit/storybook",
+    "fifa-match-stats": "npm run dev -w @orbit/fifa-match-stats",
     "verify:tokens": "node scripts/verify-token-usage.mjs"
   },
   "engines": {

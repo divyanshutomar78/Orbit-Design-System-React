@@ -1,0 +1,32 @@
+:root {
+  --font-family: Roboto, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  background: var(--background-background);
+  color: var(--text-primary);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--gap-m) * 1px);
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-m) * 1px);
+  width: min(100%, 360px);
+}

@@ -16,6 +16,8 @@ export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'
   open: boolean;
   onClose: () => void;
   title?: ReactNode;
+  /** Extra header content after `title` (e.g. tab navigation). Close control stays on the right. */
+  header?: ReactNode;
   children?: ReactNode;
   footer?: ReactNode;
   /** Close when clicking the backdrop. Default true. */
@@ -28,6 +30,7 @@ export function Modal({
   open,
   onClose,
   title,
+  header,
   children,
   footer,
   closeOnBackdrop = true,
@@ -86,21 +89,32 @@ export function Modal({
         {...rest}
       >
         <header className="orbit-modal__header">
-          {title ? (
+          {header ? (
+            <div className="orbit-modal__header-slot">
+              {title ? (
+                <h2 id={titleId} className="orbit-modal__title">
+                  {title}
+                </h2>
+              ) : null}
+              {header}
+            </div>
+          ) : title ? (
             <h2 id={titleId} className="orbit-modal__title">
               {title}
             </h2>
           ) : (
             <span />
           )}
-          <ButtonCompact
-            variant="tertiary"
-            minWidth={false}
-            iconSize="big"
-            aria-label="Close dialog"
-            onClick={onClose}
-            leftIcon={<ModalCloseIcon />}
-          />
+          <div className="orbit-modal__header-actions">
+            <ButtonCompact
+              variant="tertiary"
+              minWidth={false}
+              iconSize="big"
+              aria-label="Close dialog"
+              onClick={onClose}
+              leftIcon={<ModalCloseIcon />}
+            />
+          </div>
         </header>
         {children != null ? <div className="orbit-modal__body">{children}</div> : null}
         {footer != null ? <footer className="orbit-modal__footer">{footer}</footer> : null}

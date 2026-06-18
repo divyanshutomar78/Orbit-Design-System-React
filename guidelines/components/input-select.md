@@ -69,3 +69,5 @@ When `options` are provided, clicking opens an **ActionMenu** dropdown (not nati
 - Use in filter bars with `showLabel={false}` for compact layout.
 - Don't use native `<select>` alongside Orbit forms.
 - Pair with `ActionMenu` props via `actionMenuProps` for custom menu behavior.
+- **Dialog forms:** override default `max-width: 460px` so selects fill the column — see [styles.md](../styles.md#dialog-form-layout).
+- **Wide dialogs:** pair related `InputSelect` / short inputs in a two-column `.dialog-form-grid`; keep textareas and attachments full width.

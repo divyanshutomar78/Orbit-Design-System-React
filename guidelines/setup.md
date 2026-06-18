@@ -113,7 +113,7 @@ On iPad platform tokens, `big` uses a 44×44 frame with a 24×24 glyph centered 
 3. **Compose, don't hack slots** — read each component's guideline before putting checkboxes, chips, or columns inside slots.
 4. **Prefer `LabelValueVertical` / `LabelValueHorizontal`** for label+value pairs instead of custom flex layouts.
 5. **Use `SuccessChip`, `WarningChip`, etc.** for status badges with `showIcon={false}` — not generic pill divs.
-6. **Use `TitlesAndTabs`** for page headers with tabs — not custom header markup.
+6. **Use `TitlesAndTabs`** for page headers — title only inside; subheading **below** the component. See [components/titles-and-tabs.md](./components/titles-and-tabs.md).
 7. **ListingItem is for list rows, not full data tables** — see `components/listing-item.md` for table patterns.
 
 ## Troubleshooting

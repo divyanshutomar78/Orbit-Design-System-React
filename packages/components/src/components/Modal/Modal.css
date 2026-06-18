@@ -35,6 +35,42 @@
     var(--border-primary);
 }
 
+.orbit-modal__header:has(.orbit-modal__header-slot) {
+  height: calc(var(--components-titles-and-tabs-header) * 1px);
+  min-height: calc(var(--components-titles-and-tabs-header) * 1px);
+  padding: 0;
+  padding-inline-end: calc(var(--padding-horizontal-s) * 1px);
+  border-bottom-color: var(--border-secondary);
+}
+
+.orbit-modal__header-slot {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: calc(var(--gap-m) * 1px);
+  height: 100%;
+  min-width: 0;
+}
+
+.orbit-modal__header:has(.orbit-modal__header-slot) .orbit-modal__title {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 100%;
+  padding-inline: calc(var(--padding-horizontal-s) * 1px);
+  font-size: calc(var(--font-font-size-title-4) * 1px);
+  line-height: calc(var(--font-line-height-title-4) * 1px);
+  letter-spacing: calc(var(--font-letter-spacing-title-4) * 0.01em);
+}
+
+.orbit-modal__header-actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  align-self: stretch;
+  padding-block: calc(var(--gap-s) * 1px);
+}
+
 .orbit-modal__title {
   margin: 0;
   font-size: calc(var(--font-font-size-title-6) * 1px);

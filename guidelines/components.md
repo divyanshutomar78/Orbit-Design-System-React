@@ -72,6 +72,9 @@ Only the **color tokens** differ between chip variants. Pick the semantic color 
   ]}
   onTabSelect={setTab}
 />
+
+{/* Subheading goes OUTSIDE TitlesAndTabs — see titles-and-tabs.md */}
+<p className="page-subtitle">Manage accounts and permissions.</p>
 ```
 
 ### Filter bar
@@ -109,6 +112,20 @@ Only the **color tokens** differ between chip variants. Pick the semantic color 
 | Custom pill for status | `SuccessChip` / `WarningChip` with `showIcon={false}` |
 | Status chip with default icon (looks like dead checkbox) | `showIcon={false}` on read-only chips — see [chips.md](./components/chips.md) |
 | `OptionCheckbox` in `ListingItem leftIcon` | Checkbox beside row — see listing-item guide |
-| Multiple columns in `addIconsComponent` | CSS grid wrapper or separate layout |
+| Multiple columns in `addIconsComponent` | One control per slot — see [listing-item.md](./components/listing-item.md) |
+| Button label clipped in `ListingItem` row | `minWidth={false}` on `Button`; don't fix actions slot to icon width — see [listing-item.md](./components/listing-item.md) |
 | Skip token CSS imports | Always load primitives + theme + platform |
 | Import multiple themes | One theme only |
+| Subheading inside `TitlesAndTabs` | Subheading below (pages) or in dialog body — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
+| Dialog title as `TitleTab` | Static dialog title + `TitleTab` for tabs only — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
+| Close icon misaligned in tabbed dialog | Fixed header height + actions slot — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
+| Multiple `LabelValueVertical` stacked vertically | Grid wrapper with `display: grid` + column template — see [label-value-vertical.md](./components/label-value-vertical.md) |
+| `grid-template-columns` only, no `display: grid` | Both on parent wrapper | Columns never apply |
+| Related stat cells with no group border | `stats-group` wrapper + `--border-secondary` below — see [label-value-vertical.md](./components/label-value-vertical.md) |
+| Section border inset in padded dialog | Full-bleed divider — see [styles.md](./styles.md#dialog-body-section-dividers) |
+| `InputSelect` at 460px max-width in wide dialog | `max-width: none` on form fields — see [styles.md](./styles.md#dialog-form-layout) |
+| All dialog form fields stacked in one column on wide modal | `.dialog-form-grid` for paired selects/short inputs — see [styles.md](./styles.md#dialog-form-layout) |
+| Full-width `TitlesAndTabs` + narrow centered page body | Same-width page shell — see [styles.md](./styles.md#page-width-alignment-header--body) |
+| Page content on `--background-background` | Page canvas `background`; header `container-1`; cards `container-2` — see [layering-model.md](./layering-model.md#page-layout-canvas--elevated-blocks) |
+| Entire `<main>` painted `container-1` | Keep page canvas as `background` | Flat white page — no visible canvas |
+| Dialog heading on page instead of in dialog | Title in dialog header; subtitle in dialog body |

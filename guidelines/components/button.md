@@ -36,6 +36,23 @@ Wrap custom SVGs in nothing — pass directly; Button uses `IconFrame` internall
 | `disabled` | boolean | — | Disabled state |
 | `onClick` | function | — | Click handler |
 
+## Trailing actions in rows
+
+When a `Button` sits in `ListingItem` `addIconsComponent` or a narrow toolbar:
+
+```tsx
+<Button variant="secondary" minWidth={false}>
+  Manage in Stripe
+</Button>
+```
+
+| Prop | When to use |
+|------|-------------|
+| `minWidth={true}` (default) | Standalone CTAs, toolbars — enforces 84px min **content** width |
+| `minWidth={false}` | Trailing row actions with long labels — button grows with text |
+
+The actions slot in `ListingItem` sizes to its child. Do **not** CSS-override it to icon width — that clips button text.
+
 ## Dashboard examples
 
 ```tsx
@@ -53,3 +70,4 @@ Wrap custom SVGs in nothing — pass directly; Button uses `IconFrame` internall
 - Use `secondary` for secondary actions (Export, Filter).
 - Use `tertiary` for low-emphasis actions (Cancel, Learn more).
 - Don't stack multiple primary buttons side by side.
+- In `ListingItem` `addIconsComponent`, use `minWidth={false}` for long labels — see [listing-item.md](./listing-item.md).

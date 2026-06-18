@@ -47,7 +47,7 @@ import { ListingItem, LabelValueVertical, SuccessChip } from 'orbit-ds-component
 | `title` / `label` / `value` / `helper` | ReactNode | strings | Text content |
 | `leftIcon` / `rightIcon` | ReactNode | default SVGs | **Icon-sized slots only (18–24px)** |
 | `labelValue` | ReactNode | — | Replace default label+value |
-| `addIconsComponent` | ReactNode | — | Trailing action slot (single widget) |
+| `addIconsComponent` | ReactNode | — | Trailing action slot — one **Button**, **Chip**, or icon-sized control |
 | `onClick` | function | — | Makes row interactive |
 
 ## Correct patterns
@@ -79,6 +79,31 @@ import { ListingItem, LabelValueVertical, SuccessChip } from 'orbit-ds-component
 />
 ```
 
+### Settings row with trailing button (multi-line)
+
+Use `multiLine` + `addIconsComponent` for card rows (plan, payment, billing). The actions slot **sizes to the control** — `Button`, `Chip`, etc.
+
+```tsx
+<ListingItem
+  multiLine
+  reorderIcon={false}
+  showLeftIcon={false}
+  showRightIcon={false}
+  title="Pro Plan"
+  label=""
+  value="$20/mo."
+  showHelper
+  helper="Manage your subscription and billing cycle."
+  addIconsComponent={
+    <Button variant="secondary" minWidth={false}>
+      Adjust plan
+    </Button>
+  }
+/>
+```
+
+For long button labels (`Manage in Stripe`), use `minWidth={false}` so the button grows with text — see [button.md](./button.md).
+
 ### User table with checkbox (correct)
 
 Place checkbox **outside** ListingItem, or use a flex wrapper:
@@ -106,9 +131,10 @@ Place checkbox **outside** ListingItem, or use a flex wrapper:
 | Don't | Why |
 |-------|-----|
 | `<OptionCheckbox label="Option" />` in `leftIcon` | Squeezed into 24px frame → vertical "Option" text |
-| Multiple table columns in `addIconsComponent` | Slot is ~24px wide — columns overflow |
+| Multiple table columns in `addIconsComponent` | Slot fits **one** control — use a wrapper layout outside `ListingItem` for multi-column rows |
+| Override `.orbit-listing-item__actions` width to icon size | Component sizes to content — fixed width clips `Button` / `Chip` labels |
 | Default props for table rows | Turn off `reorderIcon`, `showLeftIcon` when not needed |
-| Full-width table with ListingItem alone | `__main` expands; actions slot stays narrow |
+| Full-width table with ListingItem alone | Put checkbox/chips **beside** the row — see user table pattern above |
 
 ## Defaults to change for dashboards
 

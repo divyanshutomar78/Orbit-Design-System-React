@@ -50,8 +50,8 @@ Surface tokens define **neutral elevation** — how backgrounds stack from the p
 
 | Stack order (bottom → top) | Token | Role |
 |----------------------------|-------|------|
-| 0 — Page / canvas | `--background-background` | App shell, nav bar, page body |
-| 1 — First elevation | `--background-surface-container-1` | Sections, **modals/dialogs on the page**, grouped panels |
+| 0 — Page / canvas | `--background-background` | Full page canvas — visible in gaps between cards |
+| 1 — First elevation | `--background-surface-container-1` | **Page header bar (`TitlesAndTabs`)**, section strips, modal/dialog panels |
 | 2 — Second elevation | `--background-surface-container-2` | Cards, menus, tooltips, nav items, **content inside a modal** |
 | 3 — Top elevation | `--background-surface-container-3` | **Only when nested** on container-2 — e.g. popover on a card |
 
@@ -87,14 +87,68 @@ Modals use a **backdrop** over `--background-background`. The dialog **panel** i
 └────────────────────────────────────────────────┘
 ```
 
-| Modal part | Token | Why |
+| Dialog part | Token | Why |
 |------------|-------|-----|
 | Backdrop (dimmed area) | Transparent / tint over `--background-background` | Not a surface-container layer |
-| Dialog panel (`.orbit-modal`) | `--background-surface-container-1` | First elevation above page |
-| Blocks inside the modal (cards, scoreboards, rows) | `--background-surface-container-2` | Second elevation inside the panel |
+| Dialog panel | `--background-surface-container-1` | First elevation above page |
+| Blocks inside the dialog (cards, tables, rows) | `--background-surface-container-2` | Second elevation inside the panel |
 | Recessed wells inside the panel | `--background-inside-surface-1` | Inset within container-1 |
 
-Orbit `Modal` already uses `--background-surface-container-1`. Custom modals must match.
+Dialog panels should use `--background-surface-container-1` when sitting on the page background.
+
+### Page layout (canvas + elevated blocks)
+
+The **page stays on `--background-background`** — grey canvas visible across the full viewport and in gaps between cards. Do **not** paint the entire `<main>` with `container-1` (that removes the canvas and looks like one flat white sheet).
+
+Elevate **individual blocks** on the canvas:
+
+```
+┌─ viewport ─────────────────────────────────────┐
+│  background (canvas) — visible everywhere       │
+│  ┌─ TitlesAndTabs bar (container-1) ──────────┐ │
+│  └────────────────────────────────────────────┘ │
+│  ░░░ gap shows background ░░░                   │
+│  ┌─ card (container-2) ──────────────────────┐  │
+│  └───────────────────────────────────────────┘  │
+│  ░░░ gap shows background ░░░                   │
+│  ┌─ card (container-2) ──────────────────────┐  │
+│  └───────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────┘
+```
+
+| Element | Token | Notes |
+|---------|-------|-------|
+| Page / `<main>` canvas | `--background-background` | Full page — **not** container-1 |
+| `TitlesAndTabs` header row | `--background-surface-container-1` | Header bar only — **not** bare background |
+| Dashboard cards, table wrappers | `--background-surface-container-2` | Sit on canvas; gaps show background |
+| Modal / dialog panel (full overlay) | `--background-surface-container-1` | Entire panel — exception to page rule |
+| Cards **inside** a modal | `--background-surface-container-2` | Parent is modal panel |
+
+```tsx
+<div className="app-shell">
+  <EWasNavBar /> {/* nav chrome on background */}
+  <main className="page-canvas">
+    <header className="page-header">
+      <TitlesAndTabs title="Billing & Invoices" showTabs={false} ... />
+    </header>
+    <div className="page-content">
+      {/* cards → container-2; gaps between cards show background */}
+    </div>
+  </main>
+</div>
+```
+
+```css
+.page-canvas {
+  flex: 1;
+  min-height: 100vh;
+  background-color: var(--background-background);
+}
+
+.page-header {
+  background-color: var(--background-surface-container-1);
+}
+```
 
 ### Common mistakes (avoid these)
 
@@ -105,6 +159,8 @@ Orbit `Modal` already uses `--background-surface-container-1`. Custom modals mus
 | Inner card in modal → `container-1` | Inner card in modal → `container-2` | Same level as parent — no visible depth |
 | “Highest UI” → always `container-3` | Count from **parent** surface | Container number reflects stack depth, not prominence |
 | Inverted stack `background → 3 → 2 → 1` | `background → 1 → 2 → 3` | Lower numbers are closer to the page |
+| Entire `<main>` painted `container-1` | Page canvas stays `background`; header bar `container-1`; cards `container-2` | Whole page looks flat white — no canvas |
+| `TitlesAndTabs` directly on background (no fill) | Header wrapper with `container-1` | Title row must not sit on bare canvas |
 
 ### Light theme stack (`d-grey`, `d-green`)
 
@@ -209,10 +265,11 @@ Use this table when building custom UI (not covered by Orbit components).
 
 | UI element | Token | Elevation |
 |------------|-------|-----------|
-| Page body, app shell | `--background-background` | 0 |
+| Page canvas, app shell, gaps between cards | `--background-background` | 0 |
 | Sidebar / nav bar background | `--background-background` | 0 |
-| Page section wrapper | `--background-surface-container-1` | 1 |
-| Dashboard card, table wrapper | `--background-surface-container-2` or `-3` | 2–3 |
+| Page header bar (`TitlesAndTabs` wrapper) | `--background-surface-container-1` | 1 |
+| Page section wrapper (full-width strip) | `--background-surface-container-1` | 1 |
+| Dashboard card, table wrapper on page | `--background-surface-container-2` | 2 |
 | Dropdown, action menu, tooltip | `--background-surface-container-2` | 2 |
 | Modal, dialog on page background | `--background-surface-container-1` | 1 |
 | Popover on elevated surface | `--background-surface-container-2` or `-3` | 2–3 |
@@ -227,23 +284,23 @@ Use this table when building custom UI (not covered by Orbit components).
 | Component | Background token |
 |-----------|------------------|
 | `EWasNavBar` | `--background-background` |
+| `TitlesAndTabs` | Transparent — **header wrapper uses `container-1`** on page canvas |
 | `EWasNavItem`, `EWasNavItemWText` | `--background-surface-container-2` (default), `--background-action` (selected) |
 | `ActionMenu`, `Tooltip` | `--background-surface-container-2` |
-| `Modal` | `--background-surface-container-1` |
 | `Button` primary | `--background-action` |
 | `Button` secondary | `--background-background` |
 | `InputSelect` | `--background-input-fields` |
 
 When composing dashboards, **match parent/child layers**: a menu (container-2) on a card (container-2 or -3) is correct; a menu on bare page background should sit on container-1 or -2, not directly on `background-background` unless intentional.
 
-**Modal composition example:**
+**Dialog composition example:**
 
 | Element | Token |
 |---------|-------|
-| Modal panel | `container-1` |
-| Scoreboard / table wrapper inside modal | `container-2` |
-| Timeline row inside modal | `container-2` |
-| Stat comparison bar track | `--background-inside-surface-1` or `-2` (inset) |
+| Dialog panel | `container-1` |
+| Card / table wrapper inside dialog | `container-2` |
+| List row inside dialog | `container-2` |
+| Recessed track / well | `--background-inside-surface-1` or `-2` (inset) |
 
 ---
 

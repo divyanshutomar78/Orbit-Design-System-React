@@ -1,6 +1,6 @@
-# Orbit Design System — Setup for Figma Make
+# Orbit Design System — Setup
 
-Use this guide when bootstrapping a Figma Make project (`@make-kits/orbit-26` or similar) that consumes **orbit-ds-components** and **orbit-ds-variables**.
+Use this guide when bootstrapping a project that consumes **orbit-ds-components** and **orbit-ds-variables**.
 
 ## Required packages
 
@@ -50,7 +50,7 @@ Load the matching web font (e.g. Google Fonts Roboto).
 import { Button, ListingItem, SuccessChip, TitlesAndTabs } from 'orbit-ds-components';
 ```
 
-## Recommended project structure (Figma Make)
+## Recommended project structure
 
 ```
 src/
@@ -115,14 +115,6 @@ On iPad platform tokens, `big` uses a 44×44 frame with a 24×24 glyph centered 
 5. **Use `SuccessChip`, `WarningChip`, etc.** for status badges — not generic pill divs.
 6. **Use `TitlesAndTabs`** for page headers with tabs — not custom header markup.
 7. **ListingItem is for list rows, not full data tables** — see `components/listing-item.md` for table patterns.
-
-## Publishing as `@make-kits/orbit-26`
-
-When Figma Make publishes your kit:
-
-- Ensure `package.json` lists `orbit-ds-components` and `orbit-ds-variables` as dependencies.
-- Re-export or document the token imports in your kit's entry `styles.css`.
-- Include this `guidelines/` folder so Make agents know how to use components correctly.
 
 ## Troubleshooting
 

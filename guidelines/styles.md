@@ -1,6 +1,6 @@
 # Orbit Styles Guide
 
-How to style dashboards built with `orbit-ds-components` inside Figma Make.
+How to style dashboards built with `orbit-ds-components`.
 
 ## Style loading order
 
@@ -105,7 +105,7 @@ Use chips, not custom spans:
 
 ## Tailwind coexistence
 
-Figma Make projects often include Tailwind. Rules:
+When using Tailwind alongside Orbit, follow these rules:
 
 | Use Tailwind for | Use Orbit for |
 |------------------|---------------|

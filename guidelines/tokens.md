@@ -32,7 +32,7 @@ Semantic token **names are the same in every theme** — only color values chang
 
 **Rule:** Import exactly one theme. Multiple themes overwrite the same variable names.
 
-**Surface layering:** See [layering-model.md](./layering-model.md) for how `--background-surface-container-*` tokens stack (background → 3 → 2 → 1).
+**Surface layering:** See [layering-model.md](./layering-model.md) for how `--background-surface-container-*` tokens stack (background → 1 → 2 → 3).
 
 ## Platforms
 
@@ -59,9 +59,9 @@ Semantic token **names are the same in every theme** — only color values chang
 | Token | Usage |
 |-------|-------|
 | `--background-background` | Page / app shell (lowest layer) |
-| `--background-surface-container-3` | First elevation — sections on the page |
+| `--background-surface-container-1` | First elevation — sections on the page |
 | `--background-surface-container-2` | Cards, menus, tooltips (most common) |
-| `--background-surface-container-1` | Top elevation — modals, highest cards |
+| `--background-surface-container-3` | Top elevation — modals, highest cards |
 | `--background-input-fields` | Form inputs and selects |
 | `--background-inside-surface-1/2` | Recessed areas inside elevated surfaces |
 | `--border-primary` | Dividers, input borders |
@@ -148,7 +148,7 @@ Used in CSS as: `calc(var(--gap-s) * 1px)`
 }
 ```
 
-## Rules for Figma Make agents
+## Usage rules
 
 1. **Never** use `#hex` or `rgb()` for colors that have a semantic token.
 2. **Never** guess spacing — use `--gap-*` tokens.

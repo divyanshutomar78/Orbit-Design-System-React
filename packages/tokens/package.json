@@ -4,7 +4,7 @@
   "description": "Orbit design tokens — re-exports from orbit-ds-variables",
   "type": "module",
   "dependencies": {
-    "orbit-ds-variables": "file:../../.orbit-ds-variables-src"
+    "orbit-ds-variables": "^1.0.4"
   },
   "exports": {
     "./css/primitives": "../../node_modules/orbit-ds-variables/dist/css/primitives/variables.css",

@@ -46,16 +46,16 @@ Surface tokens define **neutral elevation** — how backgrounds stack from the p
 
 ### Critical rule: container numbers vs elevation
 
-**Lower container number = higher elevation (closer to the user).**
+**Higher container number = higher elevation (closer to the user).**
 
 | Stack order (bottom → top) | Token | Role |
 |----------------------------|-------|------|
 | 0 — Page / canvas | `--background-background` | App shell, nav bar, page body |
-| 1 — First elevation | `--background-surface-container-3` | Sections, grouped panels on the page |
+| 1 — First elevation | `--background-surface-container-1` | Sections, grouped panels on the page |
 | 2 — Second elevation | `--background-surface-container-2` | Cards, menus, tooltips, nav items |
-| 3 — Top elevation | `--background-surface-container-1` | Modals, popovers, highest cards |
+| 3 — Top elevation | `--background-surface-container-3` | Modals, popovers, highest cards |
 
-Think of it as: **background → 3 → 2 → 1** (counting down as you go up).
+Think of it as: **background → 1 → 2 → 3** (counting up as you go up).
 
 ### Light theme stack (`d-grey`, `d-green`)
 
@@ -63,11 +63,11 @@ Each layer becomes **progressively lighter** — similar to Carbon's light theme
 
 ```
 ┌─────────────────────────────────────────┐
-│  surface-container-1  (#ffffff)       │  ← top / brightest
+│  surface-container-3  (#ffffff)       │  ← top / brightest
 │  ┌───────────────────────────────────┐  │
 │  │  surface-container-2  (#fafafa)   │  │
 │  │  ┌─────────────────────────────┐  │  │
-│  │  │  surface-container-3        │  │  │
+│  │  │  surface-container-1        │  │  │
 │  │  │  (#f5f5f5)                   │  │  │
 │  │  │  ┌───────────────────────┐  │  │  │
 │  │  │  │  background           │  │  │  │
@@ -81,9 +81,9 @@ Each layer becomes **progressively lighter** — similar to Carbon's light theme
 | Token | `d-grey` resolves to | Hex |
 |-------|----------------------|-----|
 | `--background-background` | `--neutral-300` | `#e8e8e3` |
-| `--background-surface-container-3` | `--neutral-200` | `#f5f5f5` |
+| `--background-surface-container-1` | `--neutral-200` | `#f5f5f5` |
 | `--background-surface-container-2` | `--neutral-100` | `#fafafa` |
-| `--background-surface-container-1` | `--neutral-0` | `#ffffff` |
+| `--background-surface-container-3` | `--neutral-0` | `#ffffff` |
 
 ### Dark theme stack (`n-grey`, `n-green`, `n-blue`)
 
@@ -91,12 +91,12 @@ Each layer becomes **progressively lighter** — like Carbon's dark theme steppi
 
 ```
 ┌─────────────────────────────────────────┐
-│  surface-container-1  (#242424)         │  ← top / lightest surface
+│  surface-container-3  (#363636)         │  ← top / lightest surface
 │  ┌───────────────────────────────────┐  │
 │  │  surface-container-2  (#2e2e2e)   │  │
 │  │  ┌─────────────────────────────┐  │  │
-│  │  │  surface-container-3        │  │  │
-│  │  │  (#363636)                   │  │  │
+│  │  │  surface-container-1        │  │  │
+│  │  │  (#242424)                   │  │  │
 │  │  │  ┌───────────────────────┐  │  │  │
 │  │  │  │  background           │  │  │  │
 │  │  │  │  (#1d1d1d)            │  │  │  │
@@ -109,9 +109,9 @@ Each layer becomes **progressively lighter** — like Carbon's dark theme steppi
 | Token | `n-grey` resolves to | Hex |
 |-------|----------------------|-----|
 | `--background-background` | `--neutral-600` | `#1d1d1d` |
-| `--background-surface-container-3` | `--neutral-350` | `#363636` |
-| `--background-surface-container-2` | `--neutral-400` | `#2e2e2e` |
 | `--background-surface-container-1` | `--neutral-500` | `#242424` |
+| `--background-surface-container-2` | `--neutral-400` | `#2e2e2e` |
+| `--background-surface-container-3` | `--neutral-350` | `#363636` |
 
 > `n-green` and `n-blue` use the same stack logic with green- or blue-tinted primitives. Token **names** are unchanged.
 
@@ -124,7 +124,7 @@ Use inset tokens **inside** an elevated surface to show depth *within* a layer �
 | Token | Use when | Parent surface |
 |-------|----------|----------------|
 | `--background-inside-surface-2` | Recessed area inside a **container-2** surface | Menus, cards using container-2 |
-| `--background-inside-surface-1` | Recessed area inside a **container-1** surface | Top-level modals, white cards |
+| `--background-inside-surface-1` | Recessed area inside a **container-3** surface | Top-level modals, white cards |
 | `--background-input-fields` | Text inputs, selects, text areas | Any form field on a surface |
 
 **Example:** An `InputSelect` uses `--background-input-fields`. Checkbox cutouts in menus use `--background-surface-container-2` as the stroke/fill reference so icons blend with the menu surface.
@@ -162,10 +162,10 @@ Use this table when building custom UI (not covered by Orbit components).
 |------------|-------|-----------|
 | Page body, app shell | `--background-background` | 0 |
 | Sidebar / nav bar background | `--background-background` | 0 |
-| Page section wrapper | `--background-surface-container-3` | 1 |
-| Dashboard card, table wrapper | `--background-surface-container-2` or `-1` | 2–3 |
+| Page section wrapper | `--background-surface-container-1` | 1 |
+| Dashboard card, table wrapper | `--background-surface-container-2` or `-3` | 2–3 |
 | Dropdown, action menu, tooltip | `--background-surface-container-2` | 2 |
-| Modal, dialog, top popover | `--background-surface-container-1` | 3 |
+| Modal, dialog, top popover | `--background-surface-container-3` | 3 |
 | Form input background | `--background-input-fields` | inset |
 | Recessed panel inside a card | `--background-inside-surface-2` | inset |
 | Primary CTA button | `--background-action` | action |
@@ -183,7 +183,7 @@ Use this table when building custom UI (not covered by Orbit components).
 | `Button` secondary | `--background-background` |
 | `InputSelect` | `--background-input-fields` |
 
-When composing dashboards, **match parent/child layers**: a menu (container-2) on a card (container-2 or -1) is correct; a menu on bare page background should sit on container-3 or -2, not directly on `background-background` unless intentional.
+When composing dashboards, **match parent/child layers**: a menu (container-2) on a card (container-2 or -3) is correct; a menu on bare page background should sit on container-1 or -2, not directly on `background-background` unless intentional.
 
 ---
 
@@ -194,20 +194,20 @@ When composing dashboards, **match parent/child layers**: a menu (container-2) o
    → Page / shell → --background-background
 
 2. Is this a section sitting on the page?
-   → Yes → --background-surface-container-3
+   → Yes → --background-surface-container-1
 
 3. Is this a card, panel, menu, or tooltip?
    → Yes → --background-surface-container-2
 
 4. Is this the highest layer (modal, dialog)?
-   → Yes → --background-surface-container-1
+   → Yes → --background-surface-container-3
 
 5. Is this a form field?
    → Yes → --background-input-fields
 
 6. Is this recessed INSIDE an elevated surface?
    → On container-2 parent → --background-inside-surface-2
-   → On container-1 parent → --background-inside-surface-1
+   → On container-3 parent → --background-inside-surface-1
 
 7. Is this a status or CTA block?
    → Use --background-{action|success|warning|critical|attention}-container
@@ -264,7 +264,7 @@ Pair surface tokens with shadow tokens when a layer should feel lifted.
 | Token | Typical pairing |
 |-------|-----------------|
 | `--shadow-navigation` | Nav bars on page background |
-| `--shadow-card` | Cards using container-2 or -1 |
+| `--shadow-card` | Cards using container-2 or -3 |
 | `--shadow-action-menu` | Dropdowns, action menus |
 | `--shadow-popup-message` | Tooltips, popovers |
 | `--shadow-submit-section` | Sticky footer bars |
@@ -276,9 +276,9 @@ Pair surface tokens with shadow tokens when a layer should feel lifted.
 
 1. **Never hardcode hex or rgb** when a semantic token exists.
 2. **Never skip layers** without reason — if a menu floats on the page, give it at least container-2, not the same token as the page.
-3. **Lower container number = higher up** — `container-1` is above `container-2`, which is above `container-3`.
+3. **Higher container number = higher up** — `container-3` is above `container-2`, which is above `container-1`.
 4. **One theme per app** — switching themes changes values, not variable names.
-5. **Status colors ≠ surface colors** — use `--background-success-container`, not `--background-surface-container-1`, for a success banner.
+5. **Status colors ≠ surface colors** — use `--background-success-container`, not `--background-surface-container-3`, for a success banner.
 6. **Prefer Orbit components** — they already bind the correct tokens; custom markup should follow the same mapping.
 7. **Inputs always use** `--background-input-fields`, not a surface-container token.
 
@@ -289,9 +289,9 @@ Pair surface tokens with shadow tokens when a layer should feel lifted.
 ```css
 /* Elevation stack (bottom → top) */
 --background-background
---background-surface-container-3
---background-surface-container-2
 --background-surface-container-1
+--background-surface-container-2
+--background-surface-container-3
 
 /* Inset / fields */
 --background-inside-surface-2

@@ -1,4 +1,4 @@
-# Orbit Design System — Figma Make Guidelines
+# Orbit Design System Guidelines
 
 Read these files **before** generating dashboard UI with `orbit-ds-components` and `orbit-ds-variables`.
 
@@ -16,7 +16,7 @@ Read these files **before** generating dashboard UI with `orbit-ds-components` a
 
 Each file in [components/](./components/) documents one component with props, examples, and dashboard patterns.
 
-## Critical rules for Make agents
+## Critical rules
 
 1. Import token CSS **before** `orbit-ds-components/styles.css`.
 2. Set `--font-family` in global CSS.

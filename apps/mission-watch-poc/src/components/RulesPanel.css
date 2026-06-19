@@ -1,0 +1,107 @@
+.mw-rules {
+  padding: calc(var(--gap-m) * 1px);
+}
+
+.mw-rules__header {
+  margin-bottom: calc(var(--gap-m) * 1px);
+}
+
+.mw-rules__title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-title-3) * 1px);
+  line-height: calc(var(--font-line-height-title-3) * 1px);
+}
+
+.mw-rules__meta {
+  margin: calc(var(--gap-xs) * 1px) 0 0;
+  color: var(--text-secondary);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+}
+
+.mw-rules__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap-m) * 1px);
+}
+
+.mw-rule {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-s) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border: 1px solid var(--border-secondary);
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-rule--disabled {
+  opacity: 0.55;
+}
+
+.mw-rule__top {
+  display: flex;
+  justify-content: space-between;
+  gap: calc(var(--gap-m) * 1px);
+  align-items: flex-start;
+}
+
+.mw-rule__heading {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+  min-width: 0;
+}
+
+.mw-rule__name {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  font-weight: var(--font-font-weight-title);
+}
+
+.mw-rule__details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap-s) * 1px);
+  margin: 0;
+}
+
+.mw-rule__details dt {
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mw-rule__details dd {
+  margin: calc(var(--gap-xxs) * 1px) 0 0;
+  font-weight: 600;
+}
+
+.mw-rule__conditions {
+  margin: 0;
+  padding: calc(var(--gap-s) * 1px) calc(var(--gap-m) * 1px);
+  padding-left: calc(var(--gap-l) * 1px);
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-surface-container-2);
+  color: var(--text-secondary);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+  list-style: disc;
+}
+
+@media (max-width: 900px) {
+  .mw-rules__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .mw-rule__details {
+    grid-template-columns: 1fr;
+  }
+}

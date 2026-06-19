@@ -1,0 +1,88 @@
+.mw-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(var(--gap-m) * 1px);
+}
+
+.mw-kpi {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--gap-m) * 1px);
+  padding: calc(var(--gap-ml) * 1px);
+}
+
+.mw-kpi__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: calc(var(--radius-m) * 1px);
+  flex-shrink: 0;
+}
+
+.mw-kpi--action .mw-kpi__icon {
+  background: var(--background-neutral-container);
+  color: var(--text-action);
+}
+
+.mw-kpi--critical .mw-kpi__icon {
+  background: var(--background-critical-container);
+  color: var(--text-on-critical-container);
+}
+
+.mw-kpi--attention .mw-kpi__icon {
+  background: var(--background-attention-container);
+  color: var(--text-on-attention-container);
+}
+
+.mw-kpi--success .mw-kpi__icon {
+  background: var(--background-success-container);
+  color: var(--text-on-success-container);
+}
+
+.mw-kpi__body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xxs) * 1px);
+  min-width: 0;
+}
+
+.mw-kpi__label {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.mw-kpi__value {
+  font-size: calc(var(--font-font-size-title-2) * 1px);
+  line-height: calc(var(--font-line-height-title-2) * 1px);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mw-kpi__value--text {
+  font-size: calc(var(--font-font-size-title-3) * 1px);
+  line-height: calc(var(--font-line-height-title-3) * 1px);
+}
+
+.mw-kpi__caption {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 960px) {
+  .mw-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .mw-kpis {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

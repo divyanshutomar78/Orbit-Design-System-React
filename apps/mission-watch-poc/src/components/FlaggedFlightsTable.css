@@ -1,0 +1,166 @@
+.mw-flags {
+  padding: calc(var(--gap-m) * 1px);
+  overflow: hidden;
+}
+
+.mw-flags__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: calc(var(--gap-m) * 1px);
+  margin-bottom: calc(var(--gap-m) * 1px);
+}
+
+.mw-flags__title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-title-3) * 1px);
+  line-height: calc(var(--font-line-height-title-3) * 1px);
+  font-weight: var(--font-font-weight-title);
+}
+
+.mw-flags__meta {
+  margin: calc(var(--gap-xs) * 1px) 0 0;
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+  color: var(--text-secondary);
+}
+
+.mw-flags__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap-xs) * 1px);
+  padding: calc(var(--gap-xs) * 1px);
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-filter {
+  padding: calc(var(--gap-xs) * 1px) calc(var(--gap-s) * 1px);
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mw-filter:hover {
+  color: var(--text-primary);
+  border-color: var(--border-action-hover);
+}
+
+.mw-filter--active {
+  border-color: var(--border-action-hover);
+  background-color: var(--background-surface-container-2);
+  color: var(--text-action);
+}
+
+.mw-flags__loading {
+  margin: calc(var(--gap-l) * 1px) 0;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: calc(var(--font-font-size-body) * 1px);
+}
+
+.mw-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap-m) * 1px);
+  padding: calc(var(--gap-xl) * 1px) calc(var(--gap-l) * 1px);
+  text-align: center;
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-empty-state__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: calc(var(--radius-l) * 1px);
+  background: var(--background-attention-container);
+  color: var(--text-on-attention-container);
+}
+
+.mw-empty-state__title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-title-3) * 1px);
+  line-height: calc(var(--font-line-height-title-3) * 1px);
+}
+
+.mw-empty-state__text {
+  margin: 0;
+  max-width: 40ch;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.mw-flags .mw-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border-secondary);
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-flags .mw-table thead {
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-flags .mw-table tbody tr:hover {
+  background-color: var(--background-surface-container-2);
+}
+
+.mw-flags .mw-table th {
+  font-weight: var(--font-font-weight-title);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.mw-table__flight {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.mw-table__route {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.mw-table__arrow {
+  color: var(--text-secondary);
+}
+
+.mw-table__checkpoint {
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.mw-table__risk {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xxs) * 1px);
+  align-items: flex-start;
+}
+
+.mw-table__rule-name {
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  color: var(--text-secondary);
+}
+
+.mw-table__weather {
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  color: var(--text-secondary);
+  max-width: 220px;
+}

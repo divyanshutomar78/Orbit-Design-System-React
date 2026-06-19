@@ -1,0 +1,53 @@
+.mw-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: calc(var(--gap-m) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+}
+
+.mw-toolbar__intro {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.mw-toolbar__heading {
+  margin: 0;
+  font-size: calc(var(--font-font-size-title-2) * 1px);
+  line-height: calc(var(--font-line-height-title-2) * 1px);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mw-toolbar__desc {
+  margin: calc(var(--gap-xs) * 1px) 0 0;
+  max-width: 52ch;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.mw-toolbar__meta {
+  margin: calc(var(--gap-s) * 1px) 0 0;
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+  color: var(--text-secondary);
+}
+
+.mw-toolbar__actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+}
+
+@media (max-width: 640px) {
+  .mw-toolbar__actions {
+    width: 100%;
+  }
+
+  .mw-toolbar__actions .orbit-button {
+    width: 100%;
+  }
+}

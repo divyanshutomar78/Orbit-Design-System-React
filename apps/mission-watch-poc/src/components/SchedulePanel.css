@@ -1,0 +1,58 @@
+.mw-schedule {
+  padding: calc(var(--gap-m) * 1px);
+}
+
+.mw-schedule__header {
+  margin-bottom: calc(var(--gap-m) * 1px);
+}
+
+.mw-schedule__title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-title-3) * 1px);
+  line-height: calc(var(--font-line-height-title-3) * 1px);
+}
+
+.mw-schedule__meta {
+  margin: calc(var(--gap-xs) * 1px) 0 0;
+  color: var(--text-secondary);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+}
+
+.mw-schedule__meta a {
+  color: var(--text-action);
+  text-decoration: none;
+}
+
+.mw-schedule__meta a:hover {
+  color: var(--text-action-hover);
+  text-decoration: underline;
+}
+
+.mw-schedule__more {
+  margin: calc(var(--gap-m) * 1px) 0 0;
+  color: var(--text-secondary);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+}
+
+.mw-schedule .mw-table-wrap {
+  border: 1px solid var(--border-secondary);
+  border-radius: calc(var(--radius-input) * 1px);
+  overflow: hidden;
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-schedule .mw-table thead {
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-schedule .mw-table th {
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.mw-schedule .mw-table tbody tr:hover {
+  background-color: var(--background-surface-container-2);
+}

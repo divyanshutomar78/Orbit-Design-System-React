@@ -104,7 +104,7 @@ export function CarAffordabilityPlanner({ open, onClose }: CarAffordabilityPlann
       className="car-affordability-modal"
       footer={
         <div className="car-affordability-modal__footer">
-          <Button type="button" variant="secondary" onClick={handleReset}>
+          <Button type="button" variant="primary" onClick={handleReset}>
             Reset
           </Button>
           <Button type="button" variant="secondary" onClick={onClose}>

@@ -133,6 +133,7 @@ export function FlightInfoModal({ flight, open, onClose, className, ...rest }: F
     <Modal
       open={open}
       onClose={onClose}
+      title="Flight info"
       ariaLabel="Flight information"
       className={classes}
       header={

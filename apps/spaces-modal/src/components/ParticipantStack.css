@@ -1,0 +1,19 @@
+.participant-stack {
+  display: flex;
+  align-items: center;
+}
+
+.participant-stack__item {
+  margin-left: calc(var(--gap-xs) * -1px);
+}
+
+.participant-stack__item:first-child {
+  margin-left: 0;
+}
+
+.participant-stack__overflow {
+  margin-left: calc(var(--gap-xs) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 500;
+  color: var(--text-secondary);
+}

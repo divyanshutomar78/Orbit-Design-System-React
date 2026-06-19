@@ -21,6 +21,7 @@
     "maintenance-training": "npm run dev -w @orbit/maintenance-training-form",
     "add-user-flow": "npm run dev -w @orbit/add-user-flow",
     "car-affordability": "npm run dev -w @orbit/car-affordability-planner",
+    "spaces-modal": "npm run dev -w @orbit/spaces-modal",
     "verify:tokens": "node scripts/verify-token-usage.mjs"
   },
   "engines": {

@@ -63,7 +63,7 @@
   min-width: calc(var(--components-input-button-select-min-width-hidden) * 1px);
   font-size: calc(var(--font-font-size-title-3) * 1px);
   font-weight: 700;
-  line-height: calc(var(--font-line-height-t-itle-3) * 1px);
+  line-height: calc(var(--font-line-height-title-3) * 1px);
   color: var(--text-primary);
 }
 

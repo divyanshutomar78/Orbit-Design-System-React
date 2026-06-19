@@ -1,0 +1,29 @@
+.spaces-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--background-surface-container-3);
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1;
+  border: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--background-surface-container-1);
+}
+
+.spaces-avatar--default {
+  width: calc(var(--icon-frame-size-big) * 1px);
+  height: calc(var(--icon-frame-size-big) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+}
+
+.spaces-avatar--compact {
+  width: calc(var(--icon-frame-size-default) * 1px);
+  height: calc(var(--icon-frame-size-default) * 1px);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+}
+
+.spaces-avatar--speaking {
+  box-shadow: 0 0 0 calc(var(--gap-xxs) * 1px) var(--text-success);
+}

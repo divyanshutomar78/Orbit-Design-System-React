@@ -21,7 +21,7 @@
 
 .flight-info-modal__tabs .orbit-title-tab--selected {
   box-shadow: inset 0 calc(var(--components-input-button-select-border-width) * -3px) 0 0
-    var(--border-action);
+    var(--text-primary);
   color: var(--text-primary);
 }
 
@@ -71,6 +71,10 @@
 
 .flight-info-modal__stats-row--two {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.flight-info-modal__stats-row--center-middle {
+  align-items: end;
 }
 
 .flight-info-modal__stat--center {

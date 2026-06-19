@@ -27,7 +27,7 @@ Each file in [components/](./components/) documents one component with props, ex
 7. **Don't** put table columns in `ListingItem` `addIconsComponent`.
 8. Use one theme + one platform — never import multiple themes.
 9. **`TitlesAndTabs` is for full pages only** — not dialogs or modals. Page subheading below the component; dialog subheading in dialog body. **`TitleTab` is for selectable tabs only** — never for dialog titles. Page body must share header width — see [styles.md](./styles.md#page-width-alignment-header--body) and [components/titles-and-tabs.md](./components/titles-and-tabs.md).
-10. **Page canvas = `background`** — visible full page and in gaps. **`TitlesAndTabs` header bar = `container-1`**. Cards = `container-2`. Do **not** paint all of `<main>` with `container-1`. See [layering-model.md](./layering-model.md#page-layout-canvas--elevated-blocks).
+10. **Page canvas = `background`**. Anything on the canvas (header, KPI cards, panels, tables) = **`container-1`**. Content inside sections = **`container-2`**. Do **not** paint all of `<main>` with `container-1`. See [layering-model.md](./layering-model.md#page-layout-canvas--sections).
 
 ## Package versions
 

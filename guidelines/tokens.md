@@ -59,9 +59,9 @@ Semantic token **names are the same in every theme** — only color values chang
 | Token | Usage |
 |-------|-------|
 | `--background-background` | Page / app shell (lowest layer) |
-| `--background-surface-container-1` | First elevation — sections, modals on page |
-| `--background-surface-container-2` | Cards, menus, tooltips (most common) |
-| `--background-surface-container-3` | Top elevation — nested cards on elevated surfaces |
+| `--background-surface-container-1` | First elevation — anything on page canvas (header, sections, modals) |
+| `--background-surface-container-2` | Second elevation — content inside sections, menus, tooltips, row hover |
+| `--background-surface-container-3` | Third elevation — nested inside container-2 |
 | `--background-input-fields` | Form inputs and selects |
 | `--background-inside-surface-1/2` | Recessed areas inside elevated surfaces |
 | `--border-primary` | Dividers, input borders |
@@ -131,20 +131,19 @@ Used in CSS as: `calc(var(--gap-s) * 1px)`
 | Token | Usage |
 |-------|-------|
 | `--shadow-action-menu` | Dropdowns, action menus |
-| `--shadow-card` | Cards |
+| `--shadow-card` | Nested blocks at container-2/-3 — not page sections |
 | `--shadow-popup-message` | Tooltips, modals |
 
 ## Using tokens in custom CSS
 
 ```css
-.dashboard-card {
-  background: var(--background-surface-container-2);
+.dashboard-section {
+  background: var(--background-surface-container-1);
   border: calc(var(--components-input-button-select-border-width) * 1px) solid var(--border-primary);
   border-radius: calc(var(--radius-s) * 1px);
   padding: calc(var(--gap-m) * 1px);
   color: var(--text-primary);
   font-family: var(--font-family);
-  box-shadow: var(--shadow-card);
 }
 ```
 

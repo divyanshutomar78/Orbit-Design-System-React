@@ -63,7 +63,7 @@ Orbit components ship with their own CSS classes (`orbit-button`, `orbit-listing
     </header>
     <p className="page-subtitle">Optional description — always outside TitlesAndTabs.</p>
     <div className="page-content">
-      {/* cards → container-2; canvas visible in gaps */}
+      {/* sections on canvas → container-1; inner content → container-2 */}
     </div>
   </main>
 </div>
@@ -87,7 +87,7 @@ Orbit components ship with their own CSS classes (`orbit-button`, `orbit-listing
 }
 ```
 
-The page canvas stays **`background`**. Only the **header bar** uses **`container-1`**. Cards use **`container-2`**. Do **not** paint all of `<main>` with `container-1`. See [layering-model.md](./layering-model.md#page-layout-canvas--elevated-blocks).
+The page canvas stays **`background`**. Top-level sections (header, KPI cards, panels, tables) use **`container-1`**. Content inside those sections uses **`container-2`** or inset tokens. Do **not** paint all of `<main>` with `container-1`. See [layering-model.md](./layering-model.md#page-layout-canvas--sections).
 
 ### Page width alignment (header + body)
 
@@ -99,12 +99,13 @@ The page canvas stays **`background`**. Only the **header bar** uses **`containe
 | **Centered panel** | One wrapper around **both** header and body with shared `max-width` + `margin: 0 auto` | Compact flows, preview panels — **do not** use full-width `TitlesAndTabs` outside the wrapper |
 
 ```tsx
-// ✅ Full page shell — canvas background, header container-1, cards container-2
+// ✅ Page shell — canvas background, sections container-1
 <main className="page-canvas">
   <header className="page-header">
     <TitlesAndTabs title="Billing & Invoices" showTabs={false} ... />
   </header>
-  <div className="page-content">{/* cards → container-2 */}</div>
+  <section className="page-section">{/* KPI row → container-1 */}</section>
+  <section className="page-section">{/* table panel → container-1; row hover → container-2 */}</section>
 </main>
 
 // ✅ Centered panel — header AND body inside the same box
@@ -136,7 +137,7 @@ The page canvas stays **`background`**. Only the **header bar** uses **`containe
 }
 ```
 
-Note: `.page-canvas` is the full page background. Only `.page-header` uses `container-1`. See [layering-model.md](./layering-model.md#page-layout-canvas--elevated-blocks).
+Note: `.page-canvas` is `background`. Header and all page sections use `container-1`. Inner content (filters, row hover) uses `container-2` or inset tokens. See [layering-model.md](./layering-model.md#page-layout-canvas--sections).
 
 /* Centered panel only — wraps header + body together */
 .page-panel {
@@ -146,23 +147,32 @@ Note: `.page-canvas` is the full page background. Only `.page-header` uses `cont
 }
 ```
 
-### Card container (custom — use tokens)
+### Section container (custom — use tokens)
+
+Page sections sit on the canvas at **`container-1`**. Inner strips and hover states step up from there:
 
 ```css
-.orbit-dashboard-card {
-  background: var(--background-surface-container-2);
+.orbit-dashboard-section {
+  background: var(--background-surface-container-1);
   border-radius: calc(var(--radius-s) * 1px);
   padding: calc(var(--gap-m) * 1px);
-  box-shadow: var(--shadow-card);
+}
+
+.orbit-dashboard-section__filters {
+  background: var(--background-inside-surface-1);
+}
+
+.orbit-dashboard-section__row:hover {
+  background: var(--background-surface-container-2);
 }
 ```
 
 ### List / table section
 
-Stack `ListingItem` rows inside a container with `overflow: hidden` and optional `border-radius`:
+Stack `ListingItem` rows inside a section wrapper with `overflow: hidden` and optional `border-radius`:
 
 ```tsx
-<div style={{ borderRadius: 4, overflow: 'hidden', background: 'var(--background-surface-container-2)' }}>
+<div style={{ borderRadius: 4, overflow: 'hidden', background: 'var(--background-surface-container-1)' }}>
   <ListingItem ... />
   <ListingItem ... />
 </div>

@@ -4,7 +4,7 @@ Page header bar with back icon, uppercase title, tabs, extra slot, and menu icon
 
 > **Scope:** `TitlesAndTabs` is for **full-page views** only. Do not use it inside dialogs, modals, cards, or drawers.
 
-> **Surface:** Page canvas is `--background-background`. Give the **header row** `container-1` (e.g. wrap `TitlesAndTabs` in `.page-header`). Do not paint the whole page `container-1`. See [layering-model.md](../layering-model.md#page-layout-canvas--elevated-blocks).
+> **Surface:** Page canvas is `--background-background`. Give the **header row** `container-1` (e.g. wrap `TitlesAndTabs` in `.page-header`). Do not paint the whole page `container-1`. See [layering-model.md](../layering-model.md#page-layout-canvas--sections).
 
 ## Import
 
@@ -313,7 +313,7 @@ border-bottom: … solid var(--border-secondary);
 | Dialog title as `TitleTab` | Static title text + `TitleTab` for tabs only | Title is not selectable; no underline on title |
 | Dialog title in `tabItems` / tab list | `title` prop (page) or `<h2>` (dialog) separate from tabs | Same split as `TitlesAndTabs` |
 | Full-width `TitlesAndTabs` + narrow centered body | Same-width page shell or wrap header + body in one panel — see [styles.md](../styles.md#page-width-alignment-header--body) | Header border and content columns misalign |
-| `TitlesAndTabs` on bare canvas (no header fill) | Wrap in `.page-header` with `container-1` — see [layering-model.md](../layering-model.md#page-layout-canvas--elevated-blocks) | Title row must not sit on background |
+| `TitlesAndTabs` on bare canvas (no header fill) | Wrap in `.page-header` with `container-1` — see [layering-model.md](../layering-model.md#page-layout-canvas--sections) | Title row must not sit on background |
 | Entire page / `<main>` as `container-1` | Page canvas `background`; header bar only `container-1` | Whole page looks flat white |
 | Close icon misaligned in tabbed dialog header | Fixed `--components-titles-and-tabs-header` row + `dialog-header__actions` with `--gap-s` block padding | 24px icon must center in 36px row |
 | `align-items: stretch` on dialog header row | `align-items: center` on header; `height: 100%` on title/tabs only | Prevents close icon vertical drift |
@@ -329,4 +329,4 @@ border-bottom: … solid var(--border-secondary);
 7. In dialog headers with tabs: static title + `TitleTab` row; title is not clickable and has no selected indicator.
 8. Tabbed dialog headers use `--components-titles-and-tabs-header` height; close icon in an actions slot with `--gap-s` block padding — see [Dialog header alignment](#dialog-header-alignment-title--tabs--close).
 9. On full pages, body content below `TitlesAndTabs` uses the same horizontal width — never a narrower centered column under a full-width header — see [styles.md](../styles.md#page-width-alignment-header--body).
-10. **`TitlesAndTabs` header bar uses `container-1`** on a `background` page canvas — not the whole page, not bare background on the title row — see [layering-model.md](../layering-model.md#page-layout-canvas--elevated-blocks).
+10. **`TitlesAndTabs` header bar uses `container-1`** on a `background` page canvas — not the whole page, not bare background on the title row — see [layering-model.md](../layering-model.md#page-layout-canvas--sections).

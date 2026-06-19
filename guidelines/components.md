@@ -128,6 +128,7 @@ Only the **color tokens** differ between chip variants. Pick the semantic color 
 | `InputSelect` at 460px max-width in wide dialog | `max-width: none` on form fields — see [styles.md](./styles.md#dialog-form-layout) |
 | All dialog form fields stacked in one column on wide modal | `.dialog-form-grid` for paired selects/short inputs — see [styles.md](./styles.md#dialog-form-layout) |
 | Full-width `TitlesAndTabs` + narrow centered page body | Same-width page shell — see [styles.md](./styles.md#page-width-alignment-header--body) |
-| Page content on `--background-background` | Page canvas `background`; header `container-1`; cards `container-2` — see [layering-model.md](./layering-model.md#page-layout-canvas--elevated-blocks) |
+| Page content on `--background-background` | Canvas `background`; top-level sections `container-1`; inner content `container-2` — see [layering-model.md](./layering-model.md#page-layout-canvas--sections) |
+| KPI cards / panels `container-2` on page canvas | Top-level sections → `container-1` | Parent is `background`, not container-1 |
 | Entire `<main>` painted `container-1` | Keep page canvas as `background` | Flat white page — no visible canvas |
 | Dialog heading on page instead of in dialog | Title in dialog header; subtitle in dialog body |

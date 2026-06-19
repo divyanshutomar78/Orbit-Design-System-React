@@ -50,10 +50,10 @@ Surface tokens define **neutral elevation** — how backgrounds stack from the p
 
 | Stack order (bottom → top) | Token | Role |
 |----------------------------|-------|------|
-| 0 — Page / canvas | `--background-background` | Full page canvas — visible in gaps between cards |
-| 1 — First elevation | `--background-surface-container-1` | **Page header bar (`TitlesAndTabs`)**, section strips, modal/dialog panels |
-| 2 — Second elevation | `--background-surface-container-2` | Cards, menus, tooltips, nav items, **content inside a modal** |
-| 3 — Top elevation | `--background-surface-container-3` | **Only when nested** on container-2 — e.g. popover on a card |
+| 0 — Page / canvas | `--background-background` | Full page canvas — visible in gaps between sections |
+| 1 — First elevation | `--background-surface-container-1` | Anything **directly on** the page: header, KPI cards, panels, table wrappers, modal/dialog panels |
+| 2 — Second elevation | `--background-surface-container-2` | Anything **on top of** container-1: row hover, active filters, inner blocks, menus, tooltips, content inside a modal |
+| 3 — Top elevation | `--background-surface-container-3` | **Only when nested** on container-2 — e.g. popover on a menu |
 
 Think of it as: **background → 1 → 2 → 3** (counting up as you go up).
 
@@ -66,9 +66,9 @@ Think of it as: **background → 1 → 2 → 3** (counting up as you go up).
 
 | Parent surface | Child element | Correct child token |
 |----------------|---------------|---------------------|
-| `--background-background` (page) | Modal panel, section wrapper | `--background-surface-container-1` |
-| `--background-surface-container-1` (modal, section) | Scoreboard, card, list block | `--background-surface-container-2` |
-| `--background-surface-container-2` (card, menu) | Nested card, nested popover | `--background-surface-container-3` |
+| `--background-background` (page) | Header, KPI card, panel, table wrapper, modal panel | `--background-surface-container-1` |
+| `--background-surface-container-1` (section, modal) | Row hover, active filter, inner card, list block | `--background-surface-container-2` |
+| `--background-surface-container-2` (menu, inner block) | Nested card, nested popover | `--background-surface-container-3` |
 
 **Do not** jump to `container-3` just because a modal is “on top” visually. A modal overlay still sits on the page canvas — its **panel** is only the **first** elevation (`container-1`). Reserve `container-3` for elements nested **inside** an already-elevated parent.
 
@@ -96,22 +96,27 @@ Modals use a **backdrop** over `--background-background`. The dialog **panel** i
 
 Dialog panels should use `--background-surface-container-1` when sitting on the page background.
 
-### Page layout (canvas + elevated blocks)
+### Page layout (canvas + sections)
 
-The **page stays on `--background-background`** — grey canvas visible across the full viewport and in gaps between cards. Do **not** paint the entire `<main>` with `container-1` (that removes the canvas and looks like one flat white sheet).
+The stack is always: **`background` → `container-1` → `container-2` → `container-3`**. Count from the **parent surface** — never skip a step, never assign a token because something “looks like a card.”
 
-Elevate **individual blocks** on the canvas:
+The **page stays on `--background-background`** — canvas visible across the full viewport and in gaps between sections. Do **not** paint the entire `<main>` with `container-1` (that removes the canvas and looks like one flat sheet).
+
+Every block that sits **directly on the page canvas** uses **`container-1`**: the header, KPI cards, content panels, and table wrappers are **siblings at the same elevation**. Content **inside** those sections steps up to `container-2` (or uses inset tokens for recessed areas).
 
 ```
 ┌─ viewport ─────────────────────────────────────┐
-│  background (canvas) — visible everywhere       │
+│  background (canvas) — visible in gaps          │
 │  ┌─ TitlesAndTabs bar (container-1) ──────────┐ │
 │  └────────────────────────────────────────────┘ │
 │  ░░░ gap shows background ░░░                   │
-│  ┌─ card (container-2) ──────────────────────┐  │
+│  ┌─ KPI card (container-1) ──────────────────┐  │
 │  └───────────────────────────────────────────┘  │
 │  ░░░ gap shows background ░░░                   │
-│  ┌─ card (container-2) ──────────────────────┐  │
+│  ┌─ table / rules panel (container-1) ────────┐  │
+│  │  filter bar (inside-surface-1)             │  │
+│  │  table header (inside-surface-1)           │  │
+│  │  row hover (container-2)                   │  │
 │  └───────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────┘
 ```
@@ -119,10 +124,14 @@ Elevate **individual blocks** on the canvas:
 | Element | Token | Notes |
 |---------|-------|-------|
 | Page / `<main>` canvas | `--background-background` | Full page — **not** container-1 |
-| `TitlesAndTabs` header row | `--background-surface-container-1` | Header bar only — **not** bare background |
-| Dashboard cards, table wrappers | `--background-surface-container-2` | Sit on canvas; gaps show background |
-| Modal / dialog panel (full overlay) | `--background-surface-container-1` | Entire panel — exception to page rule |
-| Cards **inside** a modal | `--background-surface-container-2` | Parent is modal panel |
+| Header, KPI cards, panels, table wrappers | **`--background-surface-container-1`** | All siblings on canvas — **same token** |
+| Table header, filter bar, rule row (inside panel) | `--background-inside-surface-1` | Recessed within container-1 |
+| Row hover, active filter, inner block | `--background-surface-container-2` | One step up **inside** the section |
+| KPI icon wells, status chips | Semantic containers | **Not** surface-container — see status tokens |
+| Modal / dialog panel | `--background-surface-container-1` | Sits on page background |
+| Blocks inside modal | `--background-surface-container-2` | Parent is modal panel |
+
+Page sections do **not** use `--shadow-card`. Shadows are for floating overlays (menus, modals, tooltips) — not for dashboard sections on the canvas.
 
 ```tsx
 <div className="app-shell">
@@ -131,9 +140,8 @@ Elevate **individual blocks** on the canvas:
     <header className="page-header">
       <TitlesAndTabs title="Billing & Invoices" showTabs={false} ... />
     </header>
-    <div className="page-content">
-      {/* cards → container-2; gaps between cards show background */}
-    </div>
+    <section className="page-section">{/* KPI cards → container-1 */}</section>
+    <section className="page-section">{/* table panel → container-1 */}</section>
   </main>
 </div>
 ```
@@ -145,8 +153,18 @@ Elevate **individual blocks** on the canvas:
   background-color: var(--background-background);
 }
 
-.page-header {
+.page-header,
+.page-section {
   background-color: var(--background-surface-container-1);
+}
+
+.panel__filters,
+.panel__table-head {
+  background-color: var(--background-inside-surface-1);
+}
+
+.panel__row:hover {
+  background-color: var(--background-surface-container-2);
 }
 ```
 
@@ -154,12 +172,15 @@ Elevate **individual blocks** on the canvas:
 
 | Wrong | Right | Why |
 |-------|-------|-----|
+| Header `container-1`, KPI cards / panels `container-2` as **siblings on canvas** | All top-level sections → **`container-1`** | Anything on `background` is container-1 |
+| Dashboard section with `--shadow-card` | No shadow on page sections | Shadows are for floating overlays only |
 | Modal panel → `container-3` | Modal panel → `container-1` | Modal sits on page background, not on container-2 |
 | Modal panel → `container-2` | Modal panel → `container-1` | Skips the first elevation step |
-| Inner card in modal → `container-1` | Inner card in modal → `container-2` | Same level as parent — no visible depth |
+| Inner block in section → `container-1` | Inner block → `container-2` | Same level as parent — no visible depth |
 | “Highest UI” → always `container-3` | Count from **parent** surface | Container number reflects stack depth, not prominence |
+| “It's a card” → `container-2` on page canvas | Card on canvas → **`container-1`** | Shape ≠ elevation; parent is `background` |
 | Inverted stack `background → 3 → 2 → 1` | `background → 1 → 2 → 3` | Lower numbers are closer to the page |
-| Entire `<main>` painted `container-1` | Page canvas stays `background`; header bar `container-1`; cards `container-2` | Whole page looks flat white — no canvas |
+| Entire `<main>` painted `container-1` | Page canvas stays `background`; sections use `container-1` individually | One sheet — no visible canvas |
 | `TitlesAndTabs` directly on background (no fill) | Header wrapper with `container-1` | Title row must not sit on bare canvas |
 
 ### Light theme stack (`d-grey`, `d-green`)
@@ -265,12 +286,14 @@ Use this table when building custom UI (not covered by Orbit components).
 
 | UI element | Token | Elevation |
 |------------|-------|-----------|
-| Page canvas, app shell, gaps between cards | `--background-background` | 0 |
+| Page canvas, app shell, gaps between sections | `--background-background` | 0 |
 | Sidebar / nav bar background | `--background-background` | 0 |
-| Page header bar (`TitlesAndTabs` wrapper) | `--background-surface-container-1` | 1 |
-| Page section wrapper (full-width strip) | `--background-surface-container-1` | 1 |
-| Dashboard card, table wrapper on page | `--background-surface-container-2` | 2 |
-| Dropdown, action menu, tooltip | `--background-surface-container-2` | 2 |
+| Page header bar (`TitlesAndTabs` wrapper) | `--background-surface-container-1` | 1 — on background |
+| KPI cards, panels, table wrappers on page | `--background-surface-container-1` | 1 — same as header |
+| Filter bar / table header inside section | `--background-inside-surface-1` | inset in container-1 |
+| Row hover / active filter inside section | `--background-surface-container-2` | 2 — on container-1 |
+| Inner card / block inside section or modal | `--background-surface-container-2` | 2 — on container-1 |
+| Dropdown, action menu, tooltip | `--background-surface-container-2` | 2 — floating overlay |
 | Modal, dialog on page background | `--background-surface-container-1` | 1 |
 | Popover on elevated surface | `--background-surface-container-2` or `-3` | 2–3 |
 | Form input background | `--background-input-fields` | inset |
@@ -291,7 +314,12 @@ Use this table when building custom UI (not covered by Orbit components).
 | `Button` secondary | `--background-background` |
 | `InputSelect` | `--background-input-fields` |
 
-When composing dashboards, **match parent/child layers**: a menu (container-2) on a card (container-2 or -3) is correct; a menu on bare page background should sit on container-1 or -2, not directly on `background-background` unless intentional.
+When composing dashboards:
+
+1. **Page canvas = `background`**. Every section on the canvas = **`container-1`** (header, KPIs, panels, tables).
+2. **Content inside a section** steps up to `container-2`, or uses inset tokens for recessed strips.
+3. **Never put page sections on `container-2`** — that skips a layer and implies false elevation.
+4. **Menus and tooltips** (container-2) on a section (container-1) are correct — they float above the section.
 
 **Dialog composition example:**
 
@@ -306,23 +334,23 @@ When composing dashboards, **match parent/child layers**: a menu (container-2) o
 
 ## Layering decision flow (for AI agents)
 
-**Before choosing a token:** identify the **parent surface** the element sits on, then pick the **next** container number. Never assign `container-3` to a modal panel.
+**Before choosing a token:** identify the **parent surface**, then use the **next** container number. Never assign `container-3` to a modal panel. Never put page sections on `container-2`.
 
 ```
 1. What is the outermost area?
    → Page / shell → --background-background
 
 2. Does this sit directly on the page background?
-   → Section wrapper → --background-surface-container-1
-   → Modal / dialog panel → --background-surface-container-1   ← NOT container-3
+   → Header, KPI card, panel, table wrapper, modal panel → container-1
 
-3. Does this sit inside container-1 (modal, section)?
-   → Card, scoreboard, list block → --background-surface-container-2
+3. Does this sit inside container-1 (section, modal)?
+   → Row hover, active filter, inner block → container-2
+   → Recessed strip (filters, table head) → --background-inside-surface-1
 
-4. Is this a menu, tooltip, or nav item on the page or in a layout?
+4. Is this a menu, tooltip, or floating overlay?
    → Yes → --background-surface-container-2
 
-5. Does this sit inside container-2 (card, menu)?
+5. Does this sit inside container-2?
    → Nested card / popover → --background-surface-container-3
 
 6. Is this a form field?
@@ -387,7 +415,7 @@ Pair surface tokens with shadow tokens when a layer should feel lifted.
 | Token | Typical pairing |
 |-------|-----------------|
 | `--shadow-navigation` | Nav bars on page background |
-| `--shadow-card` | Cards using container-2 or -3 |
+| `--shadow-card` | Rare — only if a block is genuinely nested at container-2/-3. **Not** for page sections on canvas |
 | `--shadow-action-menu` | Dropdowns, action menus |
 | `--shadow-popup-message` | Modals (`container-1`), tooltips, popovers |
 | `--shadow-submit-section` | Sticky footer bars |
@@ -398,14 +426,15 @@ Pair surface tokens with shadow tokens when a layer should feel lifted.
 ## Rules for consistent designs
 
 1. **Never hardcode hex or rgb** when a semantic token exists.
-2. **Never skip layers** without reason — if a menu floats on the page, give it at least container-2, not the same token as the page.
-3. **Higher container number = higher up** — `container-3` is above `container-2`, which is above `container-1`.
-4. **Pick tokens from the parent surface** — count up one level from the parent; do not assign `container-3` to a modal because it feels “topmost”.
-5. **Modal panel = container-1** — always, when the modal sits on `--background-background`. Inner modal content uses `container-2` or inset tokens.
-6. **One theme per app** — switching themes changes values, not variable names.
-7. **Status colors ≠ surface colors** — use `--background-success-container`, not `--background-surface-container-1`, for a success banner.
-8. **Prefer Orbit components** — they already bind the correct tokens; custom markup should follow the same mapping.
-9. **Inputs always use** `--background-input-fields`, not a surface-container token.
+2. **Stack is always `background → 1 → 2 → 3`** — count from the parent surface; never skip a step.
+3. **Page sections on canvas = `container-1`** — header, KPI cards, panels, and table wrappers share one elevation.
+4. **`container-2` is for content inside sections** — row hover, inner blocks, menus — not for top-level page blocks.
+5. **Higher container number = higher up** — `container-3` is above `container-2`, which is above `container-1`.
+6. **Modal panel = container-1** — always, when the modal sits on `--background-background`. Inner modal content uses `container-2` or inset tokens.
+7. **One theme per app** — switching themes changes values, not variable names.
+8. **Status colors ≠ surface colors** — use `--background-success-container`, not `--background-surface-container-1`, for a success banner.
+9. **Prefer Orbit components** — they already bind the correct tokens; custom markup should follow the same mapping.
+10. **Inputs always use** `--background-input-fields`, not a surface-container token.
 
 ---
 

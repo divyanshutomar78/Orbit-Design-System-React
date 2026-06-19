@@ -1,0 +1,62 @@
+.orbit-number-field {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+  width: 100%;
+  font-family: var(--font-family);
+}
+
+.orbit-number-field__label {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.orbit-number-field__control {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: calc(var(--components-input-button-select-default) * 1px);
+  padding-inline: calc(var(--gap-s) * 1px);
+  border: calc(var(--components-input-button-select-border-width) * 1px) solid transparent;
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-input-fields);
+  transition: border-color 0.15s ease;
+}
+
+.orbit-number-field__control:focus-within {
+  border-color: var(--border-action-hover);
+}
+
+.orbit-number-field__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  outline: none;
+}
+
+.orbit-number-field__input::placeholder {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.orbit-number-field__suffix {
+  flex-shrink: 0;
+  margin-left: calc(var(--gap-xs) * 1px);
+  color: var(--text-secondary);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 500;
+}
+
+.orbit-number-field__hint {
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+  color: var(--text-secondary);
+}

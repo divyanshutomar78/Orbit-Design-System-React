@@ -1,0 +1,48 @@
+.data-table {
+  --data-table-padding-inline: var(--gap-ml);
+  width: 100%;
+}
+
+.data-table__head,
+.data-table__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap-s) * 1px);
+  margin-inline: calc(var(--data-table-padding-inline) * -1px);
+  padding-inline: calc(var(--data-table-padding-inline) * 1px);
+}
+
+.data-table__head {
+  border-bottom: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-secondary);
+}
+
+.data-table__row {
+  border-bottom: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-primary);
+}
+
+.data-table__row:last-child {
+  border-bottom: none;
+}
+
+.data-table__cell {
+  min-width: 0;
+  padding-block: calc(var(--padding-vertical-s) * 1px);
+  padding-inline: calc(var(--gap-m) * 1px);
+}
+
+.data-table__cell .orbit-label-value-horizontal__label,
+.data-table__cell .orbit-label-value-horizontal__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.data-table__head .orbit-label-value-horizontal__label {
+  color: var(--text-secondary);
+}
+
+.data-table__row .orbit-label-value-horizontal__value {
+  color: var(--text-primary);
+}

@@ -1,0 +1,195 @@
+.car-affordability {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-l) * 1px);
+  width: 100%;
+}
+
+.car-affordability__form {
+  display: grid;
+}
+
+.car-affordability__section-title {
+  margin: calc(var(--gap-xs) * 1px) 0 0;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.dialog-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap-m) * 1px);
+  width: 100%;
+}
+
+.dialog-form-grid__full {
+  grid-column: 1 / -1;
+}
+
+.dialog-form-grid .orbit-number-field,
+.dialog-form-grid .orbit-input-select {
+  width: 100%;
+  min-width: 0;
+}
+
+.dialog-form-grid .orbit-input-select {
+  max-width: none;
+}
+
+.car-affordability__results {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-m) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-surface-container-2);
+}
+
+.car-affordability__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap-xs) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  text-align: center;
+  background: var(--background-inside-surface-1);
+}
+
+.car-affordability__hero-label {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.car-affordability__hero-value {
+  font-size: calc(var(--font-font-size-title-2) * 1px);
+  font-weight: var(--font-font-weight-title);
+  line-height: calc(var(--font-line-height-title-2) * 1px);
+  color: var(--text-primary);
+}
+
+.car-affordability__hero-note {
+  margin: 0;
+  max-width: 420px;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.car-affordability__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(var(--gap-m) * 1px);
+}
+
+.car-affordability__summary {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.car-affordability__table-section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.car-affordability__table-meta {
+  margin: 0 0 calc(var(--gap-s) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.car-affordability__table {
+  overflow: hidden;
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-surface-container-2);
+}
+
+.car-affordability__table-head,
+.car-affordability__table-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: calc(var(--gap-s) * 1px);
+  align-items: center;
+  padding: calc(var(--gap-s) * 1px) calc(var(--gap-m) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+}
+
+.car-affordability__table-head {
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--background-inside-surface-1);
+}
+
+.car-affordability__table-row {
+  color: var(--text-primary);
+  border-top: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-secondary);
+}
+
+.car-affordability__table-row span:nth-child(2),
+.car-affordability__table-row span:nth-child(3),
+.car-affordability__table-head span:nth-child(2),
+.car-affordability__table-head span:nth-child(3) {
+  text-align: right;
+}
+
+.car-affordability__table-row--recommended {
+  background: color-mix(in srgb, var(--interactive-primary) 6%, transparent);
+}
+
+.car-affordability__badge {
+  margin-left: calc(var(--gap-xs) * 1px);
+  vertical-align: middle;
+}
+
+.car-affordability__guidance {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-surface-container-2);
+}
+
+.car-affordability__tips-list {
+  margin: 0;
+  padding-left: calc(var(--gap-m) * 1px);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-primary);
+}
+
+.car-affordability-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: calc(var(--gap-s) * 1px);
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .car-affordability__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .dialog-form-grid,
+  .car-affordability__stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

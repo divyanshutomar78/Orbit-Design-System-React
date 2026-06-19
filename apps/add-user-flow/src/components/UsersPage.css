@@ -1,0 +1,65 @@
+.users-page {
+  min-height: 100vh;
+  padding: calc(var(--gap-l, 24) * 1px);
+  background: var(--background-background);
+}
+
+.users-panel {
+  overflow: hidden;
+  border-radius: calc(var(--radius-l, 8) * 1px);
+  background: var(--background-surface-container-2);
+  box-shadow: 0 calc(var(--gap-xxs, 4) * 1px) calc(var(--gap-s, 12) * 1px) var(--shadow-card);
+}
+
+.users-panel__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--gap-s, 12) * 1px);
+  min-height: 36px;
+  padding-inline: calc(var(--gap-s, 12) * 1px);
+  border-bottom: 1px solid var(--border-divider);
+  background: var(--background-surface-container-1);
+}
+
+.users-panel__header .orbit-titles-and-tabs {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.users-panel__header-actions {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-xxs, 4) * 1px);
+}
+
+.users-panel__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.users-panel__menu-wrap {
+  position: relative;
+}
+
+.users-panel__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 20;
+  width: 320px;
+}
+
+.users-panel__menu .orbit-action-menu {
+  box-shadow: 0 3px 12px rgb(0 0 0 / 15%);
+}

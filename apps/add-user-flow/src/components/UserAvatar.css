@@ -1,0 +1,14 @@
+.user-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: calc(var(--size-icon, 24px) * 1.5);
+  height: calc(var(--size-icon, 24px) * 1.5);
+  border-radius: 50%;
+  background: var(--background-surface-container-3);
+  color: var(--text-secondary);
+  font-size: calc(var(--family-body-input-size, 13) * 1px);
+  font-weight: 600;
+  line-height: 1;
+}

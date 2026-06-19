@@ -1,0 +1,33 @@
+.form-textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(var(--components-input-button-select-default) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border: calc(var(--components-input-button-select-border-width) * 1px) solid transparent;
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-input-fields);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 400;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.15s ease;
+}
+
+.form-textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.form-textarea:focus {
+  border-color: var(--border-action-hover);
+}
+
+.form-textarea--tall {
+  min-height: calc(var(--components-input-button-select-min-height-textarea) * 0.55px);
+}
+
+.form-textarea--description {
+  min-height: 200px;
+}

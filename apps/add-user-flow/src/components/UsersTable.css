@@ -1,0 +1,88 @@
+.users-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.users-table__head,
+.users-table__row {
+  display: grid;
+  grid-template-columns: 48px minmax(220px, 1.4fr) minmax(180px, 1.6fr) 120px 160px 72px;
+  align-items: center;
+  min-height: 48px;
+  border-bottom: 1px solid var(--border-divider);
+}
+
+.users-table__head {
+  min-height: 36px;
+  background: var(--background-surface-container-1);
+}
+
+.users-table__row--selected {
+  background: color-mix(in srgb, var(--interactive-primary) 8%, transparent);
+}
+
+.users-table__cell {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-xs, 8) * 1px);
+  padding-inline: calc(var(--gap-s, 12) * 1px);
+  min-width: 0;
+  font-size: calc(var(--family-body-input-size, 13) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--family-body-medium-line-height, 20) * 1px);
+  color: var(--text-primary);
+}
+
+.users-table__cell--check {
+  justify-content: center;
+  padding-inline: calc(var(--gap-xs, 8) * 1px);
+}
+
+.users-table__cell--name {
+  gap: calc(var(--gap-s, 12) * 1px);
+}
+
+.users-table__cell--controls {
+  justify-content: center;
+}
+
+.users-table__sort {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.users-table__person {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.users-table__name,
+.users-table__email,
+.users-table__roles {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.users-table__name {
+  font-weight: 600;
+}
+
+.users-table__email,
+.users-table__roles {
+  color: var(--text-secondary);
+  font-size: calc(var(--family-body-input-size, 13) * 1px);
+  font-weight: 500;
+}
+
+.users-table__head .users-table__cell {
+  font-size: calc(var(--family-body-input-size, 13) * 1px);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.users-table__head .orbit-label-value-horizontal__label {
+  text-transform: uppercase;
+}

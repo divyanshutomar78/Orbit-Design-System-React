@@ -1,0 +1,29 @@
+.maintenance-panel {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-ml) * 1px);
+  width: 100%;
+  max-width: 1033px;
+  overflow: hidden;
+  border-radius: calc(var(--radius-card) * 1px);
+  background-color: var(--background-surface-container-1);
+  box-shadow: 0 calc(var(--gap-xxs) * 1px) calc(var(--gap-s) * 1px) var(--shadow-card);
+}
+
+.maintenance-panel__section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-ml) * 1px);
+}
+
+.maintenance-panel__section-body {
+  padding-inline: calc(var(--gap-ml) * 1px);
+}
+
+.maintenance-panel__section--field .maintenance-panel__section-body {
+  padding-bottom: calc(var(--gap-xs) * 1px);
+}
+
+.maintenance-panel__section:last-child {
+  padding-bottom: calc(var(--gap-ml) * 1px);
+}

@@ -1,0 +1,57 @@
+.users-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--gap-m, 16) * 1px);
+  padding: calc(var(--gap-s, 12) * 1px);
+  border-top: 1px solid var(--border-divider);
+  background: var(--background-surface-container-1);
+}
+
+.users-pagination__pages {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-xxs, 4) * 1px);
+}
+
+.users-pagination__nav,
+.users-pagination__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: calc(var(--radius-action-menu, 4) * 1px);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.users-pagination__nav:disabled,
+.users-pagination__page:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.users-pagination__page--active {
+  background: var(--interactive-primary);
+  color: var(--text-on-primary);
+  font-weight: 600;
+}
+
+.users-pagination__items {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.users-pagination__items-select {
+  max-width: none;
+  width: auto;
+}
+
+.users-pagination__items-select .orbit-input-select {
+  max-width: none;
+}

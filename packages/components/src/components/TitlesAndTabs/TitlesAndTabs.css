@@ -94,9 +94,12 @@
 .orbit-title-tab {
   display: inline-flex;
   align-items: center;
-  min-height: calc(var(--components-titles-and-tabs-header) * 1px);
+  align-self: stretch;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 0;
   padding-inline: calc(var(--padding-horizontal-s) * 1px);
-  padding-block: calc(var(--gap-s) * 1px);
+  padding-block: 0;
   border: none;
   border-radius: 0;
   background: transparent;

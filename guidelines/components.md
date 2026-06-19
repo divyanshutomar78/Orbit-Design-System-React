@@ -117,6 +117,8 @@ Only the **color tokens** differ between chip variants. Pick the semantic color 
 | Skip token CSS imports | Always load primitives + theme + platform |
 | Import multiple themes | One theme only |
 | Subheading inside `TitlesAndTabs` | Subheading below (pages) or in dialog body — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
+| `showTitleIcon={false}` to hide back icon only | `showTitleIcon` + `showLeftIcon={false}` — `showTitleIcon={false}` removes the title |
+| Extra `padding-block` on `TitleTab` or modal header | Fixed 36px row; tabs stretch with no vertical padding |
 | Dialog title as `TitleTab` | Static dialog title + `TitleTab` for tabs only — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
 | Close icon misaligned in tabbed dialog | Fixed header height + actions slot — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
 | Multiple `LabelValueVertical` stacked vertically | Grid wrapper with `display: grid` + column template — see [label-value-vertical.md](./components/label-value-vertical.md) |

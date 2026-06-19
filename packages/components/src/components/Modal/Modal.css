@@ -30,9 +30,13 @@
   align-items: center;
   justify-content: space-between;
   gap: calc(var(--gap-s) * 1px);
-  padding: calc(var(--gap-m) * 1px);
+  box-sizing: border-box;
+  height: calc(var(--components-titles-and-tabs-header) * 1px);
+  min-height: calc(var(--components-titles-and-tabs-header) * 1px);
+  padding: 0;
+  padding-inline: calc(var(--padding-horizontal-s) * 1px);
   border-bottom: calc(var(--components-input-button-select-border-width) * 1px) solid
-    var(--border-primary);
+    var(--border-secondary);
 }
 
 .orbit-modal__header:has(.orbit-modal__header-slot) {
@@ -72,11 +76,14 @@
 }
 
 .orbit-modal__title {
+  display: flex;
+  align-items: center;
+  height: 100%;
   margin: 0;
-  font-size: calc(var(--font-font-size-title-6) * 1px);
+  font-size: calc(var(--font-font-size-title-4) * 1px);
   font-weight: var(--font-font-weight-title);
-  line-height: calc(var(--font-line-height-title-6) * 1px);
-  letter-spacing: 0.06em;
+  line-height: calc(var(--font-line-height-title-4) * 1px);
+  letter-spacing: calc(var(--font-letter-spacing-title-4) * 0.01em);
   text-transform: uppercase;
 }
 

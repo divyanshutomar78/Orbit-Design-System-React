@@ -117,6 +117,7 @@ Layout rules:
 3. **Close icon in a right actions slot** — wrap the close `ButtonCompact` in an actions container with `padding-block: var(--gap-s)` so the 24px icon centers in the 36px row (6 + 24 + 6 = 36).
 4. **Tabs row matches page tabs** — `TitleTab` list uses `align-items: center; height: 100%`. Do not override tab `min-height` or add extra vertical padding on the tab container.
 5. **Group title + tabs on the left** — same start cluster as `TitlesAndTabs__start`: title then tabs with `--gap-m` between them.
+6. **Row height is exactly `--components-titles-and-tabs-header` (36px)** — do not add extra `padding-block` on tabs or modal headers; tabs stretch to the row height with `align-self: stretch` and **no vertical padding** on `TitleTab`.
 
 ```tsx
 // Dialog header: static title + selectable tabs (not TitlesAndTabs)
@@ -249,7 +250,7 @@ border-bottom: … solid var(--border-secondary);
 | Prop | Default | Description |
 |------|---------|-------------|
 | `title` | `'Title'` | Page title only — uppercase styling applied. **Not** for subheadings. |
-| `showTitleIcon` | `true` | Icon block with back chevron + title |
+| `showTitleIcon` | `true` | Title block (back icon optional via `showLeftIcon`). **`false` hides the title entirely** — use `showLeftIcon={false}` to hide only the back chevron. |
 | `showLeftIcon` | `true` | Back chevron |
 | `showTabs` | `true` | Tab row |
 | `tabItems` / `tabs` | one tab | Tab configuration |

@@ -49,7 +49,7 @@ export function AttendanceDashboard() {
       <header className="attendance-page__header">
         <TitlesAndTabs
           title="Student Attendance"
-          showTitleIcon={false}
+          showTitleIcon
           showLeftIcon={false}
           showTabs
           tabItems={tabItems}

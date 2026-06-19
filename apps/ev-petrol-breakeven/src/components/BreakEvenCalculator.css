@@ -1,0 +1,177 @@
+.breakeven-calculator {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-l) * 1px);
+  width: 100%;
+}
+
+.breakeven-calculator__form {
+  width: 100%;
+}
+
+.breakeven-calculator__section-title {
+  margin: calc(var(--gap-xs) * 1px) 0 0;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.breakeven-calculator__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap-s) * 1px);
+  margin-top: calc(var(--gap-xs) * 1px);
+}
+
+.breakeven-calculator__results {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-m) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-radius: calc(var(--radius-l) * 1px);
+  background: var(--background-surface-container-2);
+}
+
+.breakeven-calculator__hero {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-radius: calc(var(--radius-m) * 1px);
+  background: var(--background-inside-surface-1);
+}
+
+.breakeven-calculator__hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--gap-s) * 1px);
+}
+
+.breakeven-calculator__hero-label {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.breakeven-calculator__hero-value {
+  font-size: calc(var(--font-font-size-title-2) * 1px);
+  font-weight: 700;
+  line-height: calc(var(--font-line-height-title-2) * 1px);
+  color: var(--text-primary);
+}
+
+.breakeven-calculator__hero-meta {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.breakeven-calculator__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(var(--gap-m) * 1px);
+}
+
+@media (max-width: 640px) {
+  .breakeven-calculator__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.breakeven-calculator__summary {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.breakeven-calculator__table-section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.breakeven-calculator__table-title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.breakeven-calculator__table-meta {
+  margin: 0 0 calc(var(--gap-s) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.breakeven-calculator__table {
+  overflow: hidden;
+  border-radius: calc(var(--radius-m) * 1px);
+  background: var(--background-surface-container-2);
+}
+
+.breakeven-calculator__table-head,
+.breakeven-calculator__table-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.7fr);
+  gap: calc(var(--gap-s) * 1px);
+  align-items: center;
+  padding: calc(var(--gap-s) * 1px) calc(var(--gap-m) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+}
+
+.breakeven-calculator__table-head {
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--background-inside-surface-2);
+}
+
+.breakeven-calculator__table-row {
+  color: var(--text-primary);
+  border-top: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-secondary);
+}
+
+.breakeven-calculator__table-row span:nth-child(2),
+.breakeven-calculator__table-row span:nth-child(3),
+.breakeven-calculator__table-head span:nth-child(2),
+.breakeven-calculator__table-head span:nth-child(3) {
+  text-align: right;
+}
+
+.breakeven-calculator__table-row span:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dialog-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap-m) * 1px);
+  width: 100%;
+}
+
+.dialog-form-grid__full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 520px) {
+  .dialog-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.orbit-number-field .orbit-input-select {
+  width: 100%;
+  max-width: none;
+}

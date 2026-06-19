@@ -17,6 +17,7 @@
     "billing": "npm run dev -w @orbit/billing-invoices",
     "attendance": "npm run dev -w @orbit/student-attendance",
     "send-message": "npm run dev -w @orbit/send-message-email-modal",
+    "ev-breakeven": "npm run dev -w @orbit/ev-petrol-breakeven",
     "verify:tokens": "node scripts/verify-token-usage.mjs"
   },
   "engines": {

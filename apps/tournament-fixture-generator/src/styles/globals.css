@@ -1,0 +1,40 @@
+:root {
+  --font-family: Roboto, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  background: var(--background-background);
+  color: var(--text-primary);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: calc(var(--gap-m) * 1px);
+}
+
+.dialog-subtitle {
+  margin: 0 0 calc(var(--gap-m) * 1px);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+  color: var(--text-secondary);
+}
+
+.orbit-modal.fixture-generator-modal {
+  width: min(100%, 760px);
+}

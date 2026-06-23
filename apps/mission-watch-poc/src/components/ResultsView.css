@@ -1,0 +1,197 @@
+.mw-results.mw-section {
+  padding: 0;
+  overflow: hidden;
+}
+
+.mw-results {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-m) * 1px);
+}
+
+.mw-results__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: calc(var(--gap-m) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.mw-results__stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: calc(var(--gap-m) * 1px);
+}
+
+.mw-results__stats .orbit-label-value-vertical {
+  min-width: 100px;
+}
+
+.mw-results__stat-chip {
+  display: flex;
+  align-items: center;
+}
+
+.mw-results__filters {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.4fr) repeat(3, minmax(120px, 1fr));
+  gap: calc(var(--gap-s) * 1px);
+  padding: calc(var(--gap-s) * 1px) calc(var(--gap-m) * 1px);
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-results__search {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xxs) * 1px);
+}
+
+.mw-results__search-label {
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  color: var(--text-secondary);
+}
+
+.mw-results__search-input {
+  width: 100%;
+  height: calc(var(--components-input-button-select-default) * 1px);
+  padding: 0 calc(var(--gap-s) * 1px);
+  border: calc(var(--components-input-button-select-border-width) * 1px) solid var(--border-primary);
+  border-radius: calc(var(--radius-input) * 1px);
+  background: var(--background-input-fields);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-font-size-body) * 1px);
+}
+
+.mw-results__search-input:focus {
+  outline: 2px solid var(--border-action-hover);
+  outline-offset: 0;
+}
+
+.mw-results__filter-select.orbit-input-select {
+  max-width: none;
+}
+
+.mw-results__loading {
+  display: flex;
+  justify-content: center;
+  padding: calc(var(--gap-s) * 1px);
+}
+
+.mw-results__table-area {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.mw-results__table-meta {
+  padding: calc(var(--gap-s) * 1px) calc(var(--gap-m) * 1px);
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.mw-results__table-wrap {
+  overflow: auto;
+  flex: 1;
+  min-height: 420px;
+}
+
+.mw-results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: calc(var(--font-font-size-body) * 1px);
+}
+
+.mw-results-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-results-table th {
+  padding: calc(var(--gap-s) * 1px);
+  border-bottom: 1px solid var(--border-secondary);
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.mw-results-table td {
+  padding: calc(var(--gap-s) * 1px);
+  border-bottom: 1px solid var(--border-secondary);
+  vertical-align: top;
+}
+
+.mw-results-table tbody tr {
+  cursor: pointer;
+}
+
+.mw-results-table tbody tr:hover {
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-results-table__row--selected {
+  background-color: var(--background-surface-container-2);
+}
+
+.mw-results-table__row--selected:hover {
+  background-color: var(--background-surface-container-2);
+}
+
+.mw-results-table__flight {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.mw-results-table__route {
+  white-space: nowrap;
+}
+
+.mw-results-table__findings {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xxs) * 1px);
+  min-width: 220px;
+}
+
+.mw-results__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap-m) * 1px);
+  padding: calc(var(--gap-xl) * 1px);
+  text-align: center;
+}
+
+.mw-results__empty-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: calc(var(--radius-l) * 1px);
+  background: var(--background-attention-container);
+  color: var(--text-on-attention-container);
+}
+
+@media (max-width: 960px) {
+  .mw-results__filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .mw-results-table {
+    min-width: 880px;
+  }
+}

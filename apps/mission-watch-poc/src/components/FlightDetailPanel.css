@@ -1,0 +1,107 @@
+.mw-detail-panel {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-m) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+}
+
+.mw-detail-panel__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--gap-m) * 1px);
+  padding-bottom: calc(var(--gap-s) * 1px);
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.mw-detail-panel__body {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(220px, 1fr) minmax(280px, 1.2fr);
+  gap: calc(var(--gap-m) * 1px);
+  align-items: start;
+}
+
+.mw-detail-panel__summary {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-s) * 1px);
+}
+
+.mw-detail-panel__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: calc(var(--gap-s) * 1px);
+}
+
+.mw-detail-panel__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.mw-detail-panel__times {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: calc(var(--gap-s) * 1px);
+}
+
+.mw-detail-panel__section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-s) * 1px);
+  padding: calc(var(--gap-s) * 1px);
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-inside-surface-1);
+}
+
+.mw-detail-panel__section-title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.mw-detail-panel__findings {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.mw-detail-weather {
+  padding: calc(var(--gap-s) * 1px);
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-surface-container-2);
+}
+
+.mw-detail-weather + .mw-detail-weather {
+  margin-top: calc(var(--gap-s) * 1px);
+}
+
+.mw-detail-weather__title {
+  margin: 0 0 calc(var(--gap-xs) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+}
+
+.mw-detail-weather__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap-xs) * 1px);
+}
+
+.mw-detail-weather__grid .orbit-label-value-vertical {
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .mw-detail-panel__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

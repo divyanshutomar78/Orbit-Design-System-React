@@ -1,0 +1,69 @@
+.orbit-text-field {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+  width: 100%;
+  font-family: var(--font-family);
+}
+
+.orbit-text-field__label {
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  color: var(--text-secondary);
+}
+
+.orbit-text-field__control {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: calc(var(--components-input-button-select-default) * 1px);
+  padding-inline: calc(var(--gap-s) * 1px);
+  border: calc(var(--components-input-button-select-border-width) * 1px) solid transparent;
+  border-radius: calc(var(--radius-input) * 1px);
+  background-color: var(--background-input-fields);
+  transition: border-color 0.15s ease;
+}
+
+.orbit-text-field__control--textarea {
+  align-items: stretch;
+  min-height: auto;
+  padding-block: calc(var(--gap-xs) * 1px);
+}
+
+.orbit-text-field__control:focus-within {
+  border-color: var(--border-action-hover);
+}
+
+.orbit-text-field__input,
+.orbit-text-field__textarea {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: calc(var(--font-font-size-body) * 1px);
+  font-weight: 500;
+  line-height: calc(var(--font-line-height-body) * 1px);
+  outline: none;
+  resize: vertical;
+}
+
+.orbit-text-field__textarea {
+  min-height: 120px;
+  font-weight: 400;
+}
+
+.orbit-text-field__input::placeholder,
+.orbit-text-field__textarea::placeholder {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.orbit-text-field__hint {
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+  color: var(--text-secondary);
+}

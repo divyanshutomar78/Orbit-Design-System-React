@@ -23,6 +23,7 @@
     "car-affordability": "npm run dev -w @orbit/car-affordability-planner",
     "spaces-modal": "npm run dev -w @orbit/spaces-modal",
     "mission-watch": "npm run dev -w @orbit/mission-watch-poc",
+    "fixture-generator": "npm run dev -w @orbit/tournament-fixture-generator",
     "verify:tokens": "node scripts/verify-token-usage.mjs"
   },
   "engines": {

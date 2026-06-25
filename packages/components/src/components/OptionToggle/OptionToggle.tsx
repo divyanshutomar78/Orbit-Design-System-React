@@ -1,5 +1,7 @@
-import { useEffect, useRef, type InputHTMLAttributes, type ReactNode } from 'react';
+import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
 
+import { cn } from '../../lib/utils';
+import { Switch } from '../../primitives/switch';
 import { IconFrame } from '../Icon/IconFrame';
 import type { OrbitIconSize } from '../Icon/iconSize';
 import {
@@ -16,7 +18,7 @@ export type OptionToggleState = 'off' | 'on' | 'partial';
 export type OptionToggleStatus = 'default' | 'hover' | 'disabled';
 
 export interface OptionToggleProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'children'> {
+  extends Omit<ComponentPropsWithoutRef<typeof Switch>, 'type' | 'children' | 'checked'> {
   /** Figma Text Option */
   label?: ReactNode;
   /** Figma State (Off / On / Partial) */
@@ -59,47 +61,37 @@ export function OptionToggle({
   className,
   disabled: disabledProp,
   id,
-  ...inputRest
+  onCheckedChange,
+  ...switchRest
 }: OptionToggleProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
   const isDisabled = disabledProp ?? status === 'disabled';
   const resolvedState = resolveToggleState(state, checked, partial);
   const isOn = resolvedState === 'on';
   const isPartial = resolvedState === 'partial';
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.indeterminate = isPartial;
-    }
-  }, [isPartial]);
-
-  const classes = [
+  const classes = cn(
     'orbit-option-toggle',
-    isOn ? 'orbit-option-toggle--on' : undefined,
-    isPartial ? 'orbit-option-toggle--partial' : undefined,
-    isDisabled ? 'orbit-option-toggle--disabled' : undefined,
-    status === 'hover' && !isDisabled ? 'orbit-option-toggle--hover' : undefined,
+    isOn && 'orbit-option-toggle--on',
+    isPartial && 'orbit-option-toggle--partial',
+    isDisabled && 'orbit-option-toggle--disabled',
+    status === 'hover' && !isDisabled && 'orbit-option-toggle--hover',
     className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  );
 
   return (
-    <label className={classes}>
-      <input
-        ref={inputRef}
-        type="checkbox"
-        role="switch"
+    <label className={classes} htmlFor={id}>
+      <Switch
         id={id}
-        className="orbit-option-toggle__input"
-        checked={isOn}
         disabled={isDisabled}
+        checked={isOn}
+        onCheckedChange={onCheckedChange}
         aria-checked={isPartial ? 'mixed' : isOn}
-        {...inputRest}
-      />
-      <IconFrame size={iconSize} className="orbit-option-toggle__icon">
-        <OptionToggleIcon state={resolvedState} />
-      </IconFrame>
+        {...switchRest}
+      >
+        <IconFrame size={iconSize} className="orbit-option-toggle__icon">
+          <OptionToggleIcon state={resolvedState} />
+        </IconFrame>
+      </Switch>
       <span className="orbit-option-toggle__text">
         {textSlot ?? <span className="orbit-option-toggle__label">{label}</span>}
       </span>

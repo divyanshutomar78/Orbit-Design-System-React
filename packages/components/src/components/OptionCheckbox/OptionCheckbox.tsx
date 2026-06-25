@@ -1,5 +1,7 @@
-import { useEffect, useRef, type InputHTMLAttributes, type ReactNode } from 'react';
+import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
 
+import { Checkbox, CheckboxIndicator } from '../../primitives/checkbox';
+import { cn } from '../../lib/utils';
 import { IconFrame } from '../Icon/IconFrame';
 import type { OrbitIconSize } from '../Icon/iconSize';
 import {
@@ -15,7 +17,7 @@ export type OptionCheckboxState = 'off' | 'on' | 'partial';
 export type OptionCheckboxStatus = 'default' | 'hover' | 'disabled';
 
 export interface OptionCheckboxProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'children'> {
+  extends Omit<ComponentPropsWithoutRef<typeof Checkbox>, 'type' | 'children' | 'checked'> {
   /** Figma Text Option */
   label?: ReactNode;
   /** Figma State (Off / On / Partial) */
@@ -53,45 +55,40 @@ export function OptionCheckbox({
   className,
   disabled: disabledProp,
   id,
-  ...inputRest
+  onCheckedChange,
+  ...checkboxRest
 }: OptionCheckboxProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
   const isDisabled = disabledProp ?? status === 'disabled';
   const resolvedState = resolveCheckboxState(state, checked, indeterminate);
   const isOn = resolvedState === 'on';
   const isPartial = resolvedState === 'partial';
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.indeterminate = isPartial;
-    }
-  }, [isPartial]);
-
-  const classes = [
+  const classes = cn(
     'orbit-option-checkbox',
-    isOn ? 'orbit-option-checkbox--on' : undefined,
-    isPartial ? 'orbit-option-checkbox--partial' : undefined,
-    isDisabled ? 'orbit-option-checkbox--disabled' : undefined,
-    status === 'hover' && !isDisabled ? 'orbit-option-checkbox--hover' : undefined,
+    isOn && 'orbit-option-checkbox--on',
+    isPartial && 'orbit-option-checkbox--partial',
+    isDisabled && 'orbit-option-checkbox--disabled',
+    status === 'hover' && !isDisabled && 'orbit-option-checkbox--hover',
     className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  );
+
+  const radixChecked = isPartial ? 'indeterminate' : isOn;
 
   return (
-    <label className={classes}>
-      <input
-        ref={inputRef}
-        type="checkbox"
+    <label className={classes} htmlFor={id}>
+      <Checkbox
         id={id}
-        className="orbit-option-checkbox__input"
-        checked={isOn}
         disabled={isDisabled}
-        {...inputRest}
-      />
-      <IconFrame size={iconSize} className="orbit-option-checkbox__icon">
-        <OptionCheckboxIcon state={resolvedState} />
-      </IconFrame>
+        checked={radixChecked}
+        onCheckedChange={onCheckedChange}
+        {...checkboxRest}
+      >
+        <CheckboxIndicator asChild forceMount>
+          <IconFrame size={iconSize} className="orbit-option-checkbox__icon">
+            <OptionCheckboxIcon state={resolvedState} />
+          </IconFrame>
+        </CheckboxIndicator>
+      </Checkbox>
       <span className="orbit-option-checkbox__text">
         {textSlot ?? (
           <span className="orbit-option-checkbox__label">{label}</span>

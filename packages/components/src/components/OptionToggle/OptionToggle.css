@@ -31,6 +31,28 @@
   border: 0;
 }
 
+.orbit-option-toggle__root {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.orbit-option-toggle__root:disabled {
+  cursor: not-allowed;
+}
+
+.orbit-option-toggle__root:focus-visible {
+  outline: calc(var(--gap-xxs) * 1px) solid var(--border-action-hover);
+  outline-offset: calc(var(--gap-xxs) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+}
+
 .orbit-option-toggle__icon {
   flex-shrink: 0;
   color: var(--text-secondary);

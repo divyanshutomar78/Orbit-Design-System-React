@@ -1,3 +1,41 @@
+.orbit-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: color-mix(in srgb, var(--background-background) 40%, transparent);
+  backdrop-filter: blur(2px);
+}
+
+.orbit-dialog-content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: min(calc(100vw - var(--gap-m) * 2px), 560px);
+  max-height: min(90vh, 720px);
+  overflow: hidden;
+  border-radius: calc(var(--radius-s) * 1px);
+  background-color: var(--background-surface-container-1);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  box-shadow: var(--shadow-popup-message);
+  transform: translate(-50%, -50%);
+}
+
+.orbit-dialog-content:focus {
+  outline: none;
+}
+
+.orbit-dialog-description {
+  margin: 0;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+/* Legacy backdrop wrapper — kept for reference; Modal now uses Radix Dialog */
 .orbit-modal__backdrop {
   position: fixed;
   inset: 0;

@@ -1,13 +1,20 @@
 import {
   useCallback,
   useId,
-  useState,
   type ButtonHTMLAttributes,
   type ReactNode,
 } from 'react';
 
+import {
+  Tooltip as TooltipRoot,
+  TooltipContent,
+  TooltipContentText,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../../primitives/tooltip';
+import { cn } from '../../lib/utils';
 import { TooltipInfoIcon } from './TooltipIcons';
-import { TooltipPopup, type TooltipPopupProps } from './TooltipPopup';
+import type { TooltipPopupProps } from './TooltipPopup';
 import './Tooltip.css';
 
 /** Figma Direction */
@@ -50,75 +57,57 @@ export function Tooltip({
   triggerLabel = 'More information',
   triggerProps,
   className,
-  ...popupRest
 }: TooltipProps) {
-  const [openUncontrolled, setOpenUncontrolled] = useState(defaultOpen);
   const tooltipId = useId();
   const isControlled = openProp !== undefined;
-  const isOpen = isControlled ? openProp : openUncontrolled;
 
   const setOpen = useCallback(
     (next: boolean) => {
-      if (!isControlled) {
-        setOpenUncontrolled(next);
-      }
       onOpenChange?.(next);
     },
-    [isControlled, onOpenChange],
+    [onOpenChange],
   );
 
-  const alignEnd = direction === 'left' && isOpen;
-  const classes = [
+  const alignEnd = direction === 'left';
+  const classes = cn(
     'orbit-tooltip',
     alignEnd ? 'orbit-tooltip--align-end' : 'orbit-tooltip--align-start',
-    isOpen ? 'orbit-tooltip--open' : undefined,
     className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  );
 
-  const { className: triggerClassName, ...restTriggerProps } =
-    triggerProps ?? {};
+  const { className: triggerClassName, ...restTriggerProps } = triggerProps ?? {};
 
   return (
-    <span
-      className={classes}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      onFocusCapture={() => setOpen(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-          setOpen(false);
-        }
-      }}
-    >
-      {isOpen && (
-        <div className="orbit-tooltip__container">
-          <TooltipPopup
-            id={tooltipId}
-            text={text}
-            showText={showText && popupContent == null}
-            {...popupRest}
-          >
-            {popupContent}
-          </TooltipPopup>
-        </div>
-      )}
-      {trigger ?? (
-        <button
-          type="button"
-          className={['orbit-tooltip__trigger', triggerClassName]
-            .filter(Boolean)
-            .join(' ')}
-          aria-label={triggerLabel}
-          aria-expanded={isOpen}
-          aria-describedby={isOpen ? tooltipId : undefined}
-          {...restTriggerProps}
-        >
-          <TooltipInfoIcon />
-        </button>
-      )}
-    </span>
+    <TooltipProvider delayDuration={200}>
+      <TooltipRoot
+        open={isControlled ? openProp : undefined}
+        defaultOpen={!isControlled ? defaultOpen : undefined}
+        onOpenChange={setOpen}
+      >
+        <span className={classes}>
+        <TooltipTrigger asChild>
+          {trigger ?? (
+            <button
+              type="button"
+              className={cn('orbit-tooltip__trigger', triggerClassName)}
+              aria-label={triggerLabel}
+              {...restTriggerProps}
+            >
+              <TooltipInfoIcon />
+            </button>
+          )}
+        </TooltipTrigger>
+        <TooltipContent id={tooltipId} side={direction === 'left' ? 'left' : 'right'}>
+          {popupContent ?? (
+            showText ? <TooltipContentText>{text}</TooltipContentText> : null
+          )}
+          {popupContent ? (
+            <div className="orbit-tooltip-popup__slot">{popupContent}</div>
+          ) : null}
+        </TooltipContent>
+        </span>
+      </TooltipRoot>
+    </TooltipProvider>
   );
 }
 

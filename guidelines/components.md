@@ -1,6 +1,6 @@
 # Orbit Components — Index
 
-Complete reference for `orbit-ds-components`. Read `setup.md`, `tokens.md`, and `styles.md` first.
+Complete reference for `orbit-ds-components`. Read `setup.md`, `tokens.md`, `styles.md`, and [architecture.md](./architecture.md) first.
 
 ## Import
 

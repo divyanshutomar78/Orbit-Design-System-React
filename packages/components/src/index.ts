@@ -141,8 +141,7 @@ export type {
   EWasNavItemWTextState,
 } from './components/EWasNavItemWText/EWasNavItemWText';
 
-export {
-  EWasNavBar,
+export { EWasNavBar,
   defaultEWasNavBarFooterItem,
   defaultEWasNavBarPrimaryItems,
   defaultEWasNavBarUtilityItems,
@@ -153,3 +152,64 @@ export type {
   EWasNavBarOrientation,
   EWasNavBarProps,
 } from './components/EWasNavBar/EWasNavBar';
+
+export { Modal } from './components/Modal/Modal';
+export type { ModalProps } from './components/Modal/Modal';
+
+export { cn } from './lib/utils';
+
+export {
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+  Checkbox,
+  CheckboxIndicator,
+  RadioGroup,
+  RadioGroupIndicator,
+  RadioGroupItem,
+  Switch,
+  SwitchThumb,
+  Tooltip as TooltipPrimitive,
+  TooltipArrow,
+  TooltipContent,
+  TooltipContentText,
+  TooltipPortal,
+  TooltipProvider,
+  TooltipTrigger,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+  Popover,
+  PopoverAnchor,
+  PopoverClose,
+  PopoverContent,
+  PopoverTrigger,
+  Slot,
+} from './primitives';
+
+export { OptionRadioGroup, OptionRadioItem } from './components/OptionRadio/OptionRadioGroup';
+export type { OptionRadioGroupProps } from './components/OptionRadio/OptionRadioGroup';

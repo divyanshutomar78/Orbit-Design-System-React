@@ -1,5 +1,7 @@
-import type { HTMLAttributes, ReactNode } from 'react';
+import { useMemo, type HTMLAttributes, type ReactNode } from 'react';
 
+import { Tabs, TabsList, TabsTrigger } from '../../primitives/tabs';
+import { cn } from '../../lib/utils';
 import { IconFrame } from '../Icon/IconFrame';
 import type { OrbitIconSize } from '../Icon/iconSize';
 import { TitleTab } from './TitleTab';
@@ -33,6 +35,8 @@ export interface TitlesAndTabsProps
   /** Convenience tabs rendered as TitleTab buttons. */
   tabItems?: TitlesAndTabsTabItem[];
   onTabSelect?: (tabId: string) => void;
+  /** Controlled active tab id (pairs with `tabItems`). */
+  activeTabId?: string;
   /** Figma Add Extra Components */
   showExtraSlot?: boolean;
   /** Figma Slot */
@@ -51,6 +55,7 @@ export function TitlesAndTabs({
   tabs,
   tabItems,
   onTabSelect,
+  activeTabId,
   showExtraSlot = true,
   extraSlot,
   showRightIcons = true,
@@ -60,21 +65,45 @@ export function TitlesAndTabs({
   className,
   ...rest
 }: TitlesAndTabsProps) {
-  const classes = ['orbit-titles-and-tabs', className].filter(Boolean).join(' ');
+  const classes = cn('orbit-titles-and-tabs', className);
+
+  const selectedTabId = useMemo(() => {
+    if (activeTabId) return activeTabId;
+    return tabItems?.find((item) => item.selected)?.id ?? tabItems?.[0]?.id;
+  }, [activeTabId, tabItems]);
 
   const tabsContent =
     tabs ??
-    (tabItems?.map((item) => (
-      <TitleTab
-        key={item.id}
-        selected={item.selected}
-        disabled={item.disabled}
-        onClick={() => onTabSelect?.(item.id)}
+    (tabItems && selectedTabId ? (
+      <Tabs
+        value={selectedTabId}
+        onValueChange={(value) => onTabSelect?.(value)}
       >
-        {item.label}
-      </TitleTab>
-    )) ??
-    (showTabs ? <TitleTab>Tab</TitleTab> : null));
+        <TabsList>
+          {tabItems.map((item) => (
+            <TabsTrigger
+              key={item.id}
+              value={item.id}
+              disabled={item.disabled}
+              className={item.selected ? 'orbit-title-tab--selected' : undefined}
+            >
+              <span className="orbit-title-tab__label">{item.label}</span>
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
+    ) : (
+      tabItems?.map((item) => (
+        <TitleTab
+          key={item.id}
+          selected={item.selected}
+          disabled={item.disabled}
+          onClick={() => onTabSelect?.(item.id)}
+        >
+          {item.label}
+        </TitleTab>
+      )) ?? (showTabs ? <TitleTab>Tab</TitleTab> : null)
+    ));
 
   return (
     <header className={classes} {...rest}>

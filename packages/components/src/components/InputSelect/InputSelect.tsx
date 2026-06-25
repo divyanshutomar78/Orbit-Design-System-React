@@ -1,13 +1,13 @@
 import {
-  useEffect,
   useId,
   useMemo,
-  useRef,
   useState,
   type HTMLAttributes,
   type ReactNode,
 } from 'react';
 
+import { cn } from '../../lib/utils';
+import { Popover, PopoverContent, PopoverTrigger } from '../../primitives/popover';
 import {
   ActionMenu,
   type ActionMenuItemConfig,
@@ -161,7 +161,6 @@ export function InputSelect({
   const generatedId = useId();
   const fieldId = idProp ?? generatedId;
   const menuId = `${fieldId}-menu`;
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const isControlled = valueProp !== undefined;
   const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue);
@@ -215,37 +214,6 @@ export function InputSelect({
     setOpen(false);
   };
 
-  const toggleOpen = () => {
-    if (disabled || !hasDropdown) return;
-    setOpen((current) => !current);
-  };
-
-  useEffect(() => {
-    if (!open) return;
-
-    const handlePointerDown = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handlePointerDown);
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('mousedown', handlePointerDown);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [open]);
-
   const horizontalLayout =
     resolvedContent === 'valueLabel'
       ? 'V + L'
@@ -294,19 +262,70 @@ export function InputSelect({
     );
   };
 
-  const classes = [
+  const classes = cn(
     'orbit-input-select',
     `orbit-input-select--${resolvedVisualState}`,
-    open ? 'orbit-input-select--open' : undefined,
-    disabled ? 'orbit-input-select--disabled' : undefined,
-    hasDropdown ? 'orbit-input-select--has-menu' : undefined,
+    open && 'orbit-input-select--open',
+    disabled && 'orbit-input-select--disabled',
+    hasDropdown && 'orbit-input-select--has-menu',
     className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  );
+
+  const fieldButton = (
+    <button
+      type="button"
+      id={fieldId}
+      className="orbit-input-select__field"
+      disabled={disabled}
+      aria-labelledby={showLabel ? `${fieldId}-label` : undefined}
+      aria-invalid={showErrorMessage || undefined}
+      aria-describedby={
+        showBottomSpaceHelper && (showHelper || showErrorMessage)
+          ? `${fieldId}-helper`
+          : undefined
+      }
+    >
+      <span className="orbit-input-select__background" aria-hidden />
+      <span className="orbit-input-select__content">{renderFieldContent()}</span>
+      {showIcons ? (
+        <span className="orbit-input-select__icons">
+          {showClearIcon && hasValue ? (
+            <span
+              role="button"
+              tabIndex={-1}
+              className="orbit-input-select__icon-button"
+              aria-label="Clear selection"
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={(event) => {
+                event.stopPropagation();
+                handleClear();
+              }}
+            >
+              <InputSelectClearIcon />
+            </span>
+          ) : null}
+          {showSelectIcon && hasDropdown ? (
+            <span className="orbit-input-select__icon-button" aria-hidden>
+              <InputSelectChevronIcon />
+            </span>
+          ) : null}
+          {showFieldInfoIcon ? (
+            <>
+              <span className="orbit-input-select__divider" aria-hidden />
+              <span className="orbit-input-select__icon-button" aria-hidden>
+                <InputSelectFieldInfoIcon />
+              </span>
+            </>
+          ) : null}
+        </span>
+      ) : (
+        <span className="orbit-input-select__icons-spacer" aria-hidden />
+      )}
+    </button>
+  );
 
   return (
-    <div className={classes} ref={containerRef} {...rest}>
+    <div className={classes} {...rest}>
       {showLabel ? (
         <div className="orbit-input-select__label-row">
           <span className="orbit-input-select__label" id={`${fieldId}-label`}>
@@ -325,73 +344,29 @@ export function InputSelect({
           <input type="hidden" name={name} value={value} />
         ) : null}
 
-        <button
-          type="button"
-          id={fieldId}
-          className="orbit-input-select__field"
-          disabled={disabled}
-          aria-haspopup={hasDropdown ? 'listbox' : undefined}
-          aria-expanded={hasDropdown ? open : undefined}
-          aria-controls={hasDropdown && open ? menuId : undefined}
-          aria-labelledby={showLabel ? `${fieldId}-label` : undefined}
-          aria-invalid={showErrorMessage || undefined}
-          aria-describedby={
-            showBottomSpaceHelper && (showHelper || showErrorMessage)
-              ? `${fieldId}-helper`
-              : undefined
-          }
-          onClick={toggleOpen}
-        >
-          <span className="orbit-input-select__background" aria-hidden />
-          <span className="orbit-input-select__content">{renderFieldContent()}</span>
-          {showIcons ? (
-            <span className="orbit-input-select__icons">
-              {showClearIcon && hasValue ? (
-                <span
-                  role="button"
-                  tabIndex={-1}
-                  className="orbit-input-select__icon-button"
-                  aria-label="Clear selection"
-                  onMouseDown={(event) => event.preventDefault()}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    handleClear();
-                  }}
-                >
-                  <InputSelectClearIcon />
-                </span>
-              ) : null}
-              {showSelectIcon && hasDropdown ? (
-                <span className="orbit-input-select__icon-button" aria-hidden>
-                  <InputSelectChevronIcon />
-                </span>
-              ) : null}
-              {showFieldInfoIcon ? (
-                <>
-                  <span className="orbit-input-select__divider" aria-hidden />
-                  <span className="orbit-input-select__icon-button" aria-hidden>
-                    <InputSelectFieldInfoIcon />
-                  </span>
-                </>
-              ) : null}
-            </span>
-          ) : (
-            <span className="orbit-input-select__icons-spacer" aria-hidden />
-          )}
-        </button>
-
-        {hasDropdown && open && actionMenuItems ? (
-          <div className="orbit-input-select__dropdown">
-            <ActionMenu
-              id={menuId}
-              className="orbit-input-select__menu"
-              items={actionMenuItems}
-              iconSize={menuIconSize}
-              onItemSelect={handleItemSelect}
-              {...actionMenuProps}
-            />
-          </div>
-        ) : null}
+        {hasDropdown ? (
+          <Popover open={open && !disabled} onOpenChange={setOpen}>
+            <PopoverTrigger asChild disabled={disabled}>
+              {fieldButton}
+            </PopoverTrigger>
+            {actionMenuItems ? (
+              <PopoverContent
+                id={menuId}
+                onOpenAutoFocus={(event) => event.preventDefault()}
+              >
+                <ActionMenu
+                  className="orbit-input-select__menu"
+                  items={actionMenuItems}
+                  iconSize={menuIconSize}
+                  onItemSelect={handleItemSelect}
+                  {...actionMenuProps}
+                />
+              </PopoverContent>
+            ) : null}
+          </Popover>
+        ) : (
+          fieldButton
+        )}
       </div>
 
       {showBottomSpaceHelper ? (

@@ -109,7 +109,12 @@ export function TitlesAndTabs({
     <header className={classes} {...rest}>
       <div className="orbit-titles-and-tabs__start">
         {showTitleIcon ? (
-          <div className="orbit-titles-and-tabs__header">
+          <div
+            className={cn(
+              'orbit-titles-and-tabs__header',
+              showLeftIcon && 'orbit-titles-and-tabs__header--with-icon',
+            )}
+          >
             {showLeftIcon ? (
               <IconFrame size={iconSize}>
                 {leftIcon ?? <TitlesAndTabsBackIcon />}

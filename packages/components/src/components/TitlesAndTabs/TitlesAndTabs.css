@@ -38,6 +38,11 @@
   gap: calc(var(--gap-xs) * 1px);
   height: 100%;
   min-width: 0;
+  padding-inline-start: calc(var(--padding-horizontal-s) * 1px);
+}
+
+.orbit-titles-and-tabs__header--with-icon {
+  padding-inline-start: 0;
 }
 
 .orbit-titles-and-tabs__title {
@@ -55,9 +60,15 @@
 .orbit-titles-and-tabs__tabs {
   display: flex;
   flex-shrink: 0;
-  align-items: center;
+  align-items: stretch;
   height: 100%;
   min-width: 0;
+}
+
+.orbit-titles-and-tabs__tabs > * {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
 }
 
 .orbit-titles-and-tabs__spacer {
@@ -78,8 +89,10 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: calc(var(--icon-frame-size-default) * 1px);
+  width: auto;
+  min-width: calc(var(--icon-frame-size-default) * 1px);
   height: 100%;
+  padding-inline: calc(var(--padding-horizontal-s) * 1px);
 }
 
 .orbit-titles-and-tabs__actions {
@@ -131,7 +144,7 @@
 .orbit-tabs-list {
   display: flex;
   flex-shrink: 0;
-  align-items: center;
+  align-items: stretch;
   height: 100%;
   min-width: 0;
   gap: 0;

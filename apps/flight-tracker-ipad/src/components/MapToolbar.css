@@ -1,0 +1,19 @@
+.map-toolbar {
+  position: absolute;
+  top: calc(var(--gap-m) * 1px);
+  right: calc(var(--gap-m) * 1px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-xxs) * 1px);
+  padding: calc(var(--gap-xxs) * 1px);
+  border-radius: calc(var(--radius-m) * 1px);
+  background: var(--background-surface-container-1);
+  border: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-primary);
+  box-shadow: var(--shadow-action-menu);
+}
+
+.map-toolbar__sim {
+  margin-inline: calc(var(--gap-xs) * 1px);
+}

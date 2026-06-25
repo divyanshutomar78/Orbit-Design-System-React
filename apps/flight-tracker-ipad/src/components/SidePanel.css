@@ -1,0 +1,72 @@
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: min(360px, 38vw);
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--background-surface-container-1);
+  border-inline-end: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-primary);
+}
+
+.side-panel__header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--gap-s) * 1px);
+  padding: calc(var(--gap-s) * 1px) calc(var(--gap-m) * 1px);
+  border-bottom: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-secondary);
+}
+
+.side-panel__title {
+  margin: 0;
+  font-size: calc(var(--font-font-size-title-5) * 1px);
+  font-weight: var(--font-font-weight-title);
+  line-height: calc(var(--font-line-height-title-5) * 1px);
+  letter-spacing: calc(var(--font-letter-spacing-title-5) * 0.01em);
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.side-panel__header-actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: calc(var(--gap-xxs) * 1px);
+}
+
+.side-panel__subtitle {
+  flex-shrink: 0;
+  margin: 0;
+  padding: calc(var(--gap-s) * 1px) calc(var(--gap-m) * 1px);
+  border-bottom: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-secondary);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.side-panel__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+  min-height: 0;
+  padding: calc(var(--gap-xs) * 1px);
+  overflow: auto;
+}
+
+.side-panel__row {
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-surface-container-2);
+}
+
+.side-panel__row--selected {
+  outline: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-action);
+  background: var(--background-inside-surface-1);
+}

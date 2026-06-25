@@ -1,0 +1,88 @@
+.timeline-control {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: calc(var(--gap-m) * 1px);
+  flex-shrink: 0;
+  min-height: calc(var(--components-toolbar-toolbar) * 1px);
+  padding: calc(var(--gap-s) * 1px) calc(var(--gap-m) * 1px);
+  padding-bottom: calc(var(--gap-s) * 1px + env(safe-area-inset-bottom));
+  background: var(--background-surface-container-1);
+  border-top: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-secondary);
+}
+
+.timeline-control__track-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+  min-width: 0;
+}
+
+.timeline-control__track {
+  position: relative;
+  height: calc(var(--gap-s) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-surface-container-3);
+}
+
+.timeline-control__fill {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  border-radius: inherit;
+  background: var(--text-primary);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.timeline-control__thumb {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--gap-l) * 1px);
+  height: calc(var(--gap-l) * 1px);
+  color: var(--text-action);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.timeline-control__thumb svg {
+  width: calc(var(--gap-m) * 1px);
+  height: calc(var(--gap-m) * 1px);
+}
+
+.timeline-control__slider {
+  position: absolute;
+  inset: calc(var(--gap-s) * -1px) 0;
+  width: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.timeline-control__labels {
+  display: flex;
+  justify-content: space-between;
+  gap: calc(var(--gap-xxs) * 1px);
+  overflow: hidden;
+}
+
+.timeline-control__label {
+  flex: 1;
+  min-width: 0;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.timeline-control__play,
+.timeline-control__export {
+  flex-shrink: 0;
+}

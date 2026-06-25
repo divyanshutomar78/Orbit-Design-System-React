@@ -1,0 +1,55 @@
+.map-view {
+  width: 100%;
+  height: 100%;
+  background: var(--background-background);
+}
+
+.map-view__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.map-view__ocean {
+  fill: var(--background-background);
+}
+
+.map-view__land {
+  fill: none;
+  stroke: var(--border-primary);
+  stroke-width: 1.2;
+  opacity: 0.85;
+}
+
+.map-view__fir-zone {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.map-view__flight-path {
+  fill: none;
+  stroke: var(--text-primary);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+  opacity: 0.6;
+}
+
+.map-view__affected-area {
+  fill: none;
+  stroke: var(--text-primary);
+  stroke-width: 1.5;
+  opacity: 0.9;
+}
+
+.map-view__aircraft {
+  color: var(--text-primary);
+}
+
+.map-view__aircraft path {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

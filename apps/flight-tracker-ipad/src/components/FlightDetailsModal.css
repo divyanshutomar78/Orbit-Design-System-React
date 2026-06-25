@@ -1,0 +1,188 @@
+.flight-details-modal.orbit-dialog-content {
+  width: min(calc(100vw - var(--gap-m) * 2px), 760px);
+  max-height: min(90vh, 680px);
+}
+
+.flight-details-modal .orbit-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-m) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+}
+
+.dialog-subtitle {
+  margin: 0;
+  font-size: calc(var(--font-font-size-comment) * 1px);
+  line-height: calc(var(--font-line-height-comment) * 1px);
+  color: var(--text-secondary);
+}
+
+.flight-details-modal__layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: calc(var(--gap-m) * 1px);
+  min-height: 360px;
+}
+
+@media (max-width: 640px) {
+  .flight-details-modal__layout {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .flight-details-modal__detail {
+    min-height: 280px;
+  }
+}
+
+.flight-details-modal__list,
+.flight-details-modal__detail {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-s) * 1px);
+  min-height: 0;
+  padding: calc(var(--gap-s) * 1px);
+  border-radius: calc(var(--radius-m) * 1px);
+  background: var(--background-surface-container-2);
+  border: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-primary);
+}
+
+.flight-details-modal__section-title {
+  margin: 0;
+  padding-inline: calc(var(--gap-xs) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-weight: 600;
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.flight-details-modal__list-items {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: calc(var(--gap-xs) * 1px);
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+}
+
+.flight-details-modal__item {
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-surface-container-1);
+}
+
+.flight-details-modal__item--selected {
+  outline: calc(var(--components-input-button-select-border-width) * 1px) solid
+    var(--border-action);
+  background: var(--background-inside-surface-1);
+}
+
+.flight-details-modal__detail {
+  overflow: auto;
+}
+
+.flight-details-modal__detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: calc(var(--gap-m) * 1px);
+  padding-inline: calc(var(--gap-xs) * 1px);
+}
+
+.flight-details-modal__flight-number {
+  margin: 0;
+  font-size: calc(var(--font-font-size-title-4) * 1px);
+  font-weight: var(--font-font-weight-title);
+  line-height: calc(var(--font-line-height-title-4) * 1px);
+  color: var(--text-primary);
+}
+
+.flight-details-modal__airline {
+  margin: calc(var(--gap-xxs) * 1px) 0 0;
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.flight-details-modal__route {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: calc(var(--gap-s) * 1px);
+  padding: calc(var(--gap-m) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-surface-container-1);
+}
+
+.flight-details-modal__endpoint {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-xxs) * 1px);
+}
+
+.flight-details-modal__endpoint--end {
+  text-align: right;
+}
+
+.flight-details-modal__iata {
+  font-size: calc(var(--font-font-size-title-5) * 1px);
+  font-weight: 700;
+  line-height: calc(var(--font-line-height-title-5) * 1px);
+  color: var(--text-primary);
+}
+
+.flight-details-modal__airport {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  color: var(--text-secondary);
+}
+
+.flight-details-modal__time {
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-action);
+}
+
+.flight-details-modal__route-line {
+  position: relative;
+  width: 64px;
+  height: calc(var(--gap-xs) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--border-secondary);
+  overflow: hidden;
+}
+
+.flight-details-modal__progress {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--text-action);
+}
+
+.flight-details-modal__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap-s) * 1px);
+  padding: calc(var(--gap-s) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+  background: var(--background-surface-container-1);
+}
+
+@media (max-width: 520px) {
+  .flight-details-modal__stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.flight-details-modal__empty {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--gap-l) * 1px);
+  color: var(--text-secondary);
+  font-size: calc(var(--font-font-size-body) * 1px);
+  text-align: center;
+}

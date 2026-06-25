@@ -15,7 +15,9 @@ import { MapLegend } from './components/MapLegend';
 import { AircraftIcon, FirDocumentIcon } from './components/MapIcons';
 import { MapToolbar } from './components/MapToolbar';
 import { MapView } from './components/MapView';
+import { SettingsPanel } from './components/SettingsPanel';
 import { TimelineControl } from './components/TimelineControl';
+import { DEFAULT_MAP_SETTINGS, type MapSettings } from './data/settings';
 import { TRACKED_FLIGHTS } from './data/flights';
 import './styles/FlightTrackerApp.css';
 
@@ -33,6 +35,8 @@ const SIDE_PANEL_NAV_IDS = new Set(['flights', 'airport', 'fir']);
 export function FlightTrackerApp() {
   const [activeNavId, setActiveNavId] = useState('fir');
   const [sidePanelOpen, setSidePanelOpen] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [mapSettings, setMapSettings] = useState<MapSettings>(DEFAULT_MAP_SETTINGS);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [selectedFlightId, setSelectedFlightId] = useState<string | null>(null);
   const [selectedAirportIata, setSelectedAirportIata] = useState<string | null>(null);
@@ -42,14 +46,37 @@ export function FlightTrackerApp() {
     setDetailsOpen(true);
   };
 
+  const openSettings = () => {
+    setSettingsOpen(true);
+    setSidePanelOpen(true);
+  };
+
+  const closeSidePanel = () => {
+    setSidePanelOpen(false);
+    setSettingsOpen(false);
+  };
+
   const renderSidePanel = () => {
-    if (!sidePanelOpen || !SIDE_PANEL_NAV_IDS.has(activeNavId)) return null;
+    if (!sidePanelOpen) return null;
+
+    if (settingsOpen) {
+      return (
+        <SettingsPanel
+          settings={mapSettings}
+          onChange={setMapSettings}
+          onClose={closeSidePanel}
+          onReset={() => setMapSettings(DEFAULT_MAP_SETTINGS)}
+        />
+      );
+    }
+
+    if (!SIDE_PANEL_NAV_IDS.has(activeNavId)) return null;
 
     if (activeNavId === 'flights') {
       return (
         <FlightsPanel
           selectedFlightId={selectedFlightId}
-          onClose={() => setSidePanelOpen(false)}
+          onClose={closeSidePanel}
           onSelectFlight={openFlightDetails}
         />
       );
@@ -59,13 +86,13 @@ export function FlightTrackerApp() {
       return (
         <AirportsPanel
           selectedAirportIata={selectedAirportIata}
-          onClose={() => setSidePanelOpen(false)}
+          onClose={closeSidePanel}
           onSelectAirport={setSelectedAirportIata}
         />
       );
     }
 
-    return <FirPanel onClose={() => setSidePanelOpen(false)} />;
+    return <FirPanel onClose={closeSidePanel} />;
   };
 
   return (
@@ -85,6 +112,7 @@ export function FlightTrackerApp() {
           onItemSelect={(id) => {
             if (!id) return;
             setActiveNavId(id);
+            setSettingsOpen(false);
             if (SIDE_PANEL_NAV_IDS.has(id)) {
               setSidePanelOpen(true);
             }
@@ -97,15 +125,27 @@ export function FlightTrackerApp() {
         <div className="flight-tracker-app__content-row">
           {renderSidePanel()}
           <div className="flight-tracker-app__map-area">
-            <MapView />
+            <MapView settings={mapSettings} />
             <MapToolbar
+              settingsActive={settingsOpen}
+              onSettingsClick={() => {
+                if (settingsOpen) {
+                  closeSidePanel();
+                } else {
+                  openSettings();
+                }
+              }}
               onCollapse={() => {
-                if (SIDE_PANEL_NAV_IDS.has(activeNavId)) {
-                  setSidePanelOpen((open) => !open);
+                if (sidePanelOpen) {
+                  closeSidePanel();
+                } else if (settingsOpen) {
+                  openSettings();
+                } else if (SIDE_PANEL_NAV_IDS.has(activeNavId)) {
+                  setSidePanelOpen(true);
                 }
               }}
             />
-            <MapLegend />
+            {mapSettings.showLegend ? <MapLegend /> : null}
             <ButtonCompact
               variant="primary"
               minWidth={false}
@@ -117,7 +157,7 @@ export function FlightTrackerApp() {
             />
           </div>
         </div>
-        <TimelineControl />
+        <TimelineControl playbackSpeed={mapSettings.playbackSpeed} />
       </div>
 
       <FlightDetailsModal

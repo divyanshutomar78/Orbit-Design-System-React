@@ -225,13 +225,13 @@
   color: var(--text-warning);
 }
 
+/* Radix Popover portals content with position:fixed — do not override placement */
 .orbit-input-select__dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  left: 0;
-  z-index: 20;
-  margin-top: calc(var(--gap-xs) * 1px);
+  z-index: 1100;
+  box-sizing: border-box;
+  width: var(--radix-popover-trigger-width);
+  max-height: var(--radix-popover-content-available-height);
+  overflow: auto;
 }
 
 .orbit-input-select__menu {

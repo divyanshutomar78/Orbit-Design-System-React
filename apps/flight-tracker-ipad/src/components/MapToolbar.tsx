@@ -5,9 +5,11 @@ import './MapToolbar.css';
 
 export interface MapToolbarProps {
   onCollapse?: () => void;
+  onSettingsClick?: () => void;
+  settingsActive?: boolean;
 }
 
-export function MapToolbar({ onCollapse }: MapToolbarProps) {
+export function MapToolbar({ onCollapse, onSettingsClick, settingsActive }: MapToolbarProps) {
   return (
     <div className="map-toolbar" role="toolbar" aria-label="Map controls">
       <ButtonCompact
@@ -25,11 +27,13 @@ export function MapToolbar({ onCollapse }: MapToolbarProps) {
         leftIcon={<GlobeIcon />}
       />
       <ButtonCompact
-        variant="tertiary"
+        variant={settingsActive ? 'secondary' : 'tertiary'}
         minWidth={false}
         iconSize="big"
         aria-label="Settings"
+        aria-pressed={settingsActive}
         leftIcon={<SettingsIcon />}
+        onClick={onSettingsClick}
       />
       <ButtonCompact variant="secondary" className="map-toolbar__sim">
         SIM Position

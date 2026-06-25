@@ -53,3 +53,12 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+.map-view--satellite .map-view__ocean {
+  fill: #0f1410;
+}
+
+.map-view--satellite .map-view__land {
+  stroke: #3d4f38;
+  opacity: 0.95;
+}

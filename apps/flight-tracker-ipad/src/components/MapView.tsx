@@ -1,3 +1,4 @@
+import type { MapSettings } from '../data/settings';
 import './MapView.css';
 
 /** Simplified Central Asia / Middle East land outlines for the dark map canvas. */
@@ -17,9 +18,19 @@ const FIR_ZONES = [
 const FLIGHT_PATH =
   'M 140 180 Q 220 150 300 170 T 420 220 T 480 300';
 
-export function MapView() {
+export interface MapViewProps {
+  settings: MapSettings;
+}
+
+export function MapView({ settings }: MapViewProps) {
   return (
-    <div className="map-view">
+    <div
+      className={
+        settings.mapTheme === 'satellite'
+          ? 'map-view map-view--satellite'
+          : 'map-view'
+      }
+    >
       <svg
         className="map-view__svg"
         viewBox="0 0 600 480"
@@ -33,23 +44,31 @@ export function MapView() {
           <path key={index} className="map-view__land" d={path} />
         ))}
 
-        {FIR_ZONES.map((zone, index) => (
-          <path
-            key={index}
-            className="map-view__fir-zone"
-            d={zone.d}
-            stroke={zone.color}
-            style={{ opacity: zone.opacity ?? 1 }}
-          />
-        ))}
+        {settings.showFirZones
+          ? FIR_ZONES.map((zone, index) => (
+              <path
+                key={index}
+                className="map-view__fir-zone"
+                d={zone.d}
+                stroke={zone.color}
+                style={{ opacity: zone.opacity ?? 1 }}
+              />
+            ))
+          : null}
 
-        <path className="map-view__flight-path" d={FLIGHT_PATH} />
+        {settings.showFlightPath ? (
+          <path className="map-view__flight-path" d={FLIGHT_PATH} />
+        ) : null}
 
-        <circle className="map-view__affected-area" cx="360" cy="175" r="18" />
+        {settings.showAffectedAreas ? (
+          <circle className="map-view__affected-area" cx="360" cy="175" r="18" />
+        ) : null}
 
-        <g className="map-view__aircraft" transform="translate(300, 168) rotate(25)">
-          <path d="M-10 0 L10 0 M0-6 L8 0 L0 6 Z" />
-        </g>
+        {settings.showAircraft ? (
+          <g className="map-view__aircraft" transform="translate(300, 168) rotate(25)">
+            <path d="M-10 0 L10 0 M0-6 L8 0 L0 6 Z" />
+          </g>
+        ) : null}
       </svg>
     </div>
   );

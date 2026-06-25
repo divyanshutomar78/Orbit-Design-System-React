@@ -346,12 +346,13 @@ export function InputSelect({
 
         {hasDropdown ? (
           <Popover open={open && !disabled} onOpenChange={setOpen}>
-            <PopoverTrigger asChild disabled={disabled}>
+            <PopoverTrigger asChild>
               {fieldButton}
             </PopoverTrigger>
             {actionMenuItems ? (
               <PopoverContent
                 id={menuId}
+                side="bottom"
                 onOpenAutoFocus={(event) => event.preventDefault()}
               >
                 <ActionMenu

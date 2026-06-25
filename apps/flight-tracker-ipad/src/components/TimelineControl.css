@@ -66,9 +66,20 @@
 
 .timeline-control__labels {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: calc(var(--gap-xxs) * 1px);
   overflow: hidden;
+}
+
+.timeline-control__speed {
+  flex-shrink: 0;
+  padding-inline-end: calc(var(--gap-s) * 1px);
+  font-size: calc(var(--font-font-size-body-small) * 1px);
+  line-height: calc(var(--font-line-height-body-small) * 1px);
+  color: var(--text-action);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .timeline-control__label {

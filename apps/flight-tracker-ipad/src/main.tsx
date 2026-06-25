@@ -3,8 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 import 'orbit-ds-variables/dist/css/primitives/variables.css';
 import 'orbit-ds-variables/dist/css/themes/n-grey/variables.css';
-/* iPad platform — 44px touch frames, larger nav/toolbar heights */
-import 'orbit-ds-variables/dist/css/platforms/ipad/variables.css';
+import 'orbit-ds-variables/dist/css/platforms/web/variables.css';
 
 import { App } from './App';
 import './styles/globals.css';

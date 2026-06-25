@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import { ButtonCompact } from 'orbit-ds-components';
 
+import type { PlaybackSpeed } from '../data/settings';
 import { AircraftIcon, PlayIcon, UploadIcon } from './MapIcons';
 import './TimelineControl.css';
 
 const TIME_MARKS = Array.from({ length: 13 }, (_, index) => index);
 
-export function TimelineControl() {
+export interface TimelineControlProps {
+  playbackSpeed?: PlaybackSpeed;
+}
+
+export function TimelineControl({ playbackSpeed = '1' }: TimelineControlProps) {
   const [position, setPosition] = useState(42);
+  const speedLabel = playbackSpeed === '1' ? '1×' : `${playbackSpeed}×`;
 
   return (
     <footer className="timeline-control" aria-label="UTC timeline">
@@ -15,7 +21,7 @@ export function TimelineControl() {
         variant="tertiary"
         minWidth={false}
         iconSize="big"
-        aria-label="Play timeline"
+        aria-label={`Play timeline at ${speedLabel}`}
         leftIcon={<PlayIcon />}
         className="timeline-control__play"
       />
@@ -41,6 +47,7 @@ export function TimelineControl() {
           />
         </div>
         <div className="timeline-control__labels">
+          <span className="timeline-control__speed">{speedLabel} playback</span>
           {TIME_MARKS.map((hour) => (
             <span key={hour} className="timeline-control__label">
               {String(hour).padStart(2, '0')}:00 Z

@@ -1,0 +1,55 @@
+<nav [class]="classes" aria-label="eWAS navigation">
+  <div class="orbit-ewas-nav-bar__section">
+    <orbit-ewas-nav-item-w-text
+      *ngIf="flight"
+      [characters]="flightCharacters"
+      [primaryText]="flightHeader?.primaryText"
+      [secondaryText]="flightHeader?.secondaryText"
+      [orientation]="orientation"
+      [state]="flightHeader?.state ?? 'default'"
+    ></orbit-ewas-nav-item-w-text>
+
+    <div class="orbit-ewas-nav-bar__section">
+      <div class="orbit-ewas-nav-bar__branding" *ngIf="!flight">
+        <ng-container *ngIf="useBrandingSlot; else defaultBrandingTpl">
+          <ng-content select="[orbitBranding]"></ng-content>
+        </ng-container>
+        <ng-template #defaultBrandingTpl>
+          <orbit-ewas-nav-bar-sita-logo-icon></orbit-ewas-nav-bar-sita-logo-icon>
+        </ng-template>
+      </div>
+      <ng-container *ngFor="let item of primaryItems">
+        <ng-container *ngTemplateOutlet="navItemTpl; context: { $implicit: item }"></ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="orbit-ewas-nav-bar__section">
+    <div class="orbit-ewas-nav-bar__section">
+      <ng-container *ngFor="let item of resolvedUtility">
+        <ng-container *ngTemplateOutlet="navItemTpl; context: { $implicit: item }"></ng-container>
+      </ng-container>
+    </div>
+    <ng-container *ngTemplateOutlet="navItemTpl; context: { $implicit: footerItem }"></ng-container>
+  </div>
+</nav>
+
+<ng-template #navItemTpl let-item>
+  <orbit-ewas-nav-item
+    [navItem]="showLabels ? item.label : undefined"
+    [orientation]="orientation"
+    [state]="resolveState(item)"
+    [disabled]="item.disabled"
+    [useIconSlot]="true"
+    (itemClick)="handleItemSelect(item)"
+  >
+    <orbit-ewas-nav-bar-aircraft-icon *ngIf="item.iconType === 'aircraft'"></orbit-ewas-nav-bar-aircraft-icon>
+    <orbit-ewas-nav-bar-airport-icon *ngIf="item.iconType === 'airport'"></orbit-ewas-nav-bar-airport-icon>
+    <orbit-ewas-nav-bar-leaf-icon *ngIf="item.iconType === 'leaf'"></orbit-ewas-nav-bar-leaf-icon>
+    <orbit-ewas-nav-bar-data-icon *ngIf="item.iconType === 'data'"></orbit-ewas-nav-bar-data-icon>
+    <orbit-ewas-nav-bar-gear-icon *ngIf="item.iconType === 'gear'"></orbit-ewas-nav-bar-gear-icon>
+    <orbit-ewas-nav-bar-user-icon *ngIf="item.iconType === 'user'"></orbit-ewas-nav-bar-user-icon>
+    <orbit-ewas-nav-bar-users-icon *ngIf="item.iconType === 'users'"></orbit-ewas-nav-bar-users-icon>
+    <orbit-ewas-nav-bar-pilot-app-icon *ngIf="item.iconType === 'pilotApp'"></orbit-ewas-nav-bar-pilot-app-icon>
+  </orbit-ewas-nav-item>
+</ng-template>

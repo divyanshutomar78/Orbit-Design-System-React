@@ -1,0 +1,25 @@
+<div [class]="classes" [id]="id" role="menu">
+  <div class="orbit-action-menu__add-item" *ngIf="addItems">
+    <ng-content select="[orbitAddMoreItem]"></ng-content>
+  </div>
+  <ul class="orbit-action-menu__list">
+    <li
+      orbitActionMenuItem
+      *ngFor="let item of items"
+      [label]="item.label ?? 'Item'"
+      [selected]="!!item.selected"
+      [disabled]="!!item.disabled"
+      [showLeftIcon]="item.showLeftIcon ?? true"
+      [leftIconType]="item.leftIconType ?? 'checkmark'"
+      [showRightIcon1]="item.showRightIcon1 ?? true"
+      [showRightIcon2]="item.showRightIcon2 ?? true"
+      [iconSize]="iconSize"
+      [rightIcon1Label]="item.rightIcon1Label ?? 'Expand'"
+      [rightIcon2Label]="item.rightIcon2Label ?? 'Remove'"
+      [className]="item.className"
+      (itemSelect)="onItemSelect(item.id)"
+      (rightIcon1Click)="onItemRightIcon1(item.id)"
+      (rightIcon2Click)="onItemRightIcon2(item.id)"
+    ></li>
+  </ul>
+</div>

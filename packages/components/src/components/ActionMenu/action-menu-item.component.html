@@ -1,0 +1,76 @@
+<button
+  type="button"
+  class="orbit-action-menu-item__main"
+  [disabled]="disabled"
+  role="menuitem"
+  [attr.aria-current]="selected ? 'true' : null"
+  (click)="onSelect()"
+>
+  <span *ngIf="showLeftIcon" [class]="leftSpanClasses">
+    <ng-container *ngIf="useLeftIconSlot">
+      <ng-content select="[orbitLeftIcon]"></ng-content>
+    </ng-container>
+    <orbit-icon-frame
+      *ngIf="!useLeftIconSlot && showLeftGlyph"
+      [size]="iconSize"
+      className="orbit-action-menu-item__left-icon"
+    >
+      <orbit-action-menu-check-icon *ngIf="leftIconType === 'checkmark'"></orbit-action-menu-check-icon>
+      <orbit-action-menu-checkbox-icon
+        *ngIf="leftIconType === 'checkbox'"
+        [selected]="selected"
+      ></orbit-action-menu-checkbox-icon>
+      <orbit-action-menu-radio-icon
+        *ngIf="leftIconType === 'radio'"
+        [selected]="selected"
+      ></orbit-action-menu-radio-icon>
+      <orbit-action-menu-toggle-icon
+        *ngIf="leftIconType === 'toggle'"
+        [selected]="selected"
+      ></orbit-action-menu-toggle-icon>
+    </orbit-icon-frame>
+  </span>
+  <span class="orbit-action-menu-item__label">
+    <ng-container *ngIf="useLabelSlot; else defaultLabelTpl">
+      <ng-content select="[orbitLabel]"></ng-content>
+    </ng-container>
+    <ng-template #defaultLabelTpl>{{ label }}</ng-template>
+  </span>
+</button>
+
+<div class="orbit-action-menu-item__actions" *ngIf="showRightIcon1 || showRightIcon2">
+  <button
+    *ngIf="showRightIcon1"
+    type="button"
+    class="orbit-action-menu-item__icon-btn"
+    [disabled]="disabled"
+    [attr.aria-label]="rightIcon1Label"
+    (click)="onRightIcon1Click($event)"
+  >
+    <orbit-icon-frame [size]="iconSize">
+      <ng-container *ngIf="useRightIcon1Slot; else defaultRightIcon1Tpl">
+        <ng-content select="[orbitRightIcon1]"></ng-content>
+      </ng-container>
+      <ng-template #defaultRightIcon1Tpl>
+        <orbit-action-menu-chevron-down-icon></orbit-action-menu-chevron-down-icon>
+      </ng-template>
+    </orbit-icon-frame>
+  </button>
+  <button
+    *ngIf="showRightIcon2"
+    type="button"
+    class="orbit-action-menu-item__icon-btn orbit-action-menu-item__icon-btn--close"
+    [disabled]="disabled"
+    [attr.aria-label]="rightIcon2Label"
+    (click)="onRightIcon2Click($event)"
+  >
+    <orbit-icon-frame [size]="iconSize">
+      <ng-container *ngIf="useRightIcon2Slot; else defaultRightIcon2Tpl">
+        <ng-content select="[orbitRightIcon2]"></ng-content>
+      </ng-container>
+      <ng-template #defaultRightIcon2Tpl>
+        <orbit-action-menu-close-icon></orbit-action-menu-close-icon>
+      </ng-template>
+    </orbit-icon-frame>
+  </button>
+</div>

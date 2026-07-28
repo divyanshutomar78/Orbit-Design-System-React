@@ -4,29 +4,29 @@ Amber/warning status chip for caution states (Pending, Review needed).
 
 ## Import
 
-```tsx
-import { WarningChip } from 'orbit-ds-components';
+```ts
+import { WarningChipComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-<WarningChip type="chip" size="compact" showIcon={false}>Pending</WarningChip>
+```html
+<orbit-warning-chip type="chip" size="compact" [showIcon]="false" label="Pending"></orbit-warning-chip>
 ```
 
-## Props
+## Inputs
 
-Same as all chips: `type`, `size`, `selected`, `showIcon`, `iconSize`, `children`.
+Same as all chips: `type`, `size`, `selected`, `showIcon`, `iconSize`, `label`.
 
 Tokens: `--chips-warning-default`, `--chips-warning-hover`, `--chips-warning-selected`.
 
 ## Rules
 
-- **Read-only status:** `showIcon={false}`.
-- **Selectable filter:** `showIcon` + `onClick` + `selected`. See [chips.md](./chips.md).
+- **Read-only status:** `[showIcon]="false"`.
+- **Selectable filter:** `showIcon` + `(click)` + `selected`. See [chips.md](./chips.md).
 
 ## Dashboard examples
 
-```tsx
-<WarningChip type="chip" size="compact" showIcon={false}>Awaiting approval</WarningChip>
+```html
+<orbit-warning-chip type="chip" size="compact" [showIcon]="false" label="Awaiting approval"></orbit-warning-chip>
 ```

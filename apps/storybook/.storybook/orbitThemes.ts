@@ -1,9 +1,3 @@
-import dGrey from './themes/d-grey.css?url';
-import dGreen from './themes/d-green.css?url';
-import nBlue from './themes/n-blue.css?url';
-import nGreen from './themes/n-green.css?url';
-import nGrey from './themes/n-grey.css?url';
-
 export type OrbitThemeId = 'd-grey' | 'd-green' | 'n-grey' | 'n-green' | 'n-blue';
 
 export const ORBIT_THEMES: { value: OrbitThemeId; title: string }[] = [
@@ -14,27 +8,27 @@ export const ORBIT_THEMES: { value: OrbitThemeId; title: string }[] = [
   { value: 'n-blue', title: 'Neutral Blue (n-blue)' },
 ];
 
+const ORBIT_PRIMITIVES_STYLE = '/orbit-primitives/variables.css';
+
+// Served via Storybook staticDirs from orbit-ds-variables package.
 export const ORBIT_THEME_STYLES: Record<OrbitThemeId, string> = {
-  'd-grey': dGrey,
-  'd-green': dGreen,
-  'n-grey': nGrey,
-  'n-green': nGreen,
-  'n-blue': nBlue,
+  'd-grey': '/orbit-themes/d-grey/variables.css',
+  'd-green': '/orbit-themes/d-green/variables.css',
+  'n-grey': '/orbit-themes/n-grey/variables.css',
+  'n-green': '/orbit-themes/n-green/variables.css',
+  'n-blue': '/orbit-themes/n-blue/variables.css',
 };
 
 export const DEFAULT_ORBIT_THEME: OrbitThemeId = 'd-grey';
 
+const PRIMITIVES_LINK_ID = 'orbit-storybook-primitives';
 const THEME_LINK_ID = 'orbit-storybook-theme';
 
-export function applyOrbitTheme(themeId: string): void {
-  const href =
-    ORBIT_THEME_STYLES[themeId as OrbitThemeId] ??
-    ORBIT_THEME_STYLES[DEFAULT_ORBIT_THEME];
-
-  let link = document.getElementById(THEME_LINK_ID) as HTMLLinkElement | null;
+function upsertStylesheet(id: string, href: string): void {
+  let link = document.getElementById(id) as HTMLLinkElement | null;
   if (!link) {
     link = document.createElement('link');
-    link.id = THEME_LINK_ID;
+    link.id = id;
     link.rel = 'stylesheet';
     document.head.appendChild(link);
   }
@@ -42,4 +36,11 @@ export function applyOrbitTheme(themeId: string): void {
   if (link.href !== href) {
     link.href = href;
   }
+}
+
+export function applyOrbitTheme(themeId: string): void {
+  const href =
+    ORBIT_THEME_STYLES[themeId as OrbitThemeId] ?? ORBIT_THEME_STYLES[DEFAULT_ORBIT_THEME];
+  upsertStylesheet(PRIMITIVES_LINK_ID, ORBIT_PRIMITIVES_STYLE);
+  upsertStylesheet(THEME_LINK_ID, href);
 }

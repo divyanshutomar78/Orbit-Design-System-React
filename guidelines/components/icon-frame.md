@@ -4,29 +4,29 @@ Sizes custom SVG icons to Orbit platform tokens. Use when placing icons in Butto
 
 ## Import
 
-```tsx
-import { IconFrame } from 'orbit-ds-components';
+```ts
+import { IconFrameComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-<IconFrame size="big">
-  <MyCustomIcon />
-</IconFrame>
+```html
+<orbit-icon-frame size="big">
+  <!-- MyCustomIcon SVG -->
+</orbit-icon-frame>
 
-<IconFrame size="small">
-  <ChevronIcon />
-</IconFrame>
+<orbit-icon-frame size="small">
+  <!-- ChevronIcon SVG -->
+</orbit-icon-frame>
 ```
 
-## Props
+## Inputs
 
-| Prop | Default | Description |
-|------|---------|-------------|
+| Input | Default | Description |
+|-------|---------|-------------|
 | `size` | `'small'` | `'small'` \| `'big'` |
 | `className` | — | Extra CSS class |
-| `children` | — | SVG or icon element |
+| projected content | — | SVG or icon element via `ng-content` |
 
 ## Sizing reference (web platform)
 
@@ -38,5 +38,5 @@ import { IconFrame } from 'orbit-ds-components';
 ## Rules
 
 - **Only put icon-sized content inside IconFrame** — not checkboxes, chips, or multi-column layouts.
-- Orbit components (`Button`, `ListingItem`, chips) use IconFrame internally — you usually don't need it directly.
+- Orbit components (`orbit-button`, `orbit-listing-item`, chips) use IconFrame internally — you usually don't need it directly.
 - Use when building custom dashboard widgets that must align with Orbit icon sizing.

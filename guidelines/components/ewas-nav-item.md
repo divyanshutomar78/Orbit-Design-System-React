@@ -4,21 +4,21 @@ Single icon navigation button with Default / Active / Disabled states.
 
 ## Import
 
-```tsx
-import { EWasNavItem } from 'orbit-ds-components';
+```ts
+import { EWasNavItemComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-<EWasNavItem navItem="Flights" orientation="horizontal" state="active" />
-<EWasNavItem orientation="splitView" state="default" />
+```html
+<orbit-ewas-nav-item navItem="Flights" orientation="horizontal" state="active"></orbit-ewas-nav-item>
+<orbit-ewas-nav-item orientation="splitView" state="default"></orbit-ewas-nav-item>
 ```
 
-## Props
+## Inputs
 
-| Prop | Default | Description |
-|------|---------|-------------|
+| Input | Default | Description |
+|-------|---------|-------------|
 | `navItem` | `'Flights'` | Label text |
 | `icon` | rocket icon | Custom icon |
 | `orientation` | `'horizontal'` | `'horizontal'` \| `'splitView'` \| `'vertical'` |
@@ -27,6 +27,6 @@ import { EWasNavItem } from 'orbit-ds-components';
 
 ## Rules
 
-- Prefer `EWasNavBar` for full nav — use `EWasNavItem` only for custom nav compositions.
+- Prefer `EWasNavBarComponent` for full nav — use `EWasNavItemComponent` only for custom nav compositions.
 - `splitView` orientation shows icon only (no label).
 - Sizes use `--components-e-was-nav-item-*` platform tokens.

@@ -1,0 +1,24 @@
+<label [class]="classes">
+  <input
+    #checkboxInput
+    type="checkbox"
+    [id]="id"
+    class="orbit-option-checkbox__input"
+    [checked]="isOn"
+    [disabled]="isDisabled"
+    [name]="name"
+    [value]="value"
+    (change)="onChange($event)"
+  />
+  <orbit-icon-frame [size]="iconSize" [className]="'orbit-option-checkbox__icon'">
+    <orbit-option-checkbox-icon [state]="resolvedState"></orbit-option-checkbox-icon>
+  </orbit-icon-frame>
+  <span class="orbit-option-checkbox__text">
+    <ng-container *ngIf="useTextSlot; else checkboxLabelTpl">
+      <ng-content select="[orbitTextSlot]"></ng-content>
+    </ng-container>
+    <ng-template #checkboxLabelTpl>
+      <span class="orbit-option-checkbox__label">{{ label }}</span>
+    </ng-template>
+  </span>
+</label>

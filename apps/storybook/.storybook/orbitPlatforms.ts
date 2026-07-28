@@ -1,7 +1,3 @@
-import desktop from 'orbit-ds-variables/dist/css/platforms/desktop/variables.css?url';
-import ipad from 'orbit-ds-variables/dist/css/platforms/ipad/variables.css?url';
-import web from 'orbit-ds-variables/dist/css/platforms/web/variables.css?url';
-
 export type OrbitPlatformId = 'web' | 'ipad' | 'desktop';
 
 export const ORBIT_PLATFORMS: { value: OrbitPlatformId; title: string }[] = [
@@ -10,10 +6,12 @@ export const ORBIT_PLATFORMS: { value: OrbitPlatformId; title: string }[] = [
   { value: 'desktop', title: 'Desktop' },
 ];
 
+// Served via Storybook `staticDirs`:
+// `{ from: '../../../node_modules/orbit-ds-variables/dist/css/platforms', to: '/orbit-platforms' }`.
 export const ORBIT_PLATFORM_STYLES: Record<OrbitPlatformId, string> = {
-  web,
-  ipad,
-  desktop,
+  web: '/orbit-platforms/web/variables.css',
+  ipad: '/orbit-platforms/ipad/variables.css',
+  desktop: '/orbit-platforms/desktop/variables.css',
 };
 
 export const DEFAULT_ORBIT_PLATFORM: OrbitPlatformId = 'web';

@@ -1,0 +1,34 @@
+<label [class]="classes">
+  <input
+    #toggleInput
+    type="checkbox"
+    role="switch"
+    [id]="id"
+    class="orbit-option-toggle__input"
+    [checked]="isOn"
+    [disabled]="isDisabled"
+    [name]="name"
+    [value]="value"
+    [attr.aria-checked]="ariaChecked"
+    (change)="onChange($event)"
+  />
+  <orbit-icon-frame [size]="iconSize" [className]="'orbit-option-toggle__icon'">
+    <orbit-option-toggle-icon [state]="resolvedState"></orbit-option-toggle-icon>
+  </orbit-icon-frame>
+  <span class="orbit-option-toggle__text">
+    <ng-container *ngIf="useTextSlot; else toggleLabelTpl">
+      <ng-content select="[orbitTextSlot]"></ng-content>
+    </ng-container>
+    <ng-template #toggleLabelTpl>
+      <span class="orbit-option-toggle__label">{{ label }}</span>
+    </ng-template>
+  </span>
+  <span *ngIf="showRightIcon" class="orbit-option-toggle__right-icon" aria-hidden="true">
+    <ng-container *ngIf="useRightIconSlot; else toggleChevronTpl">
+      <ng-content select="[orbitRightIcon]"></ng-content>
+    </ng-container>
+    <ng-template #toggleChevronTpl>
+      <orbit-option-toggle-chevron-icon></orbit-option-toggle-chevron-icon>
+    </ng-template>
+  </span>
+</label>

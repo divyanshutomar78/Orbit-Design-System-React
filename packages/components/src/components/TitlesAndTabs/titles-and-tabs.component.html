@@ -1,0 +1,53 @@
+<header [class]="classes">
+  <div class="orbit-titles-and-tabs__start">
+    <div class="orbit-titles-and-tabs__header" *ngIf="showTitleIcon">
+      <orbit-icon-frame *ngIf="showLeftIcon" [size]="iconSize">
+        <ng-container *ngIf="useLeftIconSlot; else defaultLeftIconTpl">
+          <ng-content select="[orbitLeftIcon]"></ng-content>
+        </ng-container>
+        <ng-template #defaultLeftIconTpl>
+          <orbit-titles-and-tabs-back-icon></orbit-titles-and-tabs-back-icon>
+        </ng-template>
+      </orbit-icon-frame>
+      <span class="orbit-titles-and-tabs__title">{{ title }}</span>
+    </div>
+
+    <div class="orbit-titles-and-tabs__tabs" *ngIf="showTabs">
+      <ng-container *ngIf="useTabsSlot; else defaultTabsTpl">
+        <ng-content select="[orbitTabs]"></ng-content>
+      </ng-container>
+      <ng-template #defaultTabsTpl>
+        <ng-container *ngIf="tabItems && tabItems.length; else singleDefaultTabTpl">
+          <orbit-title-tab
+            *ngFor="let item of tabItems"
+            [selected]="!!item.selected"
+            [disabled]="!!item.disabled"
+            [label]="item.label"
+            (tabClick)="onTabSelect(item.id)"
+          ></orbit-title-tab>
+        </ng-container>
+        <ng-template #singleDefaultTabTpl>
+          <orbit-title-tab></orbit-title-tab>
+        </ng-template>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="orbit-titles-and-tabs__spacer" aria-hidden="true"></div>
+
+  <div class="orbit-titles-and-tabs__end">
+    <div class="orbit-titles-and-tabs__slot" *ngIf="showExtraSlot">
+      <ng-content select="[orbitExtraSlot]"></ng-content>
+    </div>
+    <div class="orbit-titles-and-tabs__actions" *ngIf="showRightIcons">
+      <orbit-icon-frame [size]="iconSize">
+        <ng-container *ngIf="useRightIconsSlot; else defaultRightIconsTpl">
+          <ng-content select="[orbitRightIcons]"></ng-content>
+        </ng-container>
+        <ng-template #defaultRightIconsTpl>
+          <orbit-titles-and-tabs-menu-icon></orbit-titles-and-tabs-menu-icon>
+        </ng-template>
+      </orbit-icon-frame>
+    </div>
+  </div>
+</header>

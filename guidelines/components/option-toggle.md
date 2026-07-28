@@ -4,37 +4,37 @@ Toggle switch row with Off / On / Partial states.
 
 ## Import
 
-```tsx
-import { OptionToggle } from 'orbit-ds-components';
+```ts
+import { OptionToggleComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-<OptionToggle state="on" label="Enable notifications" onChange={handleChange} />
-<OptionToggle state="off" label="Dark mode" />
+```html
+<orbit-option-toggle state="on" label="Enable notifications" (checkedChange)="handleChange($event)"></orbit-option-toggle>
+<orbit-option-toggle state="off" label="Dark mode"></orbit-option-toggle>
 ```
 
-## Props
+## Inputs
 
-| Prop | Type | Default |
-|------|------|---------|
-| `label` | ReactNode | `'Option'` |
+| Input | Type | Default |
+|-------|------|---------|
+| `label` | string | `'Option'` |
 | `state` | `'off'` \| `'on'` \| `'partial'` | `'off'` |
 | `status` | `'default'` \| `'hover'` \| `'disabled'` | `'default'` |
 | `showRightIcon` | boolean | `false` |
-| `rightIcon` | ReactNode | chevron |
+| `useRightIconSlot` / `[orbitRightIcon]` | projected content | chevron |
 | `checked` / `partial` | boolean | aliases |
 
 ## Dashboard examples
 
-```tsx
-// Settings list
-<OptionToggle state={notifications ? 'on' : 'off'} label="Push notifications" />
-<OptionToggle state={autoSave ? 'on' : 'off'} label="Auto-save" />
+```html
+<!-- Settings list -->
+<orbit-option-toggle [state]="notifications ? 'on' : 'off'" label="Push notifications"></orbit-option-toggle>
+<orbit-option-toggle [state]="autoSave ? 'on' : 'off'" label="Auto-save"></orbit-option-toggle>
 ```
 
 ## Rules
 
-- Use for boolean settings, not for table row selection (use `OptionCheckbox`).
+- Use for boolean settings, not for table row selection (use `OptionCheckboxComponent`).
 - `partial` state for indeterminate sync scenarios.

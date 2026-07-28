@@ -1,37 +1,37 @@
 # ButtonCompact
 
-Same API as `Button`, using compact platform tokens for dense UIs.
+Same API as `ButtonComponent`, using compact platform tokens for dense UIs.
 
 ## Import
 
-```tsx
-import { ButtonCompact } from 'orbit-ds-components';
+```ts
+import { ButtonCompactComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-<ButtonCompact variant="primary">Apply</ButtonCompact>
-<ButtonCompact variant="secondary">Reset</ButtonCompact>
+```html
+<orbit-button-compact variant="primary" label="Apply"></orbit-button-compact>
+<orbit-button-compact variant="secondary" label="Reset"></orbit-button-compact>
 ```
 
-## Props
+## Inputs
 
-Same as `Button` — `variant`, `minWidth`, `iconSize`, `leftIcon`, `rightIcon`, `disabled`.
+Same as `orbit-button` — `variant`, `minWidth`, `iconSize`, `showLeftIcon`, `showRightIcon`, `label`, `disabled`.
 
 Uses `--compact-height` and `--compact-min-width` platform tokens.
 
 ## Dashboard examples
 
-```tsx
-// Inline filter bar
-<div style={{ display: 'flex', gap: 'calc(var(--gap-xs) * 1px)' }}>
-  <ButtonCompact variant="secondary">Clear</ButtonCompact>
-  <ButtonCompact variant="primary">Apply filters</ButtonCompact>
+```html
+<!-- Inline filter bar -->
+<div style="display: flex; gap: calc(var(--gap-xs) * 1px)">
+  <orbit-button-compact variant="secondary" label="Clear"></orbit-button-compact>
+  <orbit-button-compact variant="primary" label="Apply filters"></orbit-button-compact>
 </div>
 
-// Table row actions
-<ButtonCompact variant="tertiary">Edit</ButtonCompact>
+<!-- Table row actions -->
+<orbit-button-compact variant="tertiary" label="Edit"></orbit-button-compact>
 ```
 
 ## When to use

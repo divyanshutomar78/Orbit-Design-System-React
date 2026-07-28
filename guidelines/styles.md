@@ -4,7 +4,7 @@ How to style dashboards built with `orbit-ds-components`.
 
 ## Style loading order
 
-```tsx
+```ts
 // 1. Primitives + theme + platform (tokens)
 import 'orbit-ds-variables/dist/css/primitives/variables.css';
 import 'orbit-ds-variables/dist/css/themes/d-grey/variables.css';
@@ -54,16 +54,16 @@ Orbit components ship with their own CSS classes (`orbit-button`, `orbit-listing
 
 ### Page shell
 
-```tsx
-<div style={{ display: 'flex', minHeight: '100vh', background: 'var(--background-background)' }}>
-  <EWasNavBar orientation="vertical" flight={false} />
-  <main className="page-canvas" style={{ flex: 1, background: 'var(--background-background)' }}>
-    <header className="page-header" style={{ background: 'var(--background-surface-container-1)' }}>
-      <TitlesAndTabs title="Dashboard" tabItems={tabs} />
+```html
+<div style="display: flex; min-height: 100vh; background: var(--background-background)">
+  <orbit-ewas-nav-bar orientation="vertical" [flight]="false"></orbit-ewas-nav-bar>
+  <main class="page-canvas" style="flex: 1; background: var(--background-background)">
+    <header class="page-header" style="background: var(--background-surface-container-1)">
+      <orbit-titles-and-tabs title="Dashboard" [tabItems]="tabs"></orbit-titles-and-tabs>
     </header>
-    <p className="page-subtitle">Optional description — always outside TitlesAndTabs.</p>
-    <div className="page-content">
-      {/* sections on canvas → container-1; inner content → container-2 */}
+    <p class="page-subtitle">Optional description — always outside orbit-titles-and-tabs.</p>
+    <div class="page-content">
+      <!-- sections on canvas → container-1; inner content → container-2 -->
     </div>
   </main>
 </div>
@@ -91,33 +91,33 @@ The page canvas stays **`background`**. Top-level sections (header, KPI cards, p
 
 ### Page width alignment (header + body)
 
-`TitlesAndTabs` spans the **full width** of the main area (edge-to-edge border). Page body below it must use the **same horizontal bounds** — do not center content in a narrower column while the header stays full width.
+`orbit-titles-and-tabs` spans the **full width** of the main area (edge-to-edge border). Page body below it must use the **same horizontal bounds** — do not center content in a narrower column while the header stays full width.
 
 | Pattern | Structure | When to use |
 |---------|-----------|-------------|
-| **Full page shell** (default) | `TitlesAndTabs` full width → content `width: 100%` + `--gap-m` padding | Dashboards, settings, billing pages |
-| **Centered panel** | One wrapper around **both** header and body with shared `max-width` + `margin: 0 auto` | Compact flows, preview panels — **do not** use full-width `TitlesAndTabs` outside the wrapper |
+| **Full page shell** (default) | `orbit-titles-and-tabs` full width → content `width: 100%` + `--gap-m` padding | Dashboards, settings, billing pages |
+| **Centered panel** | One wrapper around **both** header and body with shared `max-width` + `margin: 0 auto` | Compact flows, preview panels — **do not** use full-width `orbit-titles-and-tabs` outside the wrapper |
 
-```tsx
-// ✅ Page shell — canvas background, sections container-1
-<main className="page-canvas">
-  <header className="page-header">
-    <TitlesAndTabs title="Billing & Invoices" showTabs={false} ... />
+```html
+<!-- ✅ Page shell — canvas background, sections container-1 -->
+<main class="page-canvas">
+  <header class="page-header">
+    <orbit-titles-and-tabs title="Billing & Invoices" [showTabs]="false"></orbit-titles-and-tabs>
   </header>
-  <section className="page-section">{/* KPI row → container-1 */}</section>
-  <section className="page-section">{/* table panel → container-1; row hover → container-2 */}</section>
+  <section class="page-section"><!-- KPI row → container-1 --></section>
+  <section class="page-section"><!-- table panel → container-1; row hover → container-2 --></section>
 </main>
 
-// ✅ Centered panel — header AND body inside the same box
-<div className="page-panel">
-  <header className="page-panel__header">Billing & Invoices</header>
-  <div className="page-panel__body">{/* content */}</div>
+<!-- ✅ Centered panel — header AND body inside the same box -->
+<div class="page-panel">
+  <header class="page-panel__header">Billing & Invoices</header>
+  <div class="page-panel__body"><!-- content --></div>
 </div>
 
-// ❌ Misaligned — full-width header, narrow centered body
+<!-- ❌ Misaligned — full-width header, narrow centered body -->
 <main>
-  <TitlesAndTabs title="Billing & Invoices" />
-  <div style={{ maxWidth: 960, margin: '0 auto' }}>...</div>
+  <orbit-titles-and-tabs title="Billing & Invoices"></orbit-titles-and-tabs>
+  <div style="max-width: 960px; margin: 0 auto">...</div>
 </main>
 ```
 
@@ -169,12 +169,12 @@ Page sections sit on the canvas at **`container-1`**. Inner strips and hover sta
 
 ### List / table section
 
-Stack `ListingItem` rows inside a section wrapper with `overflow: hidden` and optional `border-radius`:
+Stack `orbit-listing-item` rows inside a section wrapper with `overflow: hidden` and optional `border-radius`:
 
-```tsx
-<div style={{ borderRadius: 4, overflow: 'hidden', background: 'var(--background-surface-container-1)' }}>
-  <ListingItem ... />
-  <ListingItem ... />
+```html
+<div style="border-radius: 4px; overflow: hidden; background: var(--background-surface-container-1)">
+  <orbit-listing-item ...></orbit-listing-item>
+  <orbit-listing-item ...></orbit-listing-item>
 </div>
 ```
 
@@ -184,26 +184,26 @@ Listing items no longer have a bottom border by default (v1.0.1+). Add a wrapper
 
 Use chips, not custom spans:
 
-```tsx
-<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
+```html
+<orbit-success-chip type="chip" size="compact" [showIcon]="false" label="Active"></orbit-success-chip>
 ```
 
 ### Label + value pairs
 
 Single cell:
 
-```tsx
-<LabelValueVertical layout="V + L" value="Alice Fontaine" label="alice@orbit.io" />
-<LabelValueHorizontal layout="L" label="Owner" />
+```html
+<orbit-label-value-vertical layout="V + L" value="Alice Fontaine" label="alice@orbit.io"></orbit-label-value-vertical>
+<orbit-label-value-horizontal layout="L" label="Owner"></orbit-label-value-horizontal>
 ```
 
-Multiple `LabelValueVertical` cells in one row (stats, metrics, info panels) — **always wrap in a grid**:
+Multiple `orbit-label-value-vertical` cells in one row (stats, metrics, info panels) — **always wrap in a grid**:
 
-```tsx
-<div className="stats-row stats-row--four">
-  <LabelValueVertical label="Stage" value="In flight" />
-  <LabelValueVertical label="Call Sign" value="AAL532" />
-  {/* … */}
+```html
+<div class="stats-row stats-row--four">
+  <orbit-label-value-vertical label="Stage" value="In flight"></orbit-label-value-vertical>
+  <orbit-label-value-vertical label="Call Sign" value="AAL532"></orbit-label-value-vertical>
+  <!-- … -->
 </div>
 ```
 
@@ -223,7 +223,7 @@ See [components/label-value-vertical.md](./components/label-value-vertical.md) f
 
 ## Dialog body section dividers
 
-Modal and dialog **headers** (`TitlesAndTabs`, tabbed dialog header) render bottom borders **edge-to-edge** — no horizontal inset. Section dividers **inside** a padded dialog body must match that behavior.
+Modal and dialog **headers** (`orbit-titles-and-tabs`, tabbed dialog header) render bottom borders **edge-to-edge** — no horizontal inset. Section dividers **inside** a padded dialog body must match that behavior.
 
 ### Pattern
 
@@ -270,7 +270,7 @@ Form fields inside modals and dialogs must **fill the available body width** and
 Every control in a dialog form must stretch to the full width of its column:
 
 1. **Native inputs and textareas** — `width: 100%` on the control.
-2. **`InputSelect`** — component default is `max-width: 460px`. **Override in dialog forms:**
+2. **`orbit-input-select`** — component default is `max-width: 460px`. **Override in dialog forms:**
 
 ```css
 .orbit-form-field .orbit-input-select {
@@ -281,7 +281,7 @@ Every control in a dialog form must stretch to the full width of its column:
 
 3. **Form field wrapper** — `width: 100%` and `min-width: 0` so grid cells don't overflow.
 
-**Do not** leave `InputSelect` at its 460px cap inside a wide modal — fields will look short and misaligned with full-width inputs beside them.
+**Do not** leave `orbit-input-select` at its 460px cap inside a wide modal — fields will look short and misaligned with full-width inputs beside them.
 
 ### Two-column grid (wide dialogs)
 
@@ -289,7 +289,7 @@ When the modal is wider than the default (~560px), e.g. `width: min(100%, 640px)
 
 | Field type | Layout |
 |------------|--------|
-| `InputSelect`, short text inputs (To, phone, date) | One column each in a 2-column row |
+| `orbit-input-select`, short text inputs (To, phone, date) | One column each in a 2-column row |
 | Subject (long), textarea, attachment zone, file upload | Full width — `grid-column: 1 / -1` |
 
 ```css
@@ -311,12 +311,12 @@ When the modal is wider than the default (~560px), e.g. `width: min(100%, 640px)
 }
 ```
 
-```tsx
-<div className="dialog-form-grid">
-  <FormField label="Recipients"><InputSelect … /></FormField>
-  <FormField label="Template"><InputSelect … /></FormField>
-  <FormField label="Subject" className="dialog-form-grid__full">…</FormField>
-  <FormField label="Message" className="dialog-form-grid__full">…</FormField>
+```html
+<div class="dialog-form-grid">
+  <FormField label="Recipients"><orbit-input-select …></orbit-input-select></FormField>
+  <FormField label="Template"><orbit-input-select …></orbit-input-select></FormField>
+  <FormField label="Subject" class="dialog-form-grid__full">…</FormField>
+  <FormField label="Message" class="dialog-form-grid__full">…</FormField>
 </div>
 ```
 
@@ -355,12 +355,14 @@ Switch theme by changing the CSS import — don't toggle classes. For surface st
 
 Custom icons inside Orbit slots must fit the icon frame:
 
-```tsx
-import { IconFrame } from 'orbit-ds-components';
+```ts
+import { IconFrameComponent } from 'orbit-ds-components';
+```
 
-<IconFrame size="big">
-  <MySvgIcon />
-</IconFrame>
+```html
+<orbit-icon-frame size="big">
+  <!-- MySvgIcon -->
+</orbit-icon-frame>
 ```
 
 **Don't** pass wide components (checkboxes, multi-column layouts) into `leftIcon` — the frame is 18–24px wide.
@@ -369,14 +371,14 @@ import { IconFrame } from 'orbit-ds-components';
 
 | UI element | Orbit approach |
 |------------|----------------|
-| Page title | `TitlesAndTabs` `title` prop (single line only) |
-| Page subheading / description | Separate element below `TitlesAndTabs` — not inside the component |
-| Section title | `ListingItem` `title` (multi-line) or `LabelValueHorizontal` `big` |
-| Body label | `LabelValueHorizontal` / `LabelValueVertical` `label` |
-| Body value | `label` / `value` props |
-| Helper / meta | `ListingItem` `helper` or `--text-secondary` |
+| Page title | `orbit-titles-and-tabs` `title` input (single line only) |
+| Page subheading / description | Separate element below `orbit-titles-and-tabs` — not inside the component |
+| Section title | `orbit-listing-item` `title` (multi-line) or `orbit-label-value-horizontal` `[big]="true"` |
+| Body label | `orbit-label-value-horizontal` / `orbit-label-value-vertical` `label` |
+| Body value | `label` / `value` inputs |
+| Helper / meta | `orbit-listing-item` `helper` or `--text-secondary` |
 | Column headers | Uppercase, `font-size: 11px`, `letter-spacing: 0.06em`, `color: var(--text-secondary)` |
 
 ## Focus & interaction
 
-Orbit components handle their own `:hover`, `:focus-visible`, and `:disabled` states. Pass `onClick` to `ListingItem` for interactive rows — it adds `role="button"` and focus styles automatically.
+Orbit components handle their own `:hover`, `:focus-visible`, and `:disabled` states. Bind `(click)` with `[interactive]="true"` on `orbit-listing-item` for interactive rows — it adds `role="button"` and focus styles automatically.

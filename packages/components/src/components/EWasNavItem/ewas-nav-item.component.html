@@ -1,0 +1,20 @@
+<button
+  [type]="type"
+  [class]="classes"
+  [disabled]="isDisabled"
+  [attr.aria-current]="state === 'active' ? 'page' : null"
+  [attr.aria-disabled]="isDisabled || null"
+  (click)="onClick()"
+>
+  <span class="orbit-ewas-nav-item__content">
+    <orbit-icon-frame [size]="iconSize" className="orbit-ewas-nav-item__icon">
+      <ng-container *ngIf="useIconSlot; else defaultRocketIconTpl">
+        <ng-content></ng-content>
+      </ng-container>
+      <ng-template #defaultRocketIconTpl>
+        <orbit-ewas-nav-item-rocket-icon></orbit-ewas-nav-item-rocket-icon>
+      </ng-template>
+    </orbit-icon-frame>
+    <span *ngIf="showLabel" class="orbit-ewas-nav-item__label">{{ navItem }}</span>
+  </span>
+</button>

@@ -4,46 +4,46 @@ Checkbox row with label. Use in forms and selection lists — **not inside Listi
 
 ## Import
 
-```tsx
-import { OptionCheckbox } from 'orbit-ds-components';
+```ts
+import { OptionCheckboxComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-<OptionCheckbox state="on" label="Email me updates" onChange={handleChange} />
-<OptionCheckbox state="partial" label="Select all" />
-<OptionCheckbox state="off" label="Option A" />
+```html
+<orbit-option-checkbox state="on" label="Email me updates" (checkedChange)="handleChange($event)"></orbit-option-checkbox>
+<orbit-option-checkbox state="partial" label="Select all"></orbit-option-checkbox>
+<orbit-option-checkbox state="off" label="Option A"></orbit-option-checkbox>
 ```
 
-## Props
+## Inputs
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | ReactNode | `'Option'` | Visible label text |
+| Input | Type | Default | Description |
+|-------|------|---------|-------------|
+| `label` | string | `'Option'` | Visible label text |
 | `state` | `'off'` \| `'on'` \| `'partial'` | `'off'` | Visual state |
 | `status` | `'default'` \| `'hover'` \| `'disabled'` | `'default'` | Interaction state |
 | `checked` | boolean | — | Alias for `state="on"` |
 | `indeterminate` | boolean | — | Alias for `state="partial"` |
-| `textSlot` | ReactNode | — | Replace label area |
+| `useTextSlot` / `[orbitTextSlot]` | projected content | — | Replace label area |
 | `iconSize` | `'small'` \| `'big'` | `'big'` | Checkbox icon frame |
 
 ## Dashboard examples
 
-```tsx
-// Table select-all header
-<OptionCheckbox
-  state={allSelected ? 'on' : someSelected ? 'partial' : 'off'}
+```html
+<!-- Table select-all header -->
+<orbit-option-checkbox
+  [state]="allSelected ? 'on' : someSelected ? 'partial' : 'off'"
   label="Select all"
-  onChange={toggleAll}
-/>
+  (checkedChange)="toggleAll($event)"
+></orbit-option-checkbox>
 
-// Row checkbox — hide label, keep aria-label
-<OptionCheckbox label="" aria-label="Select Alice Fontaine" iconSize="small" />
+<!-- Row checkbox — hide label, keep aria-label -->
+<orbit-option-checkbox label="" aria-label="Select Alice Fontaine" iconSize="small"></orbit-option-checkbox>
 ```
 
 ## Rules
 
-- **Never** pass full `OptionCheckbox` into `ListingItem` `leftIcon` — it gets crushed into a 24px icon frame.
+- **Never** pass full `orbit-option-checkbox` into `orbit-listing-item` `[orbitLeftIcon]` — it gets crushed into a 24px icon frame.
 - For table rows, place checkbox beside the row in a flex wrapper (see `listing-item.md`).
 - Use `label=""` + `aria-label` for icon-only checkboxes in tables.

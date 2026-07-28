@@ -1,0 +1,47 @@
+<div *ngIf="open" class="orbit-modal__backdrop" (click)="onBackdropClick($event)">
+  <div
+    #dialog
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-labelledby]="title ? titleId : null"
+    [attr.aria-label]="title ? null : ariaLabel"
+    tabindex="-1"
+    [class]="classes"
+  >
+    <header class="orbit-modal__header">
+      <ng-container *ngIf="useHeaderSlot; else defaultHeaderTpl">
+        <div class="orbit-modal__header-slot">
+          <h2 *ngIf="title" [id]="titleId" class="orbit-modal__title">{{ title }}</h2>
+          <ng-content select="[orbitHeader]"></ng-content>
+        </div>
+      </ng-container>
+      <ng-template #defaultHeaderTpl>
+        <h2 *ngIf="title; else noTitleSpacerTpl" [id]="titleId" class="orbit-modal__title">{{ title }}</h2>
+        <ng-template #noTitleSpacerTpl><span></span></ng-template>
+      </ng-template>
+
+      <div class="orbit-modal__header-actions">
+        <button
+          type="button"
+          class="orbit-button-compact orbit-button-compact--tertiary"
+          aria-label="Close dialog"
+          (click)="requestClose()"
+        >
+          <span class="orbit-button-compact__content">
+            <orbit-icon-frame size="big" className="orbit-button-compact__icon">
+              <orbit-modal-close-icon></orbit-modal-close-icon>
+            </orbit-icon-frame>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <div class="orbit-modal__body">
+      <ng-content></ng-content>
+    </div>
+
+    <footer *ngIf="showFooter" class="orbit-modal__footer">
+      <ng-content select="[orbitFooter]"></ng-content>
+    </footer>
+  </div>
+</div>

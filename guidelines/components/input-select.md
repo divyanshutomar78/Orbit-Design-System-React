@@ -4,32 +4,32 @@ Select/dropdown field with label, helper text, error state, and Action Menu drop
 
 ## Import
 
-```tsx
-import { InputSelect } from 'orbit-ds-components';
+```ts
+import { InputSelectComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-<InputSelect
+```html
+<orbit-input-select
   label="Role"
   placeholder="Select role"
-  options={[
+  [options]="[
     { value: 'owner', label: 'Owner' },
     { value: 'admin', label: 'Admin' },
     { value: 'member', label: 'Member' },
-  ]}
-  value={role}
-  onValueChange={setRole}
-/>
+  ]"
+  [value]="role"
+  (valueChange)="role = $event"
+></orbit-input-select>
 ```
 
 When `options` are provided, clicking opens an **ActionMenu** dropdown (not native `<select>`).
 
-## Props
+## Inputs
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Input | Type | Default | Description |
+|-------|------|---------|-------------|
 | `showLabel` | boolean | `true` | Show label row |
 | `showLabelInfo` | boolean | `true` | Info icon next to label |
 | `showHelper` | boolean | `true` | Helper text line |
@@ -37,37 +37,37 @@ When `options` are provided, clicking opens an **ActionMenu** dropdown (not nati
 | `showErrorMessage` | boolean | `false` | Error message line |
 | `placeholder` | string | — | Empty state text |
 | `options` | `{ value, label }[]` | — | Dropdown items |
-| `value` / `onValueChange` | controlled | — | Selected value |
+| `value` / `(valueChange)` | controlled | — | Selected value |
 | `menuItems` | — | — | Custom ActionMenu rows |
 | `showClearIcon` | boolean | — | Clear button when filled |
 | `visualState` | string | auto | Force hover/focus/disabled |
 
 ## Dashboard examples
 
-```tsx
-// Filter bar
-<InputSelect
-  showLabel={false}
-  showHelper={false}
+```html
+<!-- Filter bar -->
+<orbit-input-select
+  [showLabel]="false"
+  [showHelper]="false"
   placeholder="Status"
-  options={statusOptions}
-  value={status}
-  onValueChange={setStatus}
-/>
+  [options]="statusOptions"
+  [value]="status"
+  (valueChange)="status = $event"
+></orbit-input-select>
 
-// Form field with error
-<InputSelect
+<!-- Form field with error -->
+<orbit-input-select
   label="Department"
-  options={deptOptions}
-  showErrorMessage
+  [options]="deptOptions"
+  [showErrorMessage]="true"
   errorMessage="Required"
-/>
+></orbit-input-select>
 ```
 
 ## Rules
 
-- Use in filter bars with `showLabel={false}` for compact layout.
+- Use in filter bars with `[showLabel]="false"` for compact layout.
 - Don't use native `<select>` alongside Orbit forms.
-- Pair with `ActionMenu` props via `actionMenuProps` for custom menu behavior.
+- Pair with `ActionMenu` inputs via menu configuration for custom menu behavior.
 - **Dialog forms:** override default `max-width: 460px` so selects fill the column — see [styles.md](../styles.md#dialog-form-layout).
-- **Wide dialogs:** pair related `InputSelect` / short inputs in a two-column `.dialog-form-grid`; keep textareas and attachments full width.
+- **Wide dialogs:** pair related `orbit-input-select` / short inputs in a two-column `.dialog-form-grid`; keep textareas and attachments full width.

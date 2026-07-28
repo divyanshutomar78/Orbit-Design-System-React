@@ -10,6 +10,18 @@
   color: inherit;
 }
 
+/* Ensure projected/custom icon elements don't baseline-shift inside frames. */
+.orbit-icon > * {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.orbit-icon svg {
+  display: block;
+}
+
 .orbit-icon--small {
   width: calc(var(--icon-frame-size-small) * 1px);
   height: calc(var(--icon-frame-size-small) * 1px);

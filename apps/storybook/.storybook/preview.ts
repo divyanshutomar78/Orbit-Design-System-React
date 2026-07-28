@@ -1,13 +1,11 @@
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/angular';
 
 import { withOrbitTokens } from './OrbitTokensDecorator';
-import {
-  DEFAULT_ORBIT_PLATFORM,
-  ORBIT_PLATFORMS,
-} from './orbitPlatforms';
+import { DEFAULT_ORBIT_PLATFORM, ORBIT_PLATFORMS } from './orbitPlatforms';
 import { DEFAULT_ORBIT_THEME, ORBIT_THEMES } from './orbitThemes';
 
-import './orbit-font.css';
+// Font family variable is provided via a <style> tag in `preview-head.html`
+// (webpack's default Angular builder config has no generic CSS-import loader).
 
 const preview: Preview = {
   globalTypes: {
@@ -24,8 +22,7 @@ const preview: Preview = {
     },
     orbitPlatform: {
       name: 'Orbit Platform',
-      description:
-        'Platform sizing tokens from orbit-ds-variables (dist/css/platforms)',
+      description: 'Platform sizing tokens from orbit-ds-variables (dist/css/platforms)',
       defaultValue: DEFAULT_ORBIT_PLATFORM,
       toolbar: {
         title: 'Platform',

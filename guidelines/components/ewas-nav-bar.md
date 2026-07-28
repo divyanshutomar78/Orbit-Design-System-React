@@ -4,60 +4,60 @@ Full application navigation bar composing nav items. Use as dashboard sidebar or
 
 ## Import
 
-```tsx
-import { EWasNavBar } from 'orbit-ds-components';
+```ts
+import { EWasNavBarComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-// Flight mode — horizontal top nav
-<EWasNavBar flight orientation="horizontal" />
+```html
+<!-- Flight mode — horizontal top nav -->
+<orbit-ewas-nav-bar [flight]="true" orientation="horizontal"></orbit-ewas-nav-bar>
 
-// Admin dashboard — vertical sidebar
-<EWasNavBar flight={false} orientation="vertical" />
+<!-- Admin dashboard — vertical sidebar -->
+<orbit-ewas-nav-bar [flight]="false" orientation="vertical"></orbit-ewas-nav-bar>
 
-// Controlled active item
-<EWasNavBar
-  flight={false}
+<!-- Controlled active item -->
+<orbit-ewas-nav-bar
+  [flight]="false"
   orientation="vertical"
-  activeItemId={activeId}
-  onItemSelect={setActiveId}
-/>
+  [activeItemId]="activeId"
+  (itemSelect)="activeId = $event"
+></orbit-ewas-nav-bar>
 ```
 
-## Props
+## Inputs
 
-| Prop | Default | Description |
-|------|---------|-------------|
+| Input / Output | Default | Description |
+|----------------|---------|-------------|
 | `flight` | `true` | Flight header vs branding logo |
 | `orientation` | `'horizontal'` | `'horizontal'` \| `'vertical'` |
 | `flightHeader` | `EWasNavItemWText` | Top header when `flight` |
 | `primaryItems` | Flights/Airport/Opti | Main nav items |
-| `branding` | SITA logo | Shown when `flight={false}` |
+| `branding` | SITA logo | Shown when `[flight]="false"` |
 | `utilityItems` | Data/Config/User | Utility nav icons |
 | `footerItem` | V1.0 + pilot | Footer row |
 | `activeItemId` | — | Controlled selection |
-| `onItemSelect` | — | Selection callback |
+| `(itemSelect)` | — | Selection callback |
 
 ## Dashboard layout
 
-```tsx
-<div style={{ display: 'flex', minHeight: '100vh' }}>
-  <EWasNavBar
-    flight={false}
+```html
+<div style="display: flex; min-height: 100vh">
+  <orbit-ewas-nav-bar
+    [flight]="false"
     orientation="vertical"
-    activeItemId={page}
-    onItemSelect={setPage}
-  />
-  <main style={{ flex: 1 }}>
-    {/* dashboard content */}
+    [activeItemId]="page"
+    (itemSelect)="page = $event"
+  ></orbit-ewas-nav-bar>
+  <main style="flex: 1">
+    <!-- dashboard content -->
   </main>
 </div>
 ```
 
 ## Rules
 
-- Use `flight={false}` + `orientation="vertical"` for standard admin dashboards.
-- Use `flight={true}` + `orientation="horizontal"` for aviation/flight ops UIs.
-- Customize items via `primaryItems`, `utilityItems` props (see types in package).
+- Use `[flight]="false"` + `orientation="vertical"` for standard admin dashboards.
+- Use `[flight]="true"` + `orientation="horizontal"` for aviation/flight ops UIs.
+- Customize items via `primaryItems`, `utilityItems` inputs (see types in package).

@@ -4,17 +4,17 @@ Inline label and value pairs. Use for table cells, metadata rows, and compact da
 
 ## Import
 
-```tsx
-import { LabelValueHorizontal } from 'orbit-ds-components';
+```ts
+import { LabelValueHorizontalComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-<LabelValueHorizontal layout="L + V" label="Gate" value="B12" />
-<LabelValueHorizontal layout="V + L" label="ETA" value="14:30" />
-<LabelValueHorizontal layout="L" label="Owner" />
-<LabelValueHorizontal layout="V" value="42" big />
+```html
+<orbit-label-value-horizontal layout="L + V" label="Gate" value="B12"></orbit-label-value-horizontal>
+<orbit-label-value-horizontal layout="V + L" label="ETA" value="14:30"></orbit-label-value-horizontal>
+<orbit-label-value-horizontal layout="L" label="Owner"></orbit-label-value-horizontal>
+<orbit-label-value-horizontal layout="V" value="42" [big]="true"></orbit-label-value-horizontal>
 ```
 
 ## Layouts
@@ -27,34 +27,34 @@ import { LabelValueHorizontal } from 'orbit-ds-components';
 | `'V'` | Value only |
 | `'L'` | Label only |
 
-## Props
+## Inputs
 
-| Prop | Type | Default |
-|------|------|---------|
+| Input | Type | Default |
+|-------|------|---------|
 | `layout` | see above | `'L + V'` |
-| `label` / `value` | ReactNode | `'Label'` / `'Value'` |
-| `secondaryLabel` | ReactNode | `'Label2'` |
+| `label` / `value` | string | `'Label'` / `'Value'` |
+| `secondaryLabel` | string | `'Label2'` |
 | `big` | boolean | `false` — Title 3 typography for value |
-| `labelSlot` / `valueSlot` | ReactNode | Custom slots |
+| `[orbitLabelSlot]` / `[orbitValueSlot]` | projected content | Custom slots |
 
 ## Dashboard examples
 
-```tsx
-// Table column — role
-<LabelValueHorizontal layout="L" label="Owner" />
+```html
+<!-- Table column — role -->
+<orbit-label-value-horizontal layout="L" label="Owner"></orbit-label-value-horizontal>
 
-// Table column — last seen
-<LabelValueHorizontal layout="L" label="Just now" />
+<!-- Table column — last seen -->
+<orbit-label-value-horizontal layout="L" label="Just now"></orbit-label-value-horizontal>
 
-// KPI inline
-<LabelValueHorizontal layout="L + V" label="Revenue" value="$12,400" />
+<!-- KPI inline -->
+<orbit-label-value-horizontal layout="L + V" label="Revenue" value="$12,400"></orbit-label-value-horizontal>
 
-// Big metric
-<LabelValueHorizontal layout="V" value="128" big />
+<!-- Big metric -->
+<orbit-label-value-horizontal layout="V" value="128" [big]="true"></orbit-label-value-horizontal>
 ```
 
 ## Rules
 
 - Use `layout="L"` for single text columns (role, date, status text without chip).
 - Use `layout="L + V"` for label:value pairs on the same line.
-- Prefer `LabelValueVertical` when label should sit below value (name + email).
+- Prefer `orbit-label-value-vertical` when label should sit below value (name + email).

@@ -4,21 +4,21 @@ Navigation item with two lines of text (flight number style) or split-view info 
 
 ## Import
 
-```tsx
-import { EWasNavItemWText } from 'orbit-ds-components';
+```ts
+import { EWasNavItemWTextComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-<EWasNavItemWText characters="6" orientation="horizontal" state="selected" />
-<EWasNavItemWText characters="default" orientation="splitView" />
+```html
+<orbit-ewas-nav-item-w-text characters="6" orientation="horizontal" state="selected"></orbit-ewas-nav-item-w-text>
+<orbit-ewas-nav-item-w-text characters="default" orientation="splitView"></orbit-ewas-nav-item-w-text>
 ```
 
-## Props
+## Inputs
 
-| Prop | Default | Description |
-|------|---------|-------------|
+| Input | Default | Description |
+|-------|---------|-------------|
 | `characters` | `'6'` | `'6'` \| `'7'` \| `'8'` \| `'default'` — presets primary/secondary text |
 | `primaryText` / `secondaryText` | from preset | Override text lines |
 | `orientation` | `'horizontal'` | `'horizontal'` \| `'splitView'` |
@@ -27,6 +27,6 @@ import { EWasNavItemWText } from 'orbit-ds-components';
 
 ## Rules
 
-- Used as `EWasNavBar` flight header by default.
+- Used as `EWasNavBarComponent` flight header by default.
 - `characters` presets control how much text fits in the nav cell.
 - Use `splitView` for icon-only compact mode.

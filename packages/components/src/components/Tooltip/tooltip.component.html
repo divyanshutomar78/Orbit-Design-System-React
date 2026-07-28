@@ -1,0 +1,33 @@
+<span
+  [class]="classes"
+  (mouseenter)="setOpen(true)"
+  (mouseleave)="setOpen(false)"
+  (focusin)="setOpen(true)"
+  (focusout)="onFocusOut($event)"
+>
+  <div *ngIf="isOpen" class="orbit-tooltip__container">
+    <orbit-tooltip-popup
+      [id]="tooltipId"
+      [text]="text"
+      [showText]="showText && !usePopupContentSlot"
+      [showSlot]="usePopupContentSlot"
+    >
+      <ng-content select="[orbitPopupContent]"></ng-content>
+    </orbit-tooltip-popup>
+  </div>
+
+  <ng-container *ngIf="useTriggerSlot; else defaultTriggerTpl">
+    <ng-content select="[orbitTrigger]"></ng-content>
+  </ng-container>
+  <ng-template #defaultTriggerTpl>
+    <button
+      type="button"
+      [class]="triggerClasses"
+      [attr.aria-label]="triggerLabel"
+      [attr.aria-expanded]="isOpen"
+      [attr.aria-describedby]="isOpen ? tooltipId : null"
+    >
+      <orbit-tooltip-info-icon></orbit-tooltip-info-icon>
+    </button>
+  </ng-template>
+</span>

@@ -1,0 +1,23 @@
+<button
+  [type]="type"
+  [class]="classes"
+  [disabled]="disabled"
+  [attr.aria-current]="state === 'selected' ? 'page' : null"
+  [attr.aria-disabled]="disabled || null"
+  (click)="onClick()"
+>
+  <span class="orbit-ewas-nav-item-w-text__content">
+    <orbit-icon-frame *ngIf="showIconOnly" [size]="iconSize" className="orbit-ewas-nav-item-w-text__icon">
+      <ng-container *ngIf="useIconSlot; else defaultInfoIconTpl">
+        <ng-content></ng-content>
+      </ng-container>
+      <ng-template #defaultInfoIconTpl>
+        <orbit-ewas-nav-item-w-text-info-icon></orbit-ewas-nav-item-w-text-info-icon>
+      </ng-template>
+    </orbit-icon-frame>
+    <ng-container *ngIf="!showIconOnly">
+      <span *ngIf="primary" class="orbit-ewas-nav-item-w-text__primary">{{ primary }}</span>
+      <span *ngIf="secondary" class="orbit-ewas-nav-item-w-text__secondary">{{ secondary }}</span>
+    </ng-container>
+  </span>
+</button>

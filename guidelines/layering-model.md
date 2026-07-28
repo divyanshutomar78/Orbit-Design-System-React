@@ -133,15 +133,15 @@ Every block that sits **directly on the page canvas** uses **`container-1`**: th
 
 Page sections do **not** use `--shadow-card`. Shadows are for floating overlays (menus, modals, tooltips) — not for dashboard sections on the canvas.
 
-```tsx
-<div className="app-shell">
-  <EWasNavBar /> {/* nav chrome on background */}
-  <main className="page-canvas">
-    <header className="page-header">
-      <TitlesAndTabs title="Billing & Invoices" showTabs={false} ... />
+```html
+<div class="app-shell">
+  <orbit-ewas-nav-bar></orbit-ewas-nav-bar> <!-- nav chrome on background -->
+  <main class="page-canvas">
+    <header class="page-header">
+      <orbit-titles-and-tabs title="Billing & Invoices" [showTabs]="false"></orbit-titles-and-tabs>
     </header>
-    <section className="page-section">{/* KPI cards → container-1 */}</section>
-    <section className="page-section">{/* table panel → container-1 */}</section>
+    <section class="page-section"><!-- KPI cards → container-1 --></section>
+    <section class="page-section"><!-- table panel → container-1 --></section>
   </main>
 </div>
 ```

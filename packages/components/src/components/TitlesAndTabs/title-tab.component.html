@@ -1,0 +1,14 @@
+<button
+  type="button"
+  [class]="classes"
+  [disabled]="disabled"
+  [attr.aria-selected]="selected"
+  (click)="onClick()"
+>
+  <span class="orbit-title-tab__label">
+    <ng-container *ngIf="useContentSlot; else tabLabelTpl">
+      <ng-content></ng-content>
+    </ng-container>
+    <ng-template #tabLabelTpl>{{ label }}</ng-template>
+  </span>
+</button>

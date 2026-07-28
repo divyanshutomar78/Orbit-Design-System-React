@@ -1,0 +1,6 @@
+<div [class]="classes" [id]="id" role="tooltip">
+  <p *ngIf="shouldShowText" class="orbit-tooltip-popup__text">{{ text }}</p>
+  <div *ngIf="showSlot" class="orbit-tooltip-popup__slot">
+    <ng-content></ng-content>
+  </div>
+</div>

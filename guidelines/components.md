@@ -4,8 +4,12 @@ Complete reference for `orbit-ds-components`. Read `setup.md`, `tokens.md`, and 
 
 ## Import
 
-```tsx
-import { Button, ListingItem, SuccessChip } from 'orbit-ds-components';
+```ts
+import {
+  ButtonComponent,
+  ListingItemComponent,
+  SuccessChipComponent,
+} from 'orbit-ds-components';
 import 'orbit-ds-components/styles.css';
 ```
 
@@ -40,22 +44,22 @@ import 'orbit-ds-components/styles.css';
 
 ## Chips — shared API
 
-All chip components share the same props. **Read [chips.md](./components/chips.md) before using chips** — especially the select-icon (checkbox) rules.
+All chip components share the same inputs. **Read [chips.md](./components/chips.md) before using chips** — especially the select-icon (checkbox) rules.
 
-```tsx
-<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
+```html
+<orbit-success-chip type="chip" size="compact" [showIcon]="false" label="Active"></orbit-success-chip>
 ```
 
-| Prop | Values | Default |
-|------|--------|---------|
+| Input | Values | Default |
+|-------|--------|---------|
 | `type` | `'chip'` (pill) \| `'tag'` (squared) | `'chip'` |
 | `size` | `'default'` \| `'compact'` | `'default'` |
 | `selected` | boolean | `false` |
 | `showIcon` | boolean | `true` — use **`false`** for read-only status |
 | `iconSize` | `'small'` \| `'big'` | `'small'` |
-| `children` | string | `'Text'` |
+| `label` | string | `'Text'` |
 
-**Quick rule:** read-only status → `showIcon={false}`. Selectable filter → `showIcon` + `onClick` + `selected`.
+**Quick rule:** read-only status → `[showIcon]="false"`. Selectable filter → `showIcon` + `(click)` + `selected`.
 
 Only the **color tokens** differ between chip variants. Pick the semantic color that matches the status.
 
@@ -63,71 +67,72 @@ Only the **color tokens** differ between chip variants. Pick the semantic color 
 
 ### Page header
 
-```tsx
-<TitlesAndTabs
+```html
+<orbit-titles-and-tabs
   title="Users"
-  tabItems={[
+  [tabItems]="[
     { id: 'all', label: 'All', selected: true },
     { id: 'active', label: 'Active' },
-  ]}
-  onTabSelect={setTab}
-/>
+  ]"
+  (tabSelect)="setTab($event)"
+></orbit-titles-and-tabs>
 
-{/* Subheading goes OUTSIDE TitlesAndTabs — see titles-and-tabs.md */}
-<p className="page-subtitle">Manage accounts and permissions.</p>
+<!-- Subheading goes OUTSIDE orbit-titles-and-tabs — see titles-and-tabs.md -->
+<p class="page-subtitle">Manage accounts and permissions.</p>
 ```
 
 ### Filter bar
 
-```tsx
-<div style={{ display: 'flex', gap: 'calc(var(--gap-s) * 1px)' }}>
-  <InputSelect placeholder="Role" options={roleOptions} value={role} onValueChange={setRole} />
-  <Button variant="secondary">Export</Button>
+```html
+<div style="display: flex; gap: calc(var(--gap-s) * 1px)">
+  <orbit-input-select placeholder="Role" [options]="roleOptions" [value]="role" (valueChange)="role = $event"></orbit-input-select>
+  <orbit-button variant="secondary" label="Export"></orbit-button>
 </div>
 ```
 
 ### Simple list row
 
-```tsx
-<ListingItem
-  reorderIcon={false}
-  showLeftIcon={false}
+```html
+<orbit-listing-item
+  [reorderIcon]="false"
+  [showLeftIcon]="false"
   label="Notifications"
   value="On"
-  onClick={() => openSettings()}
-/>
+  [interactive]="true"
+  (click)="openSettings()"
+></orbit-listing-item>
 ```
 
 ### Status badge
 
-```tsx
-<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
+```html
+<orbit-success-chip type="chip" size="compact" [showIcon]="false" label="Active"></orbit-success-chip>
 ```
 
 ## Anti-patterns (do not do this)
 
 | Wrong | Right |
 |-------|-------|
-| `<button className="bg-blue-500">` | `<Button variant="primary">` |
-| Custom pill for status | `SuccessChip` / `WarningChip` with `showIcon={false}` |
-| Status chip with default icon (looks like dead checkbox) | `showIcon={false}` on read-only chips — see [chips.md](./components/chips.md) |
-| `OptionCheckbox` in `ListingItem leftIcon` | Checkbox beside row — see listing-item guide |
-| Multiple columns in `addIconsComponent` | One control per slot — see [listing-item.md](./components/listing-item.md) |
-| Button label clipped in `ListingItem` row | `minWidth={false}` on `Button`; don't fix actions slot to icon width — see [listing-item.md](./components/listing-item.md) |
+| `<button class="bg-blue-500">` | `<orbit-button variant="primary" label="Save">` |
+| Custom pill for status | `orbit-success-chip` / `orbit-warning-chip` with `[showIcon]="false"` |
+| Status chip with default icon (looks like dead checkbox) | `[showIcon]="false"` on read-only chips — see [chips.md](./components/chips.md) |
+| `orbit-option-checkbox` in `orbit-listing-item` `[orbitLeftIcon]` | Checkbox beside row — see listing-item guide |
+| Multiple columns in `[orbitAddIcons]` | One control per slot — see [listing-item.md](./components/listing-item.md) |
+| Button label clipped in `orbit-listing-item` row | `[minWidth]="false"` on `orbit-button`; don't fix actions slot to icon width — see [listing-item.md](./components/listing-item.md) |
 | Skip token CSS imports | Always load primitives + theme + platform |
 | Import multiple themes | One theme only |
-| Subheading inside `TitlesAndTabs` | Subheading below (pages) or in dialog body — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
-| `showTitleIcon={false}` to hide back icon only | `showTitleIcon` + `showLeftIcon={false}` — `showTitleIcon={false}` removes the title |
-| Extra `padding-block` on `TitleTab` or modal header | Fixed 36px row; tabs stretch with no vertical padding |
-| Dialog title as `TitleTab` | Static dialog title + `TitleTab` for tabs only — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
+| Subheading inside `orbit-titles-and-tabs` | Subheading below (pages) or in dialog body — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
+| `[showTitleIcon]="false"` to hide back icon only | `showTitleIcon` + `[showLeftIcon]="false"` — `[showTitleIcon]="false"` removes the title |
+| Extra `padding-block` on `orbit-title-tab` or modal header | Fixed 36px row; tabs stretch with no vertical padding |
+| Dialog title as `orbit-title-tab` | Static dialog title + `orbit-title-tab` for tabs only — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
 | Close icon misaligned in tabbed dialog | Fixed header height + actions slot — see [titles-and-tabs.md](./components/titles-and-tabs.md) |
-| Multiple `LabelValueVertical` stacked vertically | Grid wrapper with `display: grid` + column template — see [label-value-vertical.md](./components/label-value-vertical.md) |
+| Multiple `orbit-label-value-vertical` stacked vertically | Grid wrapper with `display: grid` + column template — see [label-value-vertical.md](./components/label-value-vertical.md) |
 | `grid-template-columns` only, no `display: grid` | Both on parent wrapper | Columns never apply |
 | Related stat cells with no group border | `stats-group` wrapper + `--border-secondary` below — see [label-value-vertical.md](./components/label-value-vertical.md) |
 | Section border inset in padded dialog | Full-bleed divider — see [styles.md](./styles.md#dialog-body-section-dividers) |
-| `InputSelect` at 460px max-width in wide dialog | `max-width: none` on form fields — see [styles.md](./styles.md#dialog-form-layout) |
+| `orbit-input-select` at 460px max-width in wide dialog | `max-width: none` on form fields — see [styles.md](./styles.md#dialog-form-layout) |
 | All dialog form fields stacked in one column on wide modal | `.dialog-form-grid` for paired selects/short inputs — see [styles.md](./styles.md#dialog-form-layout) |
-| Full-width `TitlesAndTabs` + narrow centered page body | Same-width page shell — see [styles.md](./styles.md#page-width-alignment-header--body) |
+| Full-width `orbit-titles-and-tabs` + narrow centered page body | Same-width page shell — see [styles.md](./styles.md#page-width-alignment-header--body) |
 | Page content on `--background-background` | Canvas `background`; top-level sections `container-1`; inner content `container-2` — see [layering-model.md](./layering-model.md#page-layout-canvas--sections) |
 | KPI cards / panels `container-2` on page canvas | Top-level sections → `container-1` | Parent is `background`, not container-1 |
 | Entire `<main>` painted `container-1` | Keep page canvas as `background` | Flat white page — no visible canvas |

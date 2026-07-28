@@ -4,41 +4,41 @@ Single radio option row with icon and label.
 
 ## Import
 
-```tsx
-import { OptionRadio } from 'orbit-ds-components';
+```ts
+import { OptionRadioComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-<OptionRadio
+```html
+<orbit-option-radio
   name="plan"
   value="pro"
   label="Pro plan"
-  selected={plan === 'pro'}
-  onChange={() => setPlan('pro')}
-/>
+  [selected]="plan === 'pro'"
+  (selectedChange)="setPlan('pro')"
+></orbit-option-radio>
 ```
 
-## Props
+## Inputs
 
-| Prop | Type | Default |
-|------|------|---------|
-| `label` | ReactNode | `'Option'` |
+| Input | Type | Default |
+|-------|------|---------|
+| `label` | string | `'Option'` |
 | `selected` | boolean | `false` |
 | `status` | `'default'` \| `'hover'` \| `'disabled'` | `'default'` |
-| `textSlot` | ReactNode | — |
+| `useTextSlot` / `[orbitTextSlot]` | projected content | — |
 | `iconSize` | `'small'` \| `'big'` | `'big'` |
 
 ## Dashboard examples
 
-```tsx
-// Settings panel
-<OptionRadio name="theme" value="dark" label="Dark mode" selected={theme === 'dark'} />
-<OptionRadio name="theme" value="light" label="Light mode" selected={theme === 'light'} />
+```html
+<!-- Settings panel -->
+<orbit-option-radio name="theme" value="dark" label="Dark mode" [selected]="theme === 'dark'"></orbit-option-radio>
+<orbit-option-radio name="theme" value="light" label="Light mode" [selected]="theme === 'light'"></orbit-option-radio>
 ```
 
 ## Rules
 
 - Group radios with the same `name` attribute.
-- Stack vertically in settings panels — one `OptionRadio` per choice.
+- Stack vertically in settings panels — one `orbit-option-radio` per choice.

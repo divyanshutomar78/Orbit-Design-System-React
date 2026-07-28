@@ -1,0 +1,107 @@
+<div #container [class]="classes">
+  <div class="orbit-input-select__label-row" *ngIf="showLabel">
+    <span class="orbit-input-select__label" [id]="fieldId + '-label'">{{ label }}</span>
+    <span class="orbit-input-select__label-info" *ngIf="showLabelInfo" aria-hidden="true">
+      <orbit-input-select-label-info-icon></orbit-input-select-label-info-icon>
+    </span>
+  </div>
+
+  <div class="orbit-input-select__field-wrap">
+    <input
+      *ngIf="name && hasDropdown"
+      type="hidden"
+      [name]="name"
+      [value]="currentValue"
+    />
+
+    <button
+      type="button"
+      [id]="fieldId"
+      class="orbit-input-select__field"
+      [disabled]="disabled"
+      [attr.aria-haspopup]="hasDropdown ? 'listbox' : null"
+      [attr.aria-expanded]="hasDropdown ? isOpen : null"
+      [attr.aria-controls]="hasDropdown && isOpen ? menuId : null"
+      [attr.aria-labelledby]="showLabel ? fieldId + '-label' : null"
+      [attr.aria-invalid]="showErrorMessage || null"
+      [attr.aria-describedby]="showBottomHelperText ? fieldId + '-helper' : null"
+      (click)="toggleOpen()"
+    >
+      <span class="orbit-input-select__background" aria-hidden="true"></span>
+      <span class="orbit-input-select__content">
+        <ng-container *ngIf="hasDropdown && hasValue && selectedOption; else notSelectedOptionTpl">
+          <span class="orbit-input-select__value-text">{{ selectedOption!.label }}</span>
+        </ng-container>
+        <ng-template #notSelectedOptionTpl>
+          <ng-container [ngSwitch]="resolvedContent">
+            <div *ngSwitchCase="'labelValue'" [class]="'orbit-label-value-horizontal ' + horizontalLayoutClass">
+              <div class="orbit-label-value-horizontal__row">
+                <span class="orbit-label-value-horizontal__label">{{ inlineLabel }}</span>
+                <span class="orbit-label-value-horizontal__value">{{ displayValue }}</span>
+              </div>
+            </div>
+            <div *ngSwitchCase="'valueLabel'" [class]="'orbit-label-value-horizontal ' + horizontalLayoutClass">
+              <div class="orbit-label-value-horizontal__row">
+                <span class="orbit-label-value-horizontal__value">{{ displayValue }}</span>
+                <span class="orbit-label-value-horizontal__label">{{ inlineLabel }}</span>
+              </div>
+            </div>
+            <div *ngSwitchCase="'labelValueLabel'" [class]="'orbit-label-value-horizontal ' + horizontalLayoutClass">
+              <div class="orbit-label-value-horizontal__row">
+                <div class="orbit-label-value-horizontal__cell">
+                  <span class="orbit-label-value-horizontal__label">{{ inlineLabel }}</span>
+                  <span class="orbit-label-value-horizontal__value">{{ displayValue }}</span>
+                </div>
+                <span class="orbit-label-value-horizontal__label">{{ secondaryInlineLabel }}</span>
+              </div>
+            </div>
+            <span *ngSwitchCase="'label'" class="orbit-input-select__inline-label">{{ inlineLabel }}</span>
+            <span *ngSwitchCase="'value'" class="orbit-input-select__value-text">{{ displayValue }}</span>
+            <span *ngSwitchDefault class="orbit-input-select__placeholder">{{ placeholder }}</span>
+          </ng-container>
+        </ng-template>
+      </span>
+
+      <span class="orbit-input-select__icons" *ngIf="showIcons; else iconsSpacerTpl">
+        <span
+          *ngIf="showClearIcon && hasValue"
+          role="button"
+          tabindex="-1"
+          class="orbit-input-select__icon-button"
+          aria-label="Clear selection"
+          (mousedown)="$event.preventDefault()"
+          (click)="$event.stopPropagation(); onClear()"
+        >
+          <orbit-input-select-clear-icon></orbit-input-select-clear-icon>
+        </span>
+        <span *ngIf="showSelectIcon && hasDropdown" class="orbit-input-select__icon-button" aria-hidden="true">
+          <orbit-input-select-chevron-icon></orbit-input-select-chevron-icon>
+        </span>
+        <ng-container *ngIf="showFieldInfoIcon">
+          <span class="orbit-input-select__divider" aria-hidden="true"></span>
+          <span class="orbit-input-select__icon-button" aria-hidden="true">
+            <orbit-input-select-field-info-icon></orbit-input-select-field-info-icon>
+          </span>
+        </ng-container>
+      </span>
+      <ng-template #iconsSpacerTpl>
+        <span class="orbit-input-select__icons-spacer" aria-hidden="true"></span>
+      </ng-template>
+    </button>
+
+    <div class="orbit-input-select__dropdown" *ngIf="hasDropdown && isOpen && actionMenuItems">
+      <orbit-action-menu
+        [id]="menuId"
+        className="orbit-input-select__menu"
+        [items]="actionMenuItems"
+        [iconSize]="menuIconSize"
+        (itemSelect)="onItemSelect($event)"
+      ></orbit-action-menu>
+    </div>
+  </div>
+
+  <div class="orbit-input-select__footer" [id]="fieldId + '-helper'" *ngIf="showBottomSpaceHelper">
+    <p *ngIf="showHelper" class="orbit-input-select__helper">{{ helper }}</p>
+    <p *ngIf="showErrorMessage" class="orbit-input-select__error">{{ errorMessage }}</p>
+  </div>
+</div>

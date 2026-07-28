@@ -4,49 +4,55 @@ Green status chip/tag for positive states (Active, Complete, Online).
 
 ## Import
 
-```tsx
-import { SuccessChip } from 'orbit-ds-components';
+```ts
+import { SuccessChipComponent } from 'orbit-ds-components';
 ```
 
 ## Basic usage
 
-```tsx
-{/* Read-only status — no select icon */}
-<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
+```html
+<!-- Read-only status — no select icon -->
+<orbit-success-chip type="chip" size="compact" [showIcon]="false" label="Active"></orbit-success-chip>
 
-{/* Selectable filter — icon + handler required */}
-<SuccessChip type="chip" selected={filter === 'active'} onClick={() => setFilter('active')}>
-  Active
-</SuccessChip>
+<!-- Selectable filter — icon + handler required -->
+<orbit-success-chip
+  type="chip"
+  [selected]="filter === 'active'"
+  label="Active"
+  (click)="setFilter('active')"
+></orbit-success-chip>
 ```
 
-## Props
+## Inputs
 
-| Prop | Type | Default |
-|------|------|---------|
+| Input | Type | Default |
+|-------|------|---------|
 | `type` | `'chip'` \| `'tag'` | `'chip'` |
 | `size` | `'default'` \| `'compact'` | `'default'` |
 | `selected` | boolean | `false` |
 | `showIcon` | boolean | `true` |
 | `iconSize` | `'small'` \| `'big'` | `'small'` |
-| `children` | ReactNode | `'Text'` |
+| `label` | string | `'Text'` |
 
 ## Dashboard examples
 
-```tsx
-// User status column (read-only)
-<SuccessChip type="chip" size="compact" showIcon={false}>Active</SuccessChip>
+```html
+<!-- User status column (read-only) -->
+<orbit-success-chip type="chip" size="compact" [showIcon]="false" label="Active"></orbit-success-chip>
 
-// Filter chip (selectable — icon + state required)
-<SuccessChip type="chip" selected={filter === 'active'} onClick={() => setFilter('active')}>
-  Active
-</SuccessChip>
+<!-- Filter chip (selectable — icon + state required) -->
+<orbit-success-chip
+  type="chip"
+  [selected]="filter === 'active'"
+  label="Active"
+  (click)="setFilter('active')"
+></orbit-success-chip>
 ```
 
 ## Rules
 
 - Use `size="compact"` in table rows and dense lists.
 - Use `type="chip"` (pill) for status; `type="tag"` (squared) for category labels.
-- **Read-only status:** `showIcon={false}` — do not show the circle/checkmark icon.
-- **Selectable filter:** keep default `showIcon`, and wire `onClick` + `selected`. See [chips.md](./chips.md).
+- **Read-only status:** `[showIcon]="false"` — do not show the circle/checkmark icon.
+- **Selectable filter:** keep default `showIcon`, and wire `(click)` + `selected`. See [chips.md](./chips.md).
 - Tokens: `--chips-success-default`, `--chips-success-hover`, `--chips-success-selected`.
